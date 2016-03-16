@@ -18,6 +18,7 @@
 
 # Ignore all others unnecessary files
 database.yml
+secrets.yml
 doc/
 *.swp
 *~
