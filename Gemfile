@@ -4,7 +4,7 @@ ruby '2.1.5'
 
 gem 'rails', '4.2.5'
 gem 'pg', '0.18.4'
-gem 'bootstrap-sass', '3.3.5'
+gem 'materialize-sass'
 gem 'bcrypt-ruby', '3.1.2'
 
 group :development, :test do
