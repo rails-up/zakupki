@@ -9,6 +9,7 @@ gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
 gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'rolify', '~> 5.1'
 gem 'cancan', '~> 1.6', '>= 1.6.10'
+gem 'rails_admin', '~> 0.8.1'
 
 group :development, :test do
   #DB
