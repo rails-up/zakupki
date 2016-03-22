@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
-#ruby-gemset=zakupki_gemset_rails_4_2
 
 gem 'rails', '~> 4.2', '>= 4.2.6'
 gem 'pg', '~> 0.18.4'

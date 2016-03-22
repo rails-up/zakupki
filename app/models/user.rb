@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  has_many :comments
-  has_many :followings
-  has_many :groups
+  has_many :comments, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_and_belongs_to_many :groups
   has_many :purchases
-  belongs_to :role
+  has_one :role
 end
