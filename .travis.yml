@@ -4,7 +4,7 @@ env: RAILS_ENV=test
 script:
   - bundle exec rspec
 addons:
-  postgresql: "9.5"
+  postgresql: "9.4"
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
