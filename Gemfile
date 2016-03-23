@@ -19,7 +19,7 @@ group :test do
   gem 'selenium-webdriver', '~> 2.53'
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'libnotify', '~> 0.9.1'
-  gem 'factory_girl_rails', '~> 4.6'
+  gem 'factory_girl_rails'
 end
 
 group :development do
