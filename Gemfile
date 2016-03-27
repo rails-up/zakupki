@@ -20,6 +20,7 @@ group :test do
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'libnotify', '~> 0.9.1'
   gem 'factory_girl_rails'
+  gem 'shoulda'
 end
 
 group :development do
