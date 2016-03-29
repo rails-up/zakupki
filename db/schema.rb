@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328181650) do
+ActiveRecord::Schema.define(version: 20160329081714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,9 +86,8 @@ ActiveRecord::Schema.define(version: 20160328181650) do
     t.integer  "user_id"
     t.string   "status"
     t.integer  "purchase_id"
-    t.integer  "orderitem_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -112,14 +111,8 @@ ActiveRecord::Schema.define(version: 20160328181650) do
     t.string   "username"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.integer  "follower_id"
-    t.integer  "followed_id"
     t.integer  "role_id"
     t.string   "phone"
-    t.integer  "group_id"
-    t.integer  "purchase_id"
-    t.integer  "order_id"
-    t.integer  "comment_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
