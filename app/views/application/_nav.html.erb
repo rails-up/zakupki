@@ -3,14 +3,14 @@
     <div class="nav-wrapper">
       <%= link_to "Zakupki", root_path, class: "brand-logo blue-text" %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">Все закупки</a></li>
-        <li><a href="#">Группы</a></li>
-        <li><%= link_to "Как это работает", about_path %></li>
+        <li><a href="#"><%= t 'nav.all_purchases' %></a></li>
+        <li><a href="#"><%= t('nav.groups') %> </a></li>
+        <li><%= link_to t('nav.about'), about_path %></li>
         <li>
         <% if current_user %>
           <%= link_to current_user.email, destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= link_to "Вход / Регистрация", new_user_registration_path %>
+          <%= link_to t('nav.log_in'), new_user_registration_path %>
         <% end %>
         </li>
       </ul>
