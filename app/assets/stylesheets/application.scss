@@ -1,1 +1,14 @@
 @import "materialize";
+
+.transparent {
+  background-color: transparent;
+}
+
+nav {
+  box-shadow: none;
+  ul {
+    a {
+      color: #039be5;
+    }
+  }
+}

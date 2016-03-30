@@ -1,0 +1,19 @@
+<header>
+  <nav class="transparent" >
+    <div class="nav-wrapper">
+      <%= link_to "Zakupki", root_path, class: "brand-logo blue-text" %>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#">Все закупки</a></li>
+        <li><a href="#">Группы</a></li>
+        <li><%= link_to "Как это работает", about_path %></li>
+        <li>
+        <% if current_user %>
+          <%= link_to current_user.email, destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Вход / Регистрация", new_user_registration_path %>
+        <% end %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
