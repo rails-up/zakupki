@@ -28,4 +28,16 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+  
+  #Return full user name or email
+  def name
+    username || email
+  end
+  
+  #Get user avatar from gravatar.com
+  def gravatar
+    hash = Digest::MD5.hexdigest(email)
+    "http://www.gravatar.com/avatar/#{hash}?d=identicon"
+  end
+  
 end

@@ -1,0 +1,9 @@
+ru:
+  nav:
+    all_purchases: 'Все закупки'
+    groups: 'Группы'
+    about: 'Как это работает'
+    log_in: 'Вход / Регистрация'
+    log_out: 'Выход'
+    profile: 'Профиль'
+    orders: 'Заказы'
