@@ -37,11 +37,7 @@ class User < ActiveRecord::Base
     attributes = { email: auth.info.email, password: Devise.friendly_token[0,20],
                    username: auth.info.name, provider: auth.provider, uid: auth.uid }
     user = User.where(attributes.slice(:provider, :uid)).first
-    if user
-      user
-    else
-      User.create(attributes) unless User.exists?(attributes.slice(:provider, :uid))
-    end
+    user.nil? ? User.create(attributes) : user
   end
 
   #Return full user name or email

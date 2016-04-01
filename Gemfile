@@ -23,6 +23,8 @@ group :test do
   gem 'libnotify', '~> 0.9.1'
   gem 'factory_girl_rails'
   gem 'shoulda'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 group :development do
