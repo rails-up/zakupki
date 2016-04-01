@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     attributes = { email: auth.info.email, password: Devise.friendly_token[0,20],
                    username: auth.info.name, provider: auth.provider, uid: auth.uid }
-    user = User.where(attributes.slice(:provider, :uid)).first
-    user.nil? ? User.create(attributes) : user
+    user = where(attributes.slice(:provider, :uid)).first
+    user.nil? ? create(attributes) : user
   end
 
   #Return full user name or email

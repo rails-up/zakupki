@@ -16,7 +16,7 @@
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <span class="character-counter" style="float: left; font-size: 12px; height: 1px;">
-        <%= + @minimum_password_length %> characters minimum          
+        <%= + @minimum_password_length %> characters minimum
       </span>
       <% end %>  
     </div>
@@ -28,7 +28,7 @@
       <%= f.label :password_confirmation %>
     </div>
   </div>
-  
+
   <div class="actions">
     <%= f.submit "Sign up", class: "waves-effect waves-light btn" %>
   </div>
