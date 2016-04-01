@@ -8,6 +8,8 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'rolify', '~> 5.1'
 gem 'cancan', '~> 1.6', '>= 1.6.10'
 gem 'rails_admin', '~> 0.8.1'
+gem 'figaro'
+gem 'omniauth-vkontakte'
 
 group :development, :test do
   #DB
