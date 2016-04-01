@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :trackable, :validatable, :omniauthable
 
   has_many :comments, dependent: :destroy
   has_many :orders, dependent: :destroy
@@ -28,16 +28,33 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
-  
+
+  def email_required?
+    false
+  end
+
+  def self.from_omniauth(auth)
+    attributes = { email: auth.info.email, password: Devise.friendly_token[0,20],
+                   username: auth.info.name, provider: auth.provider, uid: auth.uid }
+    user = User.where(attributes.slice(:provider, :uid)).first
+    if user
+      user
+    else
+      User.create(attributes) unless User.exists?(attributes.slice(:provider, :uid))
+    end
+  end
+
   #Return full user name or email
   def name
     username || email
   end
-  
+
   #Get user avatar from gravatar.com
   def gravatar
-    hash = Digest::MD5.hexdigest(email)
-    "http://www.gravatar.com/avatar/#{hash}?d=identicon"
+    unless self.email.nil?
+      hash = Digest::MD5.hexdigest(email)
+      "http://www.gravatar.com/avatar/#{hash}?d=identicon"
+    end
   end
-  
+
 end
