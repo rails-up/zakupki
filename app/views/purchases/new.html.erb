@@ -1,0 +1,10 @@
+<h2><%= t('purchase.new') %></h2>
+<%= form_for purchase, url: { action: "create" } do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true, minlength: 10 %>
+  <%= f.label :description %>
+  <%= f.text_area :description, required: true %>
+  <%= f.label :end_date %>
+  <%= f.date_field :end_date, required: true, value: (30).days.from_now.to_date %>
+  <%= f.submit t(:save), class: "waves-effect waves-light btn" %>
+<% end %>

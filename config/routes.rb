@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "oauths" }
+
+  resources :users, :purchases, :groups, :comments
 end

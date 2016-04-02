@@ -1,7 +1,16 @@
 ru:
   title: 'Закупки'
+  view: 'Просмотр'
+  save: 'Сохранить'
+  purchase:
+    title: 'Закупка'
+    new: 'Новая закупка'
   activerecord:
     attributes:
+      purchase:
+        end_date: 'Дата окончания'
+        name: 'Название'
+        description: 'Описание'
       user:
         password: 'Пароль'
         email: 'E-mail'

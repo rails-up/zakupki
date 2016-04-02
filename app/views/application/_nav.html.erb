@@ -3,7 +3,7 @@
     <div class="nav-wrapper">
       <%= link_to t(:title), root_path, class: "brand-logo blue-text" %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#"><%= t 'nav.all_purchases' %></a></li>
+        <li><%= link_to t('nav.all_purchases'), purchases_path %></li>
         <li><a href="#"><%= t('nav.groups') %> </a></li>
         <li><%= link_to t('nav.about'), about_path %></li>
         <li>
