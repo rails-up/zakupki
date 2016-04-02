@@ -47,10 +47,8 @@ class User < ActiveRecord::Base
 
   #Get user avatar from gravatar.com
   def gravatar
-    unless self.email.nil?
-      hash = Digest::MD5.hexdigest(email)
-      "http://www.gravatar.com/avatar/#{hash}?d=identicon"
-    end
+    mail = email || "#{provider}_#{uid}"
+    hash = Digest::MD5.hexdigest(mail)
+    "http://www.gravatar.com/avatar/#{hash}?d=identicon"
   end
-
 end
