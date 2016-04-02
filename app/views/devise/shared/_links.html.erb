@@ -1,19 +1,19 @@
 <%= content_tag(:div, class: "section") do %>
   <%- if controller_name != 'sessions' %>
     <%= content_tag(:div, class: "col s12") do %>
-      <%= link_to "Log in", new_session_path(resource_name) %>
+      <%= link_to t('login.button'), new_session_path(resource_name) %>
     <% end %>
   <% end -%>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <%= content_tag(:div, class: "col s12") do %>
-      <%= link_to "Sign up", new_registration_path(resource_name) %>
+      <%= link_to t(:sign_up), new_registration_path(resource_name) %>
     <% end %>
   <% end -%>
 
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
     <%= content_tag(:div, class: "col s12") do %>
-      <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+      <%= link_to t(:forgot_pass), new_password_path(resource_name) %>
     <% end %>
   <% end -%>
 
@@ -33,7 +33,7 @@
   <%- if devise_mapping.omniauthable? %>
     <%= content_tag(:div, class: "col s12") do %>
       <%- resource_class.omniauth_providers.each do |provider| %>
-        <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %>
+        <%= link_to "#{t("nav.login_oauth")} #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %>
       <% end -%>
     <% end %>
   <% end -%>

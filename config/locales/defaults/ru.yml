@@ -1,1 +1,15 @@
 ru:
+  title: 'Закупки'
+  activerecord:
+    attributes:
+      user:
+        password: 'Пароль'
+        email: 'E-mail'
+        remember_me: 'Запомнить меня'
+        password_confirmation: 'Подтверждение пароля'
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'Этот e-mail уже занят'

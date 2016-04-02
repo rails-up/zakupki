@@ -1,4 +1,4 @@
-<h2>Log in</h2>
+<h2><%= t('login.title') %></h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="row">
@@ -22,7 +22,7 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in", class: "waves-effect waves-light btn" %>
+    <%= f.submit t('login.button'), class: "waves-effect waves-light btn" %>
   </div>
 <% end %>
 
