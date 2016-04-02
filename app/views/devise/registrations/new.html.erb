@@ -1,11 +1,11 @@
-<h2>Sign up</h2>
+<h2><%= t('sign_up.title') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="row">
     <div class="input-field col s12">
-      <%= f.email_field :email, autofocus: true, class: "validate" %>
+      <%= f.email_field :email, autofocus: true, class: "validate", required: true %>
       <%= f.label :email %>
     </div>
   </div>
@@ -16,7 +16,7 @@
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <span class="character-counter" style="float: left; font-size: 12px; height: 1px;">
-        <%= + @minimum_password_length %> characters minimum          
+        <%= + @minimum_password_length %> characters minimum
       </span>
       <% end %>  
     </div>
@@ -28,9 +28,9 @@
       <%= f.label :password_confirmation %>
     </div>
   </div>
-  
+
   <div class="actions">
-    <%= f.submit "Sign up", class: "waves-effect waves-light btn" %>
+    <%= f.submit t("sign_up.button"), class: "waves-effect waves-light btn" %>
   </div>
 <% end %>
 
