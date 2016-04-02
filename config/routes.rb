@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   get 'about' => 'pages#about'
+  get 'profile' => 'profile#index', as: :user_profile
+  get 'profile/edit', as: :user_profile_edit
+  post 'profile/update'
+
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
