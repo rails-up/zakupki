@@ -1,0 +1,7 @@
+ru:
+  login:
+    button: 'Войти'
+    title: 'Вход'
+  sign_up:
+    button: 'Зарегистрироваться'
+    title: 'Регистрация'

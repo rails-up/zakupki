@@ -1,8 +1,10 @@
 require 'rails_helper'
+include VkOauthStubHelper
 
 RSpec.describe User, type: :model do
   let!(:user) { create :user }
   let!(:other_user) { create :user }
+  let!(:vk_user) { create :user_from_vkontakte }
 
   it "cannot follow itself" do
     user.follow(user)
@@ -35,5 +37,34 @@ RSpec.describe User, type: :model do
       expect(user.active_relationships.find_by(followed_id: other_user.id)).to be nil
       expect(other_user.passive_relationships.find_by(follower_id: user.id)).to be nil
     end
+  end
+
+  it "can be created with email=nil" do
+    user_without_email = create(:user, email: nil)
+    expect(user_without_email).to be_instance_of User
+  end
+
+  context "when created from omniauth" do
+
+    let!(:existing_auth) { vk_json }
+    let!(:new_auth) { vk_new_json }
+
+    it "returns user, when it exists" do
+      existing_user = User.from_omniauth(existing_auth)
+      expect(existing_user).to be_instance_of User
+    end
+
+    it "returns new user, when it does not exist" do
+      new_user = User.from_omniauth(new_auth)
+      expect(new_user).to be_instance_of User
+    end
+  end
+
+  it ".gravatar returns avatar url when user has linked email" do
+    expect(user.gravatar).to be_url
+  end
+
+  it ".gravatar returns avatar url when user has not linked email " do
+    expect(vk_user.gravatar).to be_url
   end
 end

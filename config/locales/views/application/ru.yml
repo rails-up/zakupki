@@ -1,4 +1,6 @@
 ru:
+  sign_up: 'Регистрация'
+  forgot_pass: 'Забыли пароль?'
   nav:
     all_purchases: 'Все закупки'
     groups: 'Группы'
@@ -7,3 +9,4 @@ ru:
     log_out: 'Выход'
     profile: 'Профиль'
     orders: 'Заказы'
+    login_oauth: 'Вход через'
