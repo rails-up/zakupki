@@ -5,8 +5,8 @@ gem 'pg', '~> 0.18.4'
 gem 'materialize-sass', '~> 0.97.5'
 gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
 gem 'devise', '~> 3.5', '>= 3.5.6'
-gem 'rolify', '~> 5.1'
-gem 'cancan', '~> 1.6', '>= 1.6.10'
+gem 'rolify'
+gem 'cancan'
 gem 'rails_admin', '~> 0.8.1'
 gem 'figaro'
 gem 'omniauth-vkontakte'
@@ -29,6 +29,7 @@ end
 
 group :development do
   gem 'spring', '~> 1.6', '>= 1.6.4'
+  gem 'pry-rails', :group => :development
 end
 
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
