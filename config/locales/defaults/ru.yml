@@ -10,6 +10,8 @@ ru:
     edit: 'Редактирование закупки'
     deletion_confirm: 'Закупка будет удалена. Вы уверены, что хотите продолжить?'
     end_date: 'Дата окончания данной закупки: '
+  profile:
+    edit_profile: 'Изменение профиля'
   activerecord:
     attributes:
       purchase:
@@ -21,6 +23,8 @@ ru:
         email: 'E-mail'
         remember_me: 'Запомнить меня'
         password_confirmation: 'Подтверждение пароля'
+        username: 'Имя'
+        phone: 'Телефон'
     errors:
       models:
         user:

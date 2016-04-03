@@ -2,12 +2,25 @@ require 'rails_helper'
 
 RSpec.describe ProfileController, type: :controller do
 
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
+  describe 'GET #index' do
+    context 'when user is logged in' do
+      it "should let a user see profile" do
+        login_with create( :user )
+        get :index
+        expect( response ).to render_template( :index )
+      end
+    end
+    
+    context 'when user is logged out' do
+      before do
+        login_with nil
+        get :index
+      end
+      it { is_expected.to redirect_to root_path }
     end
   end
+  
+  login_user
 
   describe "GET #edit" do
     it "returns http success" do
@@ -16,11 +29,20 @@ RSpec.describe ProfileController, type: :controller do
     end
   end
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
+  describe "Update should change current user info" do
+    
+    let(:attr) do 
+      { username: 'New username', phone: "999-999-999" }
     end
+  
+    before(:each) do
+      post :update, current_user: attr
+    end
+    
+      it { response.should redirect_to(user_profile_url) }
+      it { controller.current_user.username.should eql attr[:username] }
+      it { controller.current_user.phone.should eql attr[:phone] }
+      
   end
 
 end
