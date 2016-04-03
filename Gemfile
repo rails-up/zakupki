@@ -29,6 +29,7 @@ end
 
 group :development do
   gem 'spring', '~> 1.6', '>= 1.6.4'
+  gem 'pry-rails', :group => :development
 end
 
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'

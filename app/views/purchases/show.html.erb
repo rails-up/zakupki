@@ -1,2 +1,24 @@
-<h1>Purchases#show</h1>
-<p>Find me in app/views/purchases/show.html.erb</p>
+<h2><%= purchase.name %></h2>
+<div class="section flow-text">
+  <%= purchase.description %>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <h5>
+      <%= "#{t 'purchase.end_date'}#{purchase.end_date}" %>
+    </h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 m3">
+    <%= link_to(t(:edit), edit_purchase_path(purchase), class: "waves-effect waves-light btn") %>
+  </div>
+  <div class="col s12 m3">
+    <%= link_to(t(:delete), purchase_path(purchase),
+        class: "waves-effect waves-light btn",
+        method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) %>
+  </div>
+</div>
+</div>

@@ -24,7 +24,7 @@ class PurchasesController < ApplicationController
   def update
     purchase = Purchase.find(params[:id])
     if purchase.update(purchase_params)
-      redirect_to purchases_path
+      redirect_to purchase_path(purchase)
     else
       redirect_to edit_purchase_path(purchase)
     end
