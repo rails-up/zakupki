@@ -11,14 +11,15 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col s12 m3">
-    <%= link_to(t(:edit), edit_purchase_path(purchase), class: "waves-effect waves-light btn") %>
+<% if can? :create, :purchase %>
+  <div class="row">
+    <div class="col s12 m3">
+      <%= link_to(t(:edit), edit_purchase_path(purchase), class: "waves-effect waves-light btn") %>
+    </div>
+    <div class="col s12 m3">
+      <%= link_to(t(:delete), purchase_path(purchase),
+          class: "waves-effect waves-light btn",
+          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) %>
+    </div>
   </div>
-  <div class="col s12 m3">
-    <%= link_to(t(:delete), purchase_path(purchase),
-        class: "waves-effect waves-light btn",
-        method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) %>
-  </div>
-</div>
-</div>
+<% end %>
