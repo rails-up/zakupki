@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col s12 m6">
+    <%= image_tag current_user.gravatar %>
+    <h4><%= current_user.username %></h4>
+    <%= link_to user_profile_edit_path, class: "waves-effect waves-light btn" do %>
+      <%= t("edit") %>
+    <% end %>
+  </div>
+</div>

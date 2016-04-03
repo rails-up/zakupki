@@ -8,6 +8,7 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'rolify'
 gem 'cancan'
 gem 'rails_admin', '~> 0.8.1'
+gem 'jquery-turbolinks'
 gem 'figaro'
 gem 'omniauth-vkontakte'
 
