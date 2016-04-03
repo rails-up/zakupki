@@ -7,7 +7,7 @@
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <%= content_tag(:div, class: "col s12") do %>
-      <%= link_to t(:sign_up), new_registration_path(resource_name) %>
+      <%= link_to t('sign_up.title'), new_registration_path(resource_name) %>
     <% end %>
   <% end -%>
 
