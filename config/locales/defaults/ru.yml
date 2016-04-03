@@ -1,7 +1,21 @@
 ru:
   title: 'Закупки'
+  view: 'Просмотр'
+  save: 'Сохранить'
+  edit: 'Редактировать'
+  delete: 'Удалить'
+  purchase:
+    title: 'Закупка'
+    new: 'Новая закупка'
+    edit: 'Редактирование закупки'
+    deletion_confirm: 'Закупка будет удалена. Вы уверены, что хотите продолжить?'
+    end_date: 'Дата окончания данной закупки: '
   activerecord:
     attributes:
+      purchase:
+        end_date: 'Дата окончания'
+        name: 'Название'
+        description: 'Описание'
       user:
         password: 'Пароль'
         email: 'E-mail'
