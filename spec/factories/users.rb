@@ -10,5 +10,11 @@ FactoryGirl.define do
       provider "vkontakte"
       uid 111
     end
+
+    factory :user_with_nine_purchases do
+      after(:create) do |user|
+        9.times{ create(:purchase, owner_id: user.id) }
+      end
+    end
   end
 end
