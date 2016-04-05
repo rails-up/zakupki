@@ -13,9 +13,10 @@ RSpec.describe PurchasesController, type: :controller do
 
     context 'when user is logged out' do
       before do
+        login_with nil
         get :new
       end
-      it { is_expected.to redirect_to root_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
