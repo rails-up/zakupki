@@ -1,21 +1,9 @@
 <h3><%= t "active_purchases" %></h3>
 
 <div class="row">
-  <% 8.times do |n|  %>
+  <% @purchases.each do |purchase|  %>
   <div class="col s12 m3">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <%= image_tag("http://beerhold.it/280/235", class: "activator") %>
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-        <p><a href="#">This is a link</a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-      </div>
-    </div>
+    <%= render :partial => "purchases/purchase_card", locals: { purchase: purchase } %>
   </div>
   <% end %>
 </div>

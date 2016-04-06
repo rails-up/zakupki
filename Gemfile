@@ -11,6 +11,7 @@ gem 'rails_admin', '~> 0.8.1'
 gem 'jquery-turbolinks'
 gem 'figaro'
 gem 'omniauth-vkontakte'
+gem 'paperclip'
 
 group :development, :test do
   #DB
@@ -31,6 +32,8 @@ end
 group :development do
   gem 'spring', '~> 1.6', '>= 1.6.4'
   gem 'pry-rails', :group => :development
+  gem 'better_errors', git: 'git@github.com:manafire/better_errors.git', branch: 'allow_domain'
+  gem "binding_of_caller"
 end
 
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
