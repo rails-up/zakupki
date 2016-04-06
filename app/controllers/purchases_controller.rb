@@ -10,11 +10,11 @@ class PurchasesController < ApplicationController
   end
 
   def edit
-    render locals: { purchase: Purchase.find(params[:id]) }
+    render locals: { purchase: current_user.purchases.find(params[:id]) }
   end
 
   def destroy
-    Purchase.find(params[:id]).destroy
+    current_user.purchases.find(params[:id]).destroy
     redirect_to purchases_path
   end
 
@@ -25,7 +25,7 @@ class PurchasesController < ApplicationController
   end
 
   def update
-    purchase = Purchase.find(params[:id])
+    purchase = current_user.purchases.find(params[:id])
     if purchase.update(purchase_params)
       redirect_to purchase_path(purchase)
     else
