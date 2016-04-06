@@ -31,5 +31,5 @@ doc/
 /config/application.yml
 
 #Ignore images from paperclip
-/public/system/**
+/public/system
 
