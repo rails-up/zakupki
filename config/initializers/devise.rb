@@ -10,5 +10,10 @@ Devise.setup do |config|
   config.password_length = 8..72
   config.reset_password_within = 6.hours
   config.sign_out_via = :delete
-  config.omniauth :vkontakte, ENV['VK_APP_ID'], ENV['VK_APP_KEY']
+  config.omniauth :vkontakte, ENV['VK_APP_ID'], ENV['VK_APP_KEY'], {
+    redirect_url: ENV['VK_CALLBACK_URL'],
+    display: 'popup',
+    scope: 'email',
+    lang: 'en'
+  }
 end
