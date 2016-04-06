@@ -14,7 +14,6 @@ Devise.setup do |config|
     redirect_url: ENV['VK_CALLBACK_URL'],
     display: 'popup',
     scope: 'email',
-    lang: 'en',
-    image_size: 'original'
+    lang: 'en'
   }
 end

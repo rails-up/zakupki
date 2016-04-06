@@ -1,8 +1,13 @@
 require 'rails_helper'
+require "shared_examples/controllers_shared_examples"
 
 RSpec.describe PurchasesController, type: :controller do
-  context 'authenticated access' do
-    before { login_with create(:user_with_nine_purchases) }
+  let!(:user) { create(:user_with_nine_purchases) }
+  let!(:purchase) { user.purchases.first }
+  let!(:count) { user.purchases.count }
+
+  context 'when user is logged in' do
+    before { login_with user }
 
     describe 'GET#index' do
       it "renders index template" do
@@ -10,24 +15,114 @@ RSpec.describe PurchasesController, type: :controller do
         expect(response).to render_template(:index)
       end
     end
-  end
 
-  context 'unauthenticated access' do
-    before { login_with nil }
+    describe "GET#edit" do
+      it "renders edit template" do
+        get :edit, id: purchase
+        expect(response).to render_template(:edit)
+      end
+    end
+
     describe 'GET#new' do
-      it "redirects to login page" do
+      it "renders new template" do
         get :new
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to render_template(:new)
+      end
+    end
+
+    describe 'GET#show' do
+      it 'renders show template' do
+        get :show, id: purchase
+        expect(response).to render_template(:show)
+      end
+    end
+
+    describe 'POST#create' do
+      context "with inconsistent parameters" do
+        it 'renders new template' do
+          post :create, purchase: { name: nil }
+          expect(response).to render_template(:new)
+        end
+      end
+
+      context "with correct parameters" do
+        it 'creates new purchase' do
+          post :create, purchase: { name: "test888666o" }
+          expect(response).to redirect_to purchases_path
+          expect(user.purchases.count).to eq count.next
+        end
+      end
+    end
+
+    describe 'PATCH#update' do
+      context 'with correct parameters' do
+        it 'updates purchase properties' do
+          new_name = "new_name_of_purchase"
+          patch :update, id: purchase, purchase: { name: new_name }
+          expect(response).to redirect_to purchase_path(purchase)
+          expect(purchase.reload.name).to eq new_name
+        end
+      end
+
+      context 'with inconsistent parameters' do
+        it 'does not change purchase properties' do
+          patch :update, id: purchase, purchase: { name: nil }
+          expect(response).to redirect_to edit_purchase_path(purchase)
+          expect(purchase.reload.name).to eq purchase.name
+        end
+      end
+    end
+
+    describe 'DELETE#destroy' do
+      it 'deletes purchase' do
+        delete :destroy, id: purchase
+        expect(response).to redirect_to purchases_path
+        expect(user.purchases.count).to eq(count-1)
+        expect{ Purchase.find(purchase.id) }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
   end
 
-  login_user
+  context 'when user is not logged in' do
+    before { login_with nil }
 
-  describe "GET#edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+    describe 'GET#new' do
+      before { get :new }
+      it_behaves_like "unauthenticated"
+    end
+
+    describe 'GET#index' do
+      it "renders index template" do
+        get :index
+        expect(response).to render_template(:index)
+      end
+    end
+
+    describe 'POST#create' do
+      before { post :create, purchase: { name: "test888888888" } }
+      it_behaves_like "unauthenticated"
+    end
+
+    describe 'PATCH#update' do
+      before { patch :update, id: purchase }
+      it_behaves_like "unauthenticated"
+    end
+
+    describe 'GET#show' do
+      it 'renders show template' do
+        get :show, id: purchase
+        expect(response).to render_template(:show)
+      end
+    end
+
+    describe 'DELETE#destroy' do
+      before { delete :destroy, id: purchase }
+      it_behaves_like "unauthenticated"
+    end
+
+    describe 'GET#edit' do
+      before { get :edit,  id: purchase }
+      it_behaves_like "unauthenticated"
     end
   end
 end

@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:index, :show]
 
   def index
     render locals: { purchases: Purchase.all }
@@ -20,6 +20,7 @@ class PurchasesController < ApplicationController
 
   def create
     purchase = Purchase.new(purchase_params)
+    purchase.owner_id = current_user.id
     purchase.save ? (redirect_to purchases_path) : (render 'new')
   end
 
