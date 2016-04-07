@@ -4,7 +4,7 @@
       <%= link_to t(:title), root_path, class: "brand-logo blue-text" %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><%= link_to t('nav.all_purchases'), purchases_path %></li>
-        <li><a href="#"><%= t('nav.groups') %> </a></li>
+        <li><%= link_to t('nav.groups'), groups_path %> </li>
         <li><%= link_to t('nav.about'), about_path %></li>
         <li>
         <% if current_user %>
