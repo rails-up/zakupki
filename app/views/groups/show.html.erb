@@ -1,0 +1,25 @@
+<h2><%= @group.name %></h2>
+<div class="section flow-text">
+  <%= @group.description %>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <h5>
+      <%= @group.city.name %>
+    </h5>
+  </div>
+</div>
+
+<% if can? [:edit, :destroy], @group %>
+  <div class="row">
+    <div class="col s12 m3">
+      <%= link_to(t(:edit), edit_group_path(@group), class: "waves-effect waves-light btn") if can? :edit, @group %>
+    </div>
+    <div class="col s12 m3">
+      <%= link_to(t(:delete), group_path(@group),
+          class: "waves-effect waves-light btn",
+          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) if can? :destroy, @group %>
+    </div>
+  </div>
+<% end %>

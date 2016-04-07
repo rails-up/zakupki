@@ -20,4 +20,9 @@ require 'rails_helper'
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  enabled     :boolean          default("false")
+#  city_id     :integer
+#
+# Indexes
+#
+#  index_groups_on_city_id  (city_id)
 #
