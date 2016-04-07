@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col s12">
     <h5>
-      <%= @group.city.name %>
+      <%= @group.city.name unless @group.city.blank? %>
     </h5>
   </div>
 </div>

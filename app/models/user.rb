@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  after_create :assign_default_role
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable
 
@@ -51,6 +52,12 @@ class User < ActiveRecord::Base
     hash = Digest::MD5.hexdigest(mail)
     "http://www.gravatar.com/avatar/#{hash}?d=identicon"
   end
+
+private
+  def assign_default_role
+    self.add_role :user
+  end
+
 end
 
 # == Schema Information

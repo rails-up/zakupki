@@ -21,8 +21,10 @@ require 'rails_helper'
 #  updated_at  :datetime         not null
 #  enabled     :boolean          default("false")
 #  city_id     :integer
+#  user_id     :integer
 #
 # Indexes
 #
 #  index_groups_on_city_id  (city_id)
+#  index_groups_on_user_id  (user_id)
 #

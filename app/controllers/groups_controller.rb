@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, except: [:index, :show]
   def index
     @groups = Group.enabled.newest.by_city(params[:city]).all
   end
@@ -44,6 +45,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :description, :city)
+    params.require(:group).permit(:name, :description, :city_id, :enabled)
   end
 end
