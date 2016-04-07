@@ -5,7 +5,4 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
- def require_login
-   redirect_to new_user_session_path unless user_signed_in?
- end
 end

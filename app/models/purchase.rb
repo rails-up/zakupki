@@ -11,9 +11,15 @@ class Purchase < ActiveRecord::Base
                                size: { in: 0..500.kilobytes }
   validates :name, presence: true, length: { minimum: 10 }
   validate :date_cannot_be_in_the_past
+  
   def date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "can't be in the past")
     end
   end
+  
+  def owner
+    User.find(self.owner_id)
+  end
+  
 end
