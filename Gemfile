@@ -11,6 +11,7 @@ gem 'rails_admin', '~> 0.8.1'
 gem 'jquery-turbolinks'
 gem 'figaro'
 gem 'omniauth-vkontakte'
+gem 'annotate'
 
 group :development, :test do
   #DB
