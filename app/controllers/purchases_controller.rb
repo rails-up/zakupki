@@ -1,19 +1,17 @@
 class PurchasesController < ApplicationController
-  
+
+  before_action :require_login, except: [:index, :show]
   before_action :find_purchase, only: [:show, :edit, :destroy, :update]
   
-  #load_and_authorize_resource
   def index
     @purchases = Purchase.all
   end
 
   def new
-    #render locals: { purchase: Purchase.new }
     @purchase = Purchase.new
   end
 
   def edit
-    @purchase = Purchase.find(params[:id])
   end
 
   def destroy
@@ -23,6 +21,7 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
+    @purchase.owner_id = current_user.id
     if @purchase.save 
       redirect_to purchases_path
     else
