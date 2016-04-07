@@ -1,6 +1,5 @@
 class PurchasesController < ApplicationController
 
-  #before_action :require_login, except: [:index, :show]
   load_and_authorize_resource
   before_action :find_purchase, only: [:show, :edit, :destroy, :update]
   
