@@ -9,28 +9,30 @@
 
 <div class="section">
   <div class="row input-field">
-    <div class="col s6">
+    <div class="col s8">
       <%= label_tag t('group.city'), nil, class: 'active' %>
       <%= form_tag(groups_path, method: :get) do %>
-      <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"),
-                           { class: 'browser-default', id: "group_city_id" } %>
-    </div>
-    <div class="col s6">
-      <%= submit_tag t(:search), class: "waves-light btn" %>
+      <%= select_tag "city", options_from_collection_for_select(City.all, "id", "name", selected: params[:city]),
+                             { class: 'browser-default', id: "group_ciy_id" } %>
+      <%= button_tag t(:search), class: "waves-light btn" %>
     </div>
     <% end %>
-  </div>
+    <div class="col s2">
+      <%= link_to t(:reset), groups_path, class: "waves-light btn", type: 'reset' %>
+    </div>
+    </div>
+</div>
 
 <table class="bordered highlight">
   <thead>
-  <tr>
-    <th><%= t 'number' %></th>
-    <th><%= t 'group.city' %></th>
-    <th><%= t 'group.name' %></th>
-    <th><%= t 'group.participants' %></th>
-    <th><%= t 'group.active_purchases_count' %></th>
-    <th><%= t 'actions' %></th>
-  </tr>
+    <tr>
+      <th><%= t 'number' %></th>
+      <th><%= t 'group.city' %></th>
+      <th><%= t 'group.name' %></th>
+      <th><%= t 'group.participants' %></th>
+      <th><%= t 'group.active_purchases_count' %></th>
+      <th><%= t 'actions' %></th>
+    </tr>
   </thead>
 
   <% @groups.each_with_index do |group,index| %>
@@ -41,7 +43,7 @@
     <td><%= group.users_count %></td>
     <td><%= group.active_purchases_count %></td>
     <td><%= link_to (t 'show'), group_path(group),
-            class: "waves-effect waves-light btn" %><td>
+            class: "waves-effect waves-light btn" %></td>
   </tr>
   <% end %>
 </table>

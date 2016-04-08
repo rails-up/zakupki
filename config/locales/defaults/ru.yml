@@ -8,6 +8,7 @@ ru:
   number: 'Номер'
   actions: 'Действия'
   search: 'Поиск'
+  reset: 'Сбросить'
   purchase:
     title: 'Закупка'
     new: 'Новая закупка'
