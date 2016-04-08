@@ -7,6 +7,7 @@ ru:
   show: 'Показать'
   number: 'Номер'
   actions: 'Действия'
+  search: 'Поиск'
   purchase:
     title: 'Закупка'
     new: 'Новая закупка'

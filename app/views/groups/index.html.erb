@@ -7,6 +7,20 @@
   </div>
 </div>
 
+<div class="section">
+  <div class="row input-field">
+    <div class="col s6">
+      <%= label_tag t('group.city'), nil, class: 'active' %>
+      <%= form_tag(groups_path, method: :get) do %>
+      <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"),
+                           { class: 'browser-default', id: "group_city_id" } %>
+    </div>
+    <div class="col s6">
+      <%= submit_tag t(:search), class: "waves-light btn" %>
+    </div>
+    <% end %>
+  </div>
+
 <table class="bordered highlight">
   <thead>
   <tr>
@@ -31,3 +45,4 @@
   </tr>
   <% end %>
 </table>
+</div>
