@@ -4,6 +4,9 @@ ru:
   save: 'Сохранить'
   edit: 'Редактировать'
   delete: 'Удалить'
+  show: 'Показать'
+  number: 'Номер'
+  actions: 'Действия'
   purchase:
     title: 'Закупка'
     new: 'Новая закупка'
@@ -19,6 +22,8 @@ ru:
     created: 'Группа успешно создана'
     updated: 'Группа успешно обновлена'
     deleted: 'Группа успешно удалена'
+    participants: 'Участников'
+    active_purchases_count: 'Количество активных закупок'
   profile:
     edit_profile: 'Изменение профиля'
   activerecord:

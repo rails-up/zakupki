@@ -9,6 +9,14 @@ class Group < ActiveRecord::Base
 
   scope :enabled, -> { where(enabled: true) }
   scope :by_city, ->(city_id) { where(city_id: city_id) if city_id }
+
+  def active_purchases_count
+    purchases.active.count
+  end
+
+  def users_count
+    users.count
+  end
 end
 
 # == Schema Information
