@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  after_create :assign_default_role
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable
 
@@ -51,4 +52,39 @@ class User < ActiveRecord::Base
     hash = Digest::MD5.hexdigest(mail)
     "http://www.gravatar.com/avatar/#{hash}?d=identicon"
   end
+
+private
+  def assign_default_role
+    self.add_role :user
+  end
+
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  username               :string
+#  email                  :string           default("")
+#  encrypted_password     :string           default(""), not null
+#  role_id                :integer
+#  phone                  :string
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0"), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  provider               :string
+#  uid                    :string
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#

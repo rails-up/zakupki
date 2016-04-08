@@ -3,6 +3,7 @@ ru:
   nav:
     all_purchases: 'Все закупки'
     groups: 'Группы'
+    all_groups: 'Все группы'
     about: 'Как это работает'
     log_in: 'Вход / Регистрация'
     log_out: 'Выход'
