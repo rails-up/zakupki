@@ -5,11 +5,12 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
-    else
+    elsif user.persisted? 
       #Purchases
-      can [:create, :read], Purchase
-      can [:update, :delete], Purchase, owner: user
-
+      can [:read, :create], Purchase
+      can [:update, :destroy], Purchase, owner: user
+    else  #guest
+      can :read, Purchase
     end
   end
 end

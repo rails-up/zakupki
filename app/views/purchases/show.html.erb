@@ -17,7 +17,7 @@
       <%= link_to(t(:edit), edit_purchase_path(@purchase), class: "waves-effect waves-light btn") %>
     </div>
     <% end %>
-    <% if can? :delete, @purchase %>
+    <% if can? :destroy, @purchase %>
     <div class="col s12 m3">
       <%= link_to(t(:delete), purchase_path(@purchase),
           class: "waves-effect waves-light btn",
