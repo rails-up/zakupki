@@ -29,3 +29,7 @@ doc/
 
 # Ignore application configuration
 /config/application.yml
+
+#Ignore images from paperclip
+/public/system
+

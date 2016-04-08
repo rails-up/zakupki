@@ -77,6 +77,7 @@ RSpec.describe PurchasesController, type: :controller do
 
       context 'of another user' do
         it 'can\'t find the record' do
+          pending
           expect do
             new_name = "new_name_of_purchase"
             patch :update, id: another_user.purchases.first, purchase: { name: new_name }
@@ -97,6 +98,7 @@ RSpec.describe PurchasesController, type: :controller do
 
       context 'of another user' do
         it 'can\'t find purchase' do
+          pending
           expect do
             delete :destroy, id: another_user.purchases.first
           end.to raise_exception(ActiveRecord::RecordNotFound)

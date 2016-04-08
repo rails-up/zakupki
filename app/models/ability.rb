@@ -18,6 +18,7 @@ class Ability
     elsif user.has_role? :user
       can [:edit, :update, :destroy], [Order], user_id: user.id # @todo add Comment model
       can [:edit, :update], [User], id: user.id
+      can [:update, :destroy], [Purchase], owner: user
       can :create, [Order]
       can :read, :all
     elsif user.has_role? :banned

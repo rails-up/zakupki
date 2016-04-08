@@ -38,9 +38,9 @@ RSpec.describe ProfileController, type: :controller do
       post :update, current_user: attr
     end
 
-      it { response.should redirect_to(user_profile_url) }
-      it { controller.current_user.username.should eql attr[:username] }
-      it { controller.current_user.phone.should eql attr[:phone] }
+      it { expect(response).to redirect_to(user_profile_url) }
+      it { expect(controller.current_user.username).to eql attr[:username] }
+      it { expect(controller.current_user.phone).to eql attr[:phone] }
       
   end
 

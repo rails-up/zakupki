@@ -38,4 +38,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  BetterErrors::Middleware.allow_domain! ENV['trusted_domain'] if ENV['trusted_domain']
 end
