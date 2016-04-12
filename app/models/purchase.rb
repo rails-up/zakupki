@@ -16,8 +16,8 @@ class Purchase < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 10 }
   validate :date_cannot_be_in_the_past
 
-  scope :active, -> { where.not(status: 4) }
-  scope :inactive, -> { where(status: 4) }
+  scope :active, -> { where.not(status: "closed") }
+  scope :inactive, -> { where(status: "closed") }
 
   def date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today
