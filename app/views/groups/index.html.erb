@@ -7,9 +7,9 @@
   </div>
 </div>
 
-<div class="section">
+<div class="section" id="groups_table">
   <div class="row input-field">
-    <%= form_tag(groups_path, method: :get) do %>
+    <%= form_tag(groups_path, method: :get, remote: true, id: 'group_search_form') do %>
     <div class="col s8">
       <%= select_tag "city", options_from_collection_for_select(City.all, "id", "name", selected: params[:city]),
                              { class: 'browser-default', id: "group_city_id" } %>
@@ -24,28 +24,6 @@
     </div>
 </div>
 
-<table class="bordered highlight">
-  <thead>
-    <tr>
-      <th><%= t 'number' %></th>
-      <th><%= t 'group.city' %></th>
-      <th><%= t 'group.name' %></th>
-      <th><%= t 'group.participants' %></th>
-      <th><%= t 'group.active_purchases_count' %></th>
-      <th><%= t 'actions' %></th>
-    </tr>
-  </thead>
+  <%= render partial: 'table', locals: { groups: @groups } %>
 
-  <% @groups.each_with_index do |group,index| %>
-  <tr>
-    <td><%= index.next %></td>
-    <td><%= group.city.name %></td>
-    <td><%= group.name %></td>
-    <td><%= group.users_count %></td>
-    <td><%= group.active_purchases_count %></td>
-    <td><%= link_to (t 'show'), group_path(group),
-            class: "waves-effect waves-light btn" %></td>
-  </tr>
-  <% end %>
-</table>
 </div>
