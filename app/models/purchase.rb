@@ -1,4 +1,6 @@
 class Purchase < ActiveRecord::Base
+  enum status: [:opened, :funding, :awaiting, :distributing, :closed]
+
   belongs_to :group
   belongs_to :user
   has_many :orders, dependent: :destroy
@@ -14,8 +16,8 @@ class Purchase < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 10 }
   validate :date_cannot_be_in_the_past
 
-  scope :active, -> { where(status: "active") }
-  scope :inactive, -> { where(status: "inactive") }
+  scope :active, -> { where.not(status: 4) }
+  scope :inactive, -> { where(status: 4) }
 
   def date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today
@@ -32,16 +34,20 @@ end
 #
 # Table name: purchases
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  end_date    :date
-#  status      :string
-#  group_id    :integer
-#  owner_id    :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  city_id     :integer
+#  id                 :integer          not null, primary key
+#  name               :string
+#  description        :text
+#  end_date           :date
+#  status             :integer
+#  group_id           :integer
+#  owner_id           :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  city_id            :integer
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 # Indexes
 #

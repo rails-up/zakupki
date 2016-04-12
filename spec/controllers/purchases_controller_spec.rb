@@ -9,6 +9,7 @@ RSpec.describe PurchasesController, type: :controller do
 
   context 'when user is logged in' do
     before { login_with user }
+    before { allow_any_instance_of(CanCan::ControllerResource).to receive(:load_and_authorize_resource) }
 
     describe 'GET#index' do
       it "renders index template" do
