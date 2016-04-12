@@ -1,9 +1,49 @@
-<%= form_for purchase do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, required: true, minlength: 10 %>
-  <%= f.label :description %>
-  <%= f.text_area :description, required: true %>
-  <%= f.label :end_date %>
-  <%= f.date_field :end_date, required: true, value: (30).days.from_now.to_date %>
+<%= form_for @purchase, html: { multipart: true } do |f| %>
+
+  <div class="row">
+    <div class="input-field col s12 m6">
+      <%= f.text_field :name, required: true, minlength: 10 %>      
+      <%= f.label :name %>  
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="file-field input-field col s12 m6">
+      <div class="btn">
+        <span>Картинка</span>
+        <%= f.file_field :image %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Выберите изображение">
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="input-field col s12 m6">
+      <%= f.text_area :description, required: true, class: "materialize-textarea" %>
+      <%= f.label :description %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6">
+      <%= f.date_field :end_date, required: true, class: "datepicker" %>      
+      <%= f.label :end_date, class: "active" %>
+    </div>
+  </div>
+
   <%= f.submit t(:save), class: "waves-effect waves-light btn" %>
 <% end %>
+
+
+<script>
+  $('.datepicker').pickadate({
+    clear: false,  
+    min: true,
+    selectMonths: true,
+    selectYears: 2,
+    closeOnSelect: true,
+    hiddenName: true
+  });
+</script>
