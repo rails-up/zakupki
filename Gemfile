@@ -33,7 +33,7 @@ end
 group :development do
   gem 'spring', '~> 1.6', '>= 1.6.4'
   gem 'pry-rails', :group => :development
-  gem 'better_errors', git: 'git@github.com:manafire/better_errors.git', branch: 'allow_domain'
+  gem 'better_errors', git: 'https://github.com/manafire/better_errors.git', branch: 'allow_domain'
   gem "binding_of_caller"
 end
 

@@ -1,5 +1,7 @@
 class City < ActiveRecord::Base
   has_many :purchases
+
+  validates :name, presence: true, uniqueness: true
 end
 
 # == Schema Information

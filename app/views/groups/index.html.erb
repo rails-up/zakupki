@@ -2,35 +2,28 @@
 <div class="row">
   <div class="col s12">
   <% if current_user %>
-    <%= link_to(t('group.new'), new_group_path, class: "waves-effect waves-light btn") if can? :create, Group  %>
+    <%= link_to(t('group.new'), new_group_path, class: "waves-effect waves-light btn") if can? :create, Group %>
   <% end %>
   </div>
 </div>
 
-<div class="row">
-  <% @groups.each do |group|  %>
-  <div class="col s12 m3">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <%= image_tag("http://placekitten.com/280/235", class: "activator") %>
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">
-          <%= group.name %>
-          <i class="material-icons right">more_vert</i>
-        </span>
-        <p><%= link_to(t(:view), group_path(group)) %></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">
-          <%= group.name %>
-          <i class="material-icons right">close</i>
-        </span>
-        <p><%= truncate(group.description, length: 150) %></p>
-      </div>
+<div class="section" id="groups_table">
+  <div class="row input-field">
+    <%= form_tag(groups_path, method: :get, remote: true, id: 'group_search_form') do %>
+    <div class="col s8">
+      <%= select_tag "city", options_from_collection_for_select(City.all, "id", "name", selected: params[:city]),
+                             { class: 'browser-default', id: "group_city_id" } %>
     </div>
-  </div>
-  <% end %>
+    <div class="col s2">
+      <%= button_tag t(:search), class: "waves-light btn" %>
+    </div>
+    <% end %>
+    <div class="col s2">
+      <%= link_to t(:reset), groups_path, class: "waves-light btn", type: 'reset' %>
+    </div>
+    </div>
 </div>
 
+  <%= render partial: 'table', locals: { groups: @groups } %>
 
+</div>

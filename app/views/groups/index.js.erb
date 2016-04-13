@@ -1,0 +1,2 @@
+$('#groups_list').remove();
+$('#groups_table').after("<%= escape_javascript(render partial: 'table', locals: { groups: @groups }) %>");

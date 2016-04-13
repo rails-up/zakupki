@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:manafire/better_errors.git
+  remote: https://github.com/manafire/better_errors.git
   revision: bff72c44c3e040b1b016cccdfe128896835d88b0
   branch: allow_domain
   specs:

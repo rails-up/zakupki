@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
 
   load_and_authorize_resource
   before_action :find_purchase, only: [:show, :edit, :destroy, :update]
-  
+
   def index
     @purchases = Purchase.all
   end
@@ -22,7 +22,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.owner_id = current_user.id
-    if @purchase.save 
+    if @purchase.save
       redirect_to purchases_path
     else
       render 'new'

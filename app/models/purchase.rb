@@ -1,4 +1,6 @@
 class Purchase < ActiveRecord::Base
+  enum status: [:opened, :funding, :awaiting, :distributing, :closed]
+
   belongs_to :group
   belongs_to :user
   has_many :orders, dependent: :destroy
@@ -13,33 +15,39 @@ class Purchase < ActiveRecord::Base
                                size: { in: 0..500.kilobytes }
   validates :name, presence: true, length: { minimum: 10 }
   validate :date_cannot_be_in_the_past
-  
+
+  scope :active, -> { where.not(status: statuses[:closed]) }
+  scope :inactive, -> { where(status: statuses[:closed]) }
+
   def date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "can't be in the past")
     end
   end
-  
+
   def owner
     User.find(self.owner_id)
   end
-  
 end
 
 # == Schema Information
 #
 # Table name: purchases
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  end_date    :date
-#  status      :string
-#  group_id    :integer
-#  owner_id    :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  city_id     :integer
+#  id                 :integer          not null, primary key
+#  name               :string
+#  description        :text
+#  end_date           :date
+#  status             :integer
+#  group_id           :integer
+#  owner_id           :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  city_id            :integer
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 # Indexes
 #
