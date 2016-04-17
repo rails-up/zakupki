@@ -1,6 +1,6 @@
 <h2><%= t("profile.edit_profile") %></h2>
   <div class="row">
-      <%= form_for :current_user, :url => profile_update_path do |f| %>
+      <%= form_for :current_user, url: profile_update_path do |f| %>
     <div class="input-field col s12">
         <%= f.text_field :username %>
         <%= f.label :username, class: "active" %>
@@ -9,6 +9,8 @@
         <%= f.text_field :phone %>
         <%= f.label :phone, class: "active" %>
     </div>
+
+        <%= link_to t(:back), user_profile_path, class: "waves-effect waves-light btn" %>
         <%= f.submit t(:save), class: "waves-effect waves-light btn" %>
       <% end %>
 

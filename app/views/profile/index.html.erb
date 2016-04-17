@@ -7,3 +7,26 @@
     <% end %>
   </div>
 </div>
+<div class="row">
+  <div class="col s12 m4">
+  <%= form_for :current_user, url: profile_update_password_path, remote: true, html: {id: :password_form} do |f| %>
+    <div class="input-field col s12">
+      <%= f.password_field :current_password %>
+      <%= f.label :current_password %>
+    </div>
+    <div class="input-field col s12">
+        <%= f.password_field :password %>
+        <%= f.label :password, class: "active" %>
+    </div>
+    
+    <div class="input-field col s12">
+        <%= f.password_field :password_confirmation %>
+        <%= f.label :password_confirmation, class: "active" %>
+    </div>
+    
+    <div class="col s12">
+      <%= f.submit t('profile.change_password'), class: "waves-effect waves-light btn" %>
+    </div>
+  <% end %>
+  </div> 
+</div>
