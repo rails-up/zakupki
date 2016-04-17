@@ -9,6 +9,7 @@ ru:
   actions: 'Действия'
   search: 'Поиск'
   reset: 'Сбросить'
+  back: 'Назад'
   purchase:
     title: 'Закупка'
     new: 'Новая закупка'
@@ -28,6 +29,8 @@ ru:
     active_purchases_count: 'Количество активных закупок'
   profile:
     edit_profile: 'Изменение профиля'
+    password_changed: 'Пароль изменён'
+    change_password: 'Сменить пароль'
   activerecord:
     attributes:
       purchase:
@@ -36,9 +39,10 @@ ru:
         description: 'Описание'
       user:
         password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+        current_password: 'Текущий пароль'
         email: 'E-mail'
         remember_me: 'Запомнить меня'
-        password_confirmation: 'Подтверждение пароля'
         username: 'Имя'
         phone: 'Телефон'
     errors:
@@ -47,3 +51,10 @@ ru:
           attributes:
             email:
               taken: 'Этот e-mail уже занят'
+            current_password:
+              blank: 'Не введён текущий пароль'
+              invalid: 'Не верный текущий пароль'
+            password_confirmation:
+              confirmation: 'Пароли не совпадают'
+            password:
+              too_short: 'Пароль слишком короткий'

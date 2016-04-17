@@ -9,6 +9,8 @@
         <%= f.text_field :phone %>
         <%= f.label :phone, class: "active" %>
     </div>
+
+        <%= link_to t(:back), user_profile_path, class: "waves-effect waves-light btn" %>
         <%= f.submit t(:save), class: "waves-effect waves-light btn" %>
       <% end %>
 

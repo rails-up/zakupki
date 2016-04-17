@@ -10,8 +10,11 @@
 <body>
   <div class="container">
     <%= render "nav" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% flash.each do |name, msg| %>
+      <script>
+        Materialize.toast("<%= msg %>", 4000);
+      </script>
+    <% end %>
     <%= yield %>
   </div>
 </body>
