@@ -11,7 +11,7 @@
   </thead>
 
   <% groups.each_with_index do |group,index| %>
-  <tr>
+  <tr class="<%= 'cyan lighten-5' if current_user.joined?(group) %>">
     <td><%= index.next %></td>
     <td><%= group.city.name %></td>
     <td><%= group.name %></td>

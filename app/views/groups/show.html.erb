@@ -21,8 +21,11 @@
           class: "waves-effect waves-light btn",
           method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) %>
     </div>
-    <div class="col s12 m3">
-      <%= toggle_group_btn(@group) %>
-    </div>
+  </div>
+<% end %>
+
+<% if can? :toggle_group, @group %>
+  <div class="col s12 m3">
+    <%= toggle_group_btn(@group) %>
   </div>
 <% end %>

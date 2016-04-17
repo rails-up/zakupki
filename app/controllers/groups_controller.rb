@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_group, only: [:show, :edit, :update, :destroy, :toggle_group]
-  load_and_authorize_resource only: [:new, :destroy, :edit, :update]
+  load_and_authorize_resource only: [:new, :destroy, :edit, :update, :toggle_group]
   def index
     @groups = Group.enabled.newest.by_city(params[:city]).all
   end
