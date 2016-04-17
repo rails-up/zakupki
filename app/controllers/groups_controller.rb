@@ -40,12 +40,7 @@ class GroupsController < ApplicationController
   end
 
   def toggle_group
-    if params[:toggle_group]=='leave'
-      current_user.leave_group(@group)
-    elsif params[:toggle_group]=='join'
-      current_user.join_group(@group)
-    end
-
+    current_user.send("#{params[:toggle_group]}_group", @group)
     redirect_to group_path(@group)
   end
 
