@@ -34,8 +34,16 @@ class User < ActiveRecord::Base
     false
   end
 
+  def joined?(group)
+    groups.include?(group)
+  end
+
   def join_group(group)
-    groups << group
+    groups << group unless joined?(group)
+  end
+
+  def leave_group(group)
+    groups.delete(group.id) if joined?(group)
   end
 
   def self.from_omniauth(auth)

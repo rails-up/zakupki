@@ -26,6 +26,8 @@ ru:
     deleted: 'Группа успешно удалена'
     participants: 'Участников'
     active_purchases_count: 'Количество активных закупок'
+    join: 'Присоединиться'
+    leave: 'Покинуть'
   profile:
     edit_profile: 'Изменение профиля'
   activerecord:
