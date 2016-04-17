@@ -28,7 +28,7 @@ class ProfileController < ApplicationController
         flash[type] = msg[0]  
       end
     end
-    redirect_to user_profile_path
+    respond_to(&:js)
   end
 
   private
