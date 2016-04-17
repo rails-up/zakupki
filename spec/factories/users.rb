@@ -19,11 +19,9 @@ FactoryGirl.define do
 
     factory :user_with_purchases_with_different_statuses do
       after(:create) do |user|
-        create(:opened_purchase, owner_id: user.id)
-        create(:funding_purchase, owner_id: user.id)
-        create(:distributing_purchase, owner_id: user.id)
-        create(:awaiting_purchase, owner_id: user.id)
-        create(:closed_purchase, owner_id: user.id)
+        Purchase.statuses.each do |s|
+          create(:purchase, status: s[0], owner_id: user.id)
+        end
       end
     end
   end
