@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource only: [:new, :destroy, :edit, :update]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :toggle_group]
+  load_and_authorize_resource only: [:new, :destroy, :edit, :update, :toggle_group]
   def index
     @groups = Group.enabled.newest.by_city(params[:city]).all
   end
@@ -37,6 +37,11 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     redirect_to groups_url, notice: t('group.deleted')
+  end
+
+  def toggle_group
+    current_user.send("#{params[:toggle_group]}_group", @group)
+    redirect_to group_path(@group)
   end
 
   private

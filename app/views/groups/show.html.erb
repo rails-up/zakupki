@@ -14,12 +14,18 @@
 <% if can? [:edit, :destroy], @group %>
   <div class="row">
     <div class="col s12 m3">
-      <%= link_to(t(:edit), edit_group_path(@group), class: "waves-effect waves-light btn") if can? :edit, @group %>
+      <%= link_to(t(:edit), edit_group_path(@group), class: "waves-effect waves-light btn")%>
     </div>
     <div class="col s12 m3">
       <%= link_to(t(:delete), group_path(@group),
           class: "waves-effect waves-light btn",
-          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) if can? :destroy, @group %>
+          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) %>
     </div>
+  </div>
+<% end %>
+
+<% if can? :toggle_group, @group %>
+  <div class="col s12 m3">
+    <%= toggle_group_btn(@group) %>
   </div>
 <% end %>

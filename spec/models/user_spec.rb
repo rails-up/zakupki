@@ -3,6 +3,7 @@ include VkOauthStubHelper
 
 RSpec.describe User, type: :model do
   let!(:user) { create :user }
+  let!(:group) { create :group, user_id: user }
   let!(:other_user) { create :user }
   let!(:vk_user) { create :user_from_vkontakte }
 
@@ -67,6 +68,31 @@ RSpec.describe User, type: :model do
   it ".gravatar returns avatar url when user has not linked email " do
     expect(vk_user.gravatar).to be_url
   end
+
+  it ".join_group adds given group to users\'s groups" do
+    expect{ user.join_group(group) }.to change{ user.groups.count }.from(0).to(1)
+    expect(user.groups).to include(group)
+  end
+
+  it ".join_group adds user to given group's users" do
+    expect{ user.join_group(group) }.to change{ group.users.count }.from(0).to(1)
+    expect(group.users).to include(user)
+  end
+
+  it ".leave_group removes given group from users\'s groups" do
+    user.join_group(group)
+    expect{ user.leave_group(group) }.to change{ user.groups.count }.from(1).to(0)
+    expect(user.groups.reload).not_to include(group)
+    expect(Group.find(group.id)).not_to be nil
+  end
+
+  it ".leave_group removes user from given group\'s users" do
+    user.join_group(group)
+    expect{ user.leave_group(group) }.to change{ group.users.count }.from(1).to(0)
+    expect(group.users).not_to include(user)
+    expect(User.find(user.id)).not_to be nil
+  end
+
 end
 
 # == Schema Information

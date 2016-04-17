@@ -19,6 +19,7 @@ class Ability
       can [:edit, :update, :destroy], [Order], user_id: user.id # @todo add Comment model
       can [:edit, :update], [User], id: user.id
       can [:update, :destroy], [Purchase], owner: user
+      can :toggle_group, Group
       can :create, [Order]
       can :read, :all
     elsif user.has_role? :banned

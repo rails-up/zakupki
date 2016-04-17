@@ -34,6 +34,18 @@ class User < ActiveRecord::Base
     false
   end
 
+  def joined?(group)
+    groups.include?(group)
+  end
+
+  def join_group(group)
+    groups << group unless joined?(group)
+  end
+
+  def leave_group(group)
+    groups.delete(group.id) if joined?(group)
+  end
+
   def self.from_omniauth(auth)
     attributes = { email: auth.info.email, password: Devise.friendly_token[0,20],
                    username: auth.info.name, provider: auth.provider, uid: auth.uid }
@@ -53,7 +65,8 @@ class User < ActiveRecord::Base
     "http://www.gravatar.com/avatar/#{hash}?d=identicon"
   end
 
-private
+  private
+
   def assign_default_role
     self.add_role :user
   end
