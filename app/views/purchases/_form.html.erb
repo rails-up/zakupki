@@ -2,8 +2,14 @@
 
   <div class="row">
     <div class="input-field col s12 m6">
-      <%= f.text_field :name, required: true, minlength: 10 %>      
-      <%= f.label :name %>  
+      <%= f.text_field :name, required: true, minlength: 10 %>
+      <%= f.label :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="waves-block col s12 m6">
+      <%= link_to image_tag(@purchase.image.url(:med)), purchase_path(@purchase), class: "activator" if @purchase.id? %>
     </div>
   </div>
 
@@ -28,8 +34,16 @@
 
   <div class="row">
     <div class="input-field col s12 m6">
-      <%= f.date_field :end_date, required: true, class: "datepicker" %>      
+      <%= f.date_field :end_date, required: true, class: "datepicker" %>
       <%= f.label :end_date, class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6">
+      <%= f.select :group_id, options_from_collection_for_select(Group.all, "id", "name", selected: @purchase.group_id ),
+          { include_blank: true }, { class: "browser-default", id: "group_city_id" } %>
+      <%= f.label t('group.title'), class: "active" %>
     </div>
   </div>
 
