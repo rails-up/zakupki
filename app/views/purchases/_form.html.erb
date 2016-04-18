@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="input-field col s12 m6">
       <%= f.text_area :description, required: true, class: "materialize-textarea" %>
@@ -36,14 +36,4 @@
   <%= f.submit t(:save), class: "waves-effect waves-light btn" %>
 <% end %>
 
-
-<script>
-  $('.datepicker').pickadate({
-    clear: false,  
-    min: true,
-    selectMonths: true,
-    selectYears: 2,
-    closeOnSelect: true,
-    hiddenName: true
-  });
-</script>
+<%= javascript_include_tag 'pickadate'%>
