@@ -1,5 +1,5 @@
 class ProfileController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :update_password]
+  before_action :set_user, except: [:index]
   before_action :require_login
 
   def index

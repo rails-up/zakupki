@@ -42,8 +42,18 @@
   <div class="row">
     <div class="input-field col s12 m6">
       <%= f.select :group_id, options_from_collection_for_select(Group.all, "id", "name", selected: @purchase.group_id ),
-          { include_blank: true }, { class: "browser-default", id: "group_city_id" } %>
-      <%= f.label t('group.title'), class: "active" %>
+          { include_blank: true }, { class: "form_select" } %>
+      <%= f.label t('group.title') %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6">
+      <%= f.select :status, options_from_collection_for_select(
+          Purchase.statuses.inject({}) { |h, (k, v)| h.merge(t("purchase.statuses.#{k}")=>k) },
+          :last, :first, selected: @purchase.status ),
+          { required: true }, { class: "form_select" } %>
+      <%= f.label t('purchase.status') %>
     </div>
   </div>
 
