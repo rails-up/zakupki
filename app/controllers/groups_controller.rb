@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
   
   def index
     @groups = Group.enabled.newest.by_city(params[:city]).all
+    @groups = @groups.paginate(page: params[:page], per_page: 10)
   end
 
   def show

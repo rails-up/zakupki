@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
   before_action :find_purchase, only: [:show, :edit, :destroy, :update]
 
   def index
-    @purchases = Purchase.all
+    @purchases = Purchase.paginate(page: params[:page], per_page: 8)
   end
 
   def new

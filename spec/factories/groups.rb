@@ -1,7 +1,11 @@
 FactoryGirl.define do
   factory :group do
+    city
     sequence(:name) { |i| "group name #{i}"}
     description "new group description"
+    trait :enabled do
+      enabled true
+    end
   end
 end
 

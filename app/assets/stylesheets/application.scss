@@ -20,7 +20,7 @@ nav {
     height: 50px !important;
     vertical-align: middle;
     border: 3px solid #80cbc4;
-}    
+}
 
 // Autocomplete
 
@@ -38,15 +38,19 @@ nav {
       }
     }
  }
- 
+
 ui-widget-content {
   @extend .select-dropdown;
 }
- 
+
 .ui-state-focus {
   @extend li:hover;
 }
 
 .ui-helper-hidden-accessible {
   display: none;
+}
+
+.pagination a li.active {
+  color: #fff;
 }

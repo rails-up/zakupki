@@ -14,6 +14,8 @@ gem 'omniauth-vkontakte'
 gem 'annotate'
 gem 'paperclip'
 gem 'faker'
+gem 'will_paginate'
+gem 'will_paginate-materialize'
 
 group :development, :test do
   #DB
