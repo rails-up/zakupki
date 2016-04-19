@@ -12,6 +12,7 @@ namespace :db do
      password:              "12345678",
      password_confirmation: "12345678",
     )
+    @admin.add_role :admin
     5.times do |n|
       User.create!(
         username:              Faker::Name.name,
@@ -21,7 +22,7 @@ namespace :db do
       )
     end
 
-    City.all.first(2).each do |city|
+    City.all.first(20).each do |city|
       5.times do
         group = Group.create(
           name:        Faker::Commerce.department(5),

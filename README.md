@@ -19,7 +19,7 @@ VK_CALLBACK_URL: "http:/localhost:3000/users/auth/vkontakte/callback"
 `http://localhost:3000`
 
 В поле "доверенный redirect URI" указать тот же самый url, который указан в настройках приложения по ключу 'VK_CALLBACK_URL', например
-`http:/localhost:3000/users/auth/vkontakte/callback`
+`http://localhost:3000/users/auth/vkontakte/callback`
 
 файл уже добавлен в .gitignore.
 
