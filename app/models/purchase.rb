@@ -9,7 +9,9 @@ class Purchase < ActiveRecord::Base
 
   has_attached_file :image, styles: { small: "100x100", med: "280x235", large: "800x300" },
                             url: "/system/:hash.:extension",
-                            hash_secret: "very_secret_hash_here"
+                            hash_secret: "very_secret_hash_here",
+                            default_url: "/images/:style/missing.png"
+
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/png"] },
                                size: { in: 0..500.kilobytes }

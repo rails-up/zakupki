@@ -13,22 +13,22 @@
 
 <% if can? [:edit, :destroy], @group %>
   <div class="row">
-    <div class="col s12 m3">
-      <%= link_to(t(:edit), edit_group_path(@group), class: "waves-effect waves-light btn")%>
+    <div class="col">
+      <%= link_to(edit_group_path(@group), class: "waves-effect waves-light btn-floating") do %>
+        <i class='material-icons'>mode_edit</i>
+      <% end %>
     </div>
-    <div class="col s12 m3">
-      <%= link_to(t(:delete), group_path(@group),
-          class: "waves-effect waves-light btn",
-          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) %>
+    <div class="col">
+      <%= link_to(group_path(@group), class: "waves-effect waves-light btn-floating",
+          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) do %>
+        <i class='material-icons'>delete</i>
+      <% end %>
     </div>
 <% end %>
 
 <% if can? :toggle_group, @group %>
-    <div class="col s12 m3">
+    <div class="col">
       <%= toggle_group_btn(@group) %>
     </div>
 <% end %>
-
   </div>
-
-

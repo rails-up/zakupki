@@ -12,16 +12,22 @@
 </div>
 
   <div class="row">
+    <div class="col">
+      <div class="chip"><%= t("purchase.statuses.#{@purchase.status}") %></div>
+    </div>
     <% if can? :update, @purchase %>
-    <div class="col s12 m3">
-      <%= link_to(t(:edit), edit_purchase_path(@purchase), class: "waves-effect waves-light btn") %>
+    <div class="col">
+      <%= link_to(edit_purchase_path(@purchase), class: "waves-effect waves-light btn-floating") do %>
+        <i class='material-icons'>mode_edit</i>
+      <% end %>
     </div>
     <% end %>
     <% if can? :destroy, @purchase %>
-    <div class="col s12 m3">
-      <%= link_to(t(:delete), purchase_path(@purchase),
-          class: "waves-effect waves-light btn",
-          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) %>
+    <div class="col">
+      <%= link_to(purchase_path(@purchase), class: "waves-effect waves-light btn-floating",
+          method: :delete, data: { confirm: (t 'purchase.deletion_confirm')}) do %>
+        <i class='material-icons'>delete</i>
+      <% end %>
     </div>
     <% end %>
   </div>

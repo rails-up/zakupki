@@ -17,8 +17,9 @@
     <td><%= group.name %></td>
     <td><%= group.users_count %></td>
     <td><%= group.active_purchases_count %></td>
-    <td><%= link_to (t 'show'), group_path(group),
-            class: "waves-effect waves-light btn" %></td>
+    <td><%= link_to(group_path(group), class: "waves-effect waves-light btn-floating") do %>
+          <i class="material-icons">visibility</i>
+        <% end %></td>
   </tr>
   <% end %>
 </table>

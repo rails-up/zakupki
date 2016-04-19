@@ -12,7 +12,7 @@
     <%= form_tag(groups_path, method: :get, remote: true, id: 'group_search_form') do %>
     <div class="col s8">
       <%= select_tag "city", options_from_collection_for_select(City.all, "id", "name", selected: params[:city]),
-                             { class: 'browser-default', id: "group_city_id" } %>
+                             { class: 'browser-default' } %>
     </div>
     <div class="col s2">
       <%= button_tag t(:search), class: "waves-light btn" %>
