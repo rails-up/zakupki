@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'omniauth-vkontakte'
 gem 'annotate'
 gem 'paperclip'
+gem 'faker'
 
 group :development, :test do
   #DB
