@@ -29,4 +29,3 @@ describe 'Joining and leaving a group' do
     expect(page).to have_content(I18n.t('group.join'))
   end
 end
-

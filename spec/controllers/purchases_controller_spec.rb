@@ -1,15 +1,12 @@
 require 'rails_helper'
-require 'shared_examples/controllers_shared_examples'
 
 RSpec.describe PurchasesController, type: :controller do
-  let!(:user) { create(:user_with_nine_purchases) }
-  let!(:another_user) { create(:user_with_nine_purchases) }
-  let!(:purchase) { user.purchases.first }
-  let!(:count) { user.purchases.count }
-
   context 'when user is logged in' do
-    before { login_with user }
-    before { allow_any_instance_of(CanCan::ControllerResource).to receive(:load_and_authorize_resource) }
+    before do
+      @user = create :user
+      login_with @user
+      allow_any_instance_of(CanCan::ControllerResource).to receive(:load_and_authorize_resource)
+    end
 
     describe 'GET#index' do
       it "renders index template" do
@@ -20,7 +17,10 @@ RSpec.describe PurchasesController, type: :controller do
 
     describe 'GET#edit' do
       it 'renders edit template' do
+        purchase = create :purchase
+
         get :edit, id: purchase
+
         expect(response).to render_template(:edit)
       end
     end
@@ -34,7 +34,10 @@ RSpec.describe PurchasesController, type: :controller do
 
     describe 'GET#show' do
       it 'renders show template' do
+        purchase = create :purchase
+
         get :show, id: purchase
+
         expect(response).to render_template(:show)
       end
     end
@@ -49,9 +52,11 @@ RSpec.describe PurchasesController, type: :controller do
 
       context 'with correct parameters' do
         it 'creates new purchase' do
-          post :create, purchase: { name: "test888666o" }
+          count = @user.purchases.count
+          post :create, purchase: attributes_for(:purchase), owner_id: @user.id
+
           expect(response).to redirect_to purchases_path
-          expect(user.purchases.count).to eq count.next
+          expect(@user.purchases.count).to eq(count+1)
         end
       end
     end
@@ -60,8 +65,11 @@ RSpec.describe PurchasesController, type: :controller do
       context 'of the same user' do
         context 'with correct parameters' do
           it 'updates purchase properties' do
+            purchase = create :purchase, owner_id: @user.id
             new_name = "new_name_of_purchase"
+
             patch :update, id: purchase, purchase: { name: new_name }
+
             expect(response).to redirect_to purchase_path(purchase)
             expect(purchase.reload.name).to eq new_name
           end
@@ -69,7 +77,10 @@ RSpec.describe PurchasesController, type: :controller do
 
         context 'with inconsistent parameters' do
           it 'does not change purchase properties' do
+            purchase = create :purchase
+
             patch :update, id: purchase, purchase: { name: nil }
+
             expect(response).to redirect_to edit_purchase_path(purchase)
             expect(purchase.reload.name).to eq purchase.name
           end
@@ -78,10 +89,11 @@ RSpec.describe PurchasesController, type: :controller do
 
       context 'of another user' do
         it 'can\'t find the record' do
-          pending
+          other_user = create :user
+          new_name = "new_name_of_purchase"
+
           expect do
-            new_name = "new_name_of_purchase"
-            patch :update, id: another_user.purchases.first, purchase: { name: new_name }
+            patch :update, id: other_user, purchase: { name: new_name }
           end.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -90,18 +102,23 @@ RSpec.describe PurchasesController, type: :controller do
     describe 'DELETE#destroy' do
       context 'of the same user' do
         it 'deletes purchase' do
+          purchase = create :purchase, owner_id: @user.id
+          count = @user.purchases.count
+
           delete :destroy, id: purchase
+
           expect(response).to redirect_to purchases_path
-          expect(user.purchases.count).to eq(count-1)
+          expect(@user.purchases.count).to eq(count-1)
           expect{ Purchase.find(purchase.id) }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
 
       context 'of another user' do
         it 'can\'t find purchase' do
-          pending
+          other_user = create :user
+          create :purchase, owner_id: other_user.id
           expect do
-            delete :destroy, id: another_user.purchases.first
+            delete :destroy, id: other_user.id
           end.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -109,11 +126,11 @@ RSpec.describe PurchasesController, type: :controller do
   end
 
   context 'when user is not logged in' do
-    before { login_with nil }
-
     describe 'GET#new' do
-      before { get :new }
-      it_behaves_like "unauthenticated"
+      it 'redirects to login' do
+        get :new
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
 
     describe 'GET#index' do
@@ -124,30 +141,52 @@ RSpec.describe PurchasesController, type: :controller do
     end
 
     describe 'POST#create' do
-      before { post :create, purchase: { name: "test888888888" } }
-      it_behaves_like "unauthenticated"
+      it 'redirects to login' do
+        post :create, purchase: attributes_for(:purchase)
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
 
     describe 'PATCH#update' do
-      before { patch :update, id: purchase }
-      it_behaves_like "unauthenticated"
+      it 'redirects to login' do
+        purchase = create :purchase
+
+        patch :update, id: purchase
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
 
     describe 'GET#show' do
       it 'renders show template' do
+        purchase = create :purchase
+
         get :show, id: purchase
+
         expect(response).to render_template(:show)
       end
     end
 
     describe 'DELETE#destroy' do
-      before { delete :destroy, id: purchase }
-      it_behaves_like "unauthenticated"
+
+      it 'redirects to login' do
+        purchase = create :purchase
+
+        delete :destroy, id: purchase
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
 
     describe 'GET#edit' do
-      before { get :edit,  id: purchase }
-      it_behaves_like "unauthenticated"
+
+      it 'redirects to login' do
+        purchase = create :purchase
+
+        get :edit,  id: purchase
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
   end
 end

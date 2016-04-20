@@ -11,12 +11,6 @@ FactoryGirl.define do
       uid 111
     end
 
-    factory :user_with_nine_purchases do
-      after(:create) do |user|
-        9.times{ create(:purchase, owner_id: user.id) }
-      end
-    end
-
     factory :user_with_purchases_with_different_statuses do
       after(:create) do |user|
         Purchase.statuses.each do |s|
