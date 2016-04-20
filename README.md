@@ -23,4 +23,4 @@ VK_CALLBACK_URL: "http:/localhost:3000/users/auth/vkontakte/callback"
 
 файл уже добавлен в .gitignore.
 
-Для заполнения БД фейкомыми данными `rake db:seed`, для создания списка городов затем `rake db:populate`.
+Для заполнения БД фейковыми данными `rake db:seed`, для создания списка городов затем `rake db:populate`.

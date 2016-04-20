@@ -6,13 +6,13 @@ namespace :db do
 
     [Purchase, Group, User].each(&:delete_all)
 
-    @admin = User.create!(
+    admin = User.create!(
      username:              "admin",
      email:                 "foo@bar.com",
      password:              "12345678",
      password_confirmation: "12345678",
     )
-    @admin.add_role :admin
+    admin.add_role :admin
     5.times do |n|
       User.create!(
         username:              Faker::Name.name,
@@ -28,7 +28,7 @@ namespace :db do
           name:        Faker::Commerce.department(5),
           description: Faker::Hipster.sentence(5, true, 5),
           city_id:     city.id,
-          user_id:     @admin.id,
+          user_id:     admin.id,
           enabled:     true,
         )
         5.times do |purchase|
@@ -38,7 +38,7 @@ namespace :db do
           end_date:    Faker::Time.forward(30),
           group_id:    group.id,
           city_id:     city.id,
-          owner_id:    @admin.id,
+          owner_id:    admin.id,
           status:      1,
         )
         end
