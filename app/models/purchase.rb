@@ -2,7 +2,7 @@ class Purchase < ActiveRecord::Base
   enum status: [:opened, :funding, :awaiting, :distributing, :closed]
 
   belongs_to :group
-  belongs_to :user
+  belongs_to :owner class_name: "User", foreign_key: "owner_id"
   has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
   belongs_to :city
@@ -25,10 +25,6 @@ class Purchase < ActiveRecord::Base
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "can't be in the past")
     end
-  end
-
-  def owner
-    User.find(self.owner_id)
   end
 end
 
