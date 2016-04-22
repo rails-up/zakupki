@@ -5,6 +5,10 @@ FactoryGirl.define do
     username "Test User"
     phone "123-123-123"
 
+    trait :organizer do
+      after(:create) {|user| user.add_role(:organizer)}
+    end
+
     factory :user_from_vkontakte do
       email nil
       provider "vkontakte"
