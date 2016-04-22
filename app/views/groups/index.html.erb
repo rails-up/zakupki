@@ -10,9 +10,17 @@
 <div class="section" id="groups_table">
   <div class="row input-field">
     <%= form_tag(groups_path, method: :get, remote: true, id: 'group_search_form') do %>
-    <div class="col s8">
-      <%= select_tag "city", options_from_collection_for_select(City.all, "id", "name", selected: params[:city]),
-                             { class: 'browser-default' } %>
+    <div class="col s8 autocomplete-field">
+      <%= autocomplete_field_tag 'city', '', 
+            cities_groups_path, 
+            :size => 75, 
+            id: "autocomplete", 
+            class: "autocomplete",
+            data: { "append-to":  ".autocomplete-field", 
+                    "id_element": "#city"
+                  }
+      %>
+      <%= hidden_field_tag 'city' %>
     </div>
     <div class="col s2">
       <%= button_tag t(:search), class: "waves-light btn" %>

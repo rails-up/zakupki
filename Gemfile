@@ -43,6 +43,7 @@ gem 'coffee-rails', '~> 4.1', '>= 4.1.1'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 gem 'turbolinks', '~> 2.5', '>= 2.5.3'
 gem 'jbuilder', '~> 2.4', '>= 2.4.1'
+gem 'rails-jquery-autocomplete'
 
 group :doc do
   gem 'sdoc', '~> 0.4.1', require: false
