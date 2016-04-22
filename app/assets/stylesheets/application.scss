@@ -21,3 +21,32 @@ nav {
     vertical-align: middle;
     border: 3px solid #80cbc4;
 }    
+
+// Autocomplete
+
+.ui-widget-content {
+  margin-top: -1rem;
+  @extend .z-depth-1;
+
+  li {
+    color: #26a69a;
+    font-size: 1.2rem;
+    padding: 1rem;
+      &:hover {
+        background: #eee;
+        cursor: pointer;
+      }
+    }
+ }
+ 
+ui-widget-content {
+  @extend .select-dropdown;
+}
+ 
+.ui-state-focus {
+  @extend li:hover;
+}
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
