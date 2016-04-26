@@ -7,26 +7,66 @@
     <% end %>
   </div>
 </div>
-<div class="row">
-  <div class="col s12 m4">
-  <%= form_for :current_user, url: profile_update_password_path, remote: true, html: {id: :password_form} do |f| %>
-    <div class="input-field col s12">
-      <%= f.password_field :current_password %>
-      <%= f.label :current_password %>
-    </div>
-    <div class="input-field col s12">
-        <%= f.password_field :password %>
-        <%= f.label :password, class: "active" %>
-    </div>
-    
-    <div class="input-field col s12">
-        <%= f.password_field :password_confirmation %>
-        <%= f.label :password_confirmation, class: "active" %>
-    </div>
-    
+ <div class="row">
     <div class="col s12">
-      <%= f.submit t('profile.change_password'), class: "waves-effect waves-light btn" %>
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#tab_groups">Мои группы</a></li>
+        <li class="tab col s3"><a href="#tab_pass">Сменить пароль</a></li>
+      </ul>
     </div>
-  <% end %>
-  </div> 
-</div>
+    <div id="tab_groups" class="col s12">
+      <table class="bordered highlight">
+        <thead>
+          <tr>
+            <th>Город</th>
+            <th>Название группы</th>
+            <th>Количество активных закупок</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% current_user.groups.each do |group| %>
+          <tr class="cyan lighten-5">
+            <td><%= group.city.name %></td>
+            <td><%= group.description %></td>
+            <td><%= group.active_purchases_count %></td>
+            <td>
+              <%= link_to(group_path(group), class: "waves-effect waves-light btn-floating") do %>
+                <i class="material-icons">visibility</i>
+              <% end %>
+              <%= toggle_group_btn(group) %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div id="tab_pass" class="col s12">
+      <div class="row">
+        <div class="col s12 m4">
+        <%= form_for :current_user, url: profile_update_password_path, remote: true, html: {id: :password_form} do |f| %>
+          <div class="input-field col s12">
+            <%= f.password_field :current_password %>
+            <%= f.label :current_password %>
+          </div>
+          <div class="input-field col s12">
+              <%= f.password_field :password %>
+              <%= f.label :password, class: "active" %>
+          </div>
+
+          <div class="input-field col s12">
+              <%= f.password_field :password_confirmation %>
+              <%= f.label :password_confirmation, class: "active" %>
+          </div>
+
+          <div class="col s12">
+            <%= f.submit t('profile.change_password'), class: "waves-effect waves-light btn" %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
