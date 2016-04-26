@@ -37,6 +37,8 @@ ru:
     active_purchases_count: 'Количество активных закупок'
     join: 'Присоединиться'
     leave: 'Покинуть'
+    my_groups: 'Мои группы'
+    group_left: 'Вы покинули группу '
   profile:
     edit_profile: 'Изменение профиля'
     password_changed: 'Пароль изменён'

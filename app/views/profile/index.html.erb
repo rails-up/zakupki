@@ -10,18 +10,18 @@
  <div class="row">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#tab_groups">Мои группы</a></li>
-        <li class="tab col s3"><a href="#tab_pass">Сменить пароль</a></li>
+        <li class="tab col s3"><a class="active" href="#tab_groups"><%= t('group.my_groups') %></a></li>
+        <li class="tab col s3"><a href="#tab_pass"><%= t('profile.change_password') %></a></li>
       </ul>
     </div>
     <div id="tab_groups" class="col s12">
       <table class="bordered highlight">
         <thead>
           <tr>
-            <th>Город</th>
-            <th>Название группы</th>
-            <th>Количество активных закупок</th>
-            <th>Действия</th>
+            <th><%= t 'group.city' %></th>
+            <th><%= t 'group.name' %></th>
+            <th><%= t 'group.active_purchases_count' %></th>
+            <th><%= t 'actions' %></th>
           </tr>
         </thead>
 
@@ -35,7 +35,13 @@
               <%= link_to(group_path(group), class: "waves-effect waves-light btn-floating") do %>
                 <i class="material-icons">visibility</i>
               <% end %>
-              <%= toggle_group_btn(group) %>
+              <%= link_to(toggle_group_path(group, toggle_group: 'leave'),
+                  class: "waves-effect waves-light btn-floating red remove",
+                  method: :post,
+                  remote: true,
+                  title: t('group.leave')) do %>
+                <i class="material-icons">close</i>
+              <% end %>
             </td>
           </tr>
           <% end %>
