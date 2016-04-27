@@ -1,8 +1,12 @@
 FactoryGirl.define do
   factory :purchase do
-    name 'Yet another purchase'
-    description 'My very new purchase'
+    name { Faker::Commerce.product_name }
+    description { Faker::Hipster.sentence(3, true, 4) }
     end_date { 5.days.from_now }
+
+    trait :opened do
+      status :opened
+    end
 
     factory :opened_purchase do
       status :opened

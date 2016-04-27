@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :group do
     city
     sequence(:name) { |i| "group name #{i}"}
-    description "new group description"
+    description { Faker::Hipster.sentence(5, true, 5) }
     trait :enabled do
       enabled true
     end

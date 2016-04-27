@@ -16,6 +16,7 @@ gem 'paperclip'
 gem 'faker'
 gem 'will_paginate'
 gem 'will_paginate-materialize'
+gem 'factory_girl_rails'
 
 group :development, :test do
   #DB
@@ -27,7 +28,6 @@ group :test do
   gem 'selenium-webdriver', '~> 2.53'
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'libnotify', '~> 0.9.1'
-  gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'

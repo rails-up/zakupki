@@ -1,45 +1,36 @@
 namespace :db do
   desc "Erase and fill database with fake data"
   task populate: :environment do
-    require 'faker'
-    Faker::Config.locale = :ru
-
+    require 'factory_girl_rails'
     [Purchase, Group, User].each(&:delete_all)
 
-    admin = User.create!(
-     username:              "admin",
-     email:                 "foo@bar.com",
-     password:              "12345678",
-     password_confirmation: "12345678",
-    )
-    admin.add_role :admin
-    5.times do |n|
-      User.create!(
-        username:              Faker::Name.name,
-        email:                 Faker::Internet.email,
-        password:              "password",
-        password_confirmation: "password",
+    user = [:admin, :organizer, :moderator].each do |role|
+      FactoryGirl.create( :user, role,
+       username:              role.to_s,
+       email:                 role.to_s + "@foo.bar",
+       password:              "12345678",
+       password_confirmation: "12345678",
       )
+      @admin = user if role == :admin
     end
 
-    City.all.first(20).each do |city|
+    @admin = FactoryGirl.create(:user, :admin)
+
+    10.times do
+      FactoryGirl.create :user
+    end
+
+    City.all.first(5).each do |city|
       5.times do
-        group = Group.create(
-          name:        Faker::Commerce.department(5),
-          description: Faker::Hipster.sentence(5, true, 5),
+        group = FactoryGirl.create( :group, :enabled,
           city_id:     city.id,
-          user_id:     admin.id,
-          enabled:     true,
+          user_id:     @admin.id
         )
         5.times do |purchase|
-        Purchase.create(
-          description: Faker::Hipster.sentence(10, true, 5),
-          name:        Faker::Commerce.product_name,
-          end_date:    Faker::Time.forward(30),
+        FactoryGirl.create( :purchase, :opened,
           group_id:    group.id,
           city_id:     city.id,
-          owner_id:    admin.id,
-          status:      1,
+          owner_id:    @admin.id,
         )
         end
       end

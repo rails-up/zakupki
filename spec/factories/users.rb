@@ -1,9 +1,21 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:email) { |n| "person#{n}@example.com" }
+    email { Faker::Internet.email }
     password "11111111"
-    username "Test User"
-    phone "123-123-123"
+    username { Faker::Name.name }
+    phone { Faker::PhoneNumber.cell_phone }
+
+    trait :admin do
+      after(:create) {|user| user.add_role(:organizer)}
+    end
+
+    trait :moderator do
+      after(:create) {|user| user.add_role(:organizer)}
+    end
+
+    trait :organizer do
+      after(:create) {|user| user.add_role(:organizer)}
+    end
 
     trait :organizer do
       after(:create) {|user| user.add_role(:organizer)}
