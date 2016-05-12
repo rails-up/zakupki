@@ -1,7 +1,7 @@
 <h2><%= t('all_purchases') %></h2>
 <div class="row">
   <div class="col s12">
-  <% if current_user %>
+  <% if can? :create, Purchase %>
     <%= link_to(t('purchase.new'), new_purchase_path, class: "waves-effect waves-light btn") %>
   <% end %>
   </div>
