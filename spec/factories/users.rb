@@ -1,24 +1,20 @@
 FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
-    password "11111111"
+    password '11111111'
     username { Faker::Name.name }
     phone { Faker::PhoneNumber.cell_phone }
 
     trait :admin do
-      after(:create) {|user| user.add_role(:organizer)}
+      after(:create) { |user| user.add_role(:admin) }
     end
 
     trait :moderator do
-      after(:create) {|user| user.add_role(:organizer)}
+      after(:create) { |user| user.add_role(:moderator) }
     end
 
     trait :organizer do
-      after(:create) {|user| user.add_role(:organizer)}
-    end
-
-    trait :organizer do
-      after(:create) {|user| user.add_role(:organizer)}
+      after(:create) { |user| user.add_role(:organizer) }
     end
 
     factory :user_from_vkontakte do
