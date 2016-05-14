@@ -1,5 +1,6 @@
 class Group < ActiveRecord::Base
   include Sortable
+  include ToDropDownMixin
   has_and_belongs_to_many :users
   has_many :purchases, dependent: :destroy
   belongs_to :city

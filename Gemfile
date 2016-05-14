@@ -16,6 +16,8 @@ gem 'paperclip'
 gem 'faker'
 gem 'will_paginate'
 gem 'will_paginate-materialize'
+gem 'wice_grid', '~> 3.6.0'                        #фильтр таблиц
+gem 'font-awesome-sass',  '~> 4.3'
 
 group :development, :test do
   #DB

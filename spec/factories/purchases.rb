@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :purchase do
+    group
     name 'Yet another purchase'
     description 'My very new purchase'
     end_date { 5.days.from_now }

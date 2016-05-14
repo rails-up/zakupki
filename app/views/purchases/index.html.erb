@@ -1,17 +1,26 @@
 <h2><%= t('all_purchases') %></h2>
+
 <div class="row">
   <div class="col s12">
-  <% if can? :create, Purchase %>
-    <%= link_to(t('purchase.new'), new_purchase_path, class: "waves-effect waves-light btn") %>
-  <% end %>
+    <% if can? :create, Purchase %>
+        <%= link_to(t('purchase.new'), new_purchase_path, class: "waves-effect waves-light btn") %>
+    <% end %>
+
+    <%= link_to '', class: "btn-floating waves-effect waves-light wg-external-reset-button secondary-content",
+                'data-grid-name' => 'grid', title: 'Сброс фильтра' do %>
+        <i class="material-icons amber darken-4">settings_backup_restore</i>
+    <% end %>
+
+    <%= link_to '', class: "btn-floating waves-effect waves-light wg-external-submit-button secondary-content",
+                'data-grid-name' => 'grid', title: 'Поиск' do %>
+        <i class="material-icons">search</i>
+    <% end %>
+
   </div>
 </div>
 
 <div class="row">
-  <% @purchases.each do |purchase|  %>
-  <div class="col s12 m3">
-    <%= render :partial => "purchase_card", locals: { purchase: purchase } %>
+  <div class="col s12">
+    <%= render :partial => "grid" %>
   </div>
-  <% end %>
 </div>
-<%= will_paginate @purchases %>

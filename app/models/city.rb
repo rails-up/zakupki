@@ -1,4 +1,6 @@
 class City < ActiveRecord::Base
+  include ToDropDownMixin
+
   has_many :purchases
 
   validates :name, presence: true, uniqueness: true

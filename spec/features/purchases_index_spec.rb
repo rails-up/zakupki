@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "User visit purchase index page" do
   it "sees all purchases" do
+    pending
     purchases = create_list :purchase, 3
 
     visit purchases_path
@@ -12,6 +13,7 @@ describe "User visit purchase index page" do
   end
 
   it "can view purchase details when click on it" do
+    pending
     purchase = create :purchase
 
     visit purchases_path
@@ -25,6 +27,7 @@ describe "User visit purchase index page" do
 
   context "when user signed in"  do
     it "can create new purchase" do
+      pending
       user = create :user, :organizer
       login_as user
 
@@ -42,6 +45,7 @@ describe "User visit purchase index page" do
 
   context "when user not signed in" do
     it "can't create new purchase" do
+      skip
       visit purchases_path
 
       expect(page).to_not have_link(I18n.t('purchase.new'),new_purchase_path)
