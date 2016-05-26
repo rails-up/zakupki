@@ -1,4 +1,7 @@
 @import "materialize";
+@import "wice_grid";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .transparent {
   background-color: transparent;
@@ -53,4 +56,32 @@ ui-widget-content {
 
 .pagination a li.active {
   color: #fff;
+}
+.comments-header {
+  border-bottom: 1px dotted gray;
+  margin-bottom: 10px;
+}
+
+.comments-container {
+  p {
+    margin-bottom: 0px;
+  }
+  .comment-nav {
+    margin-left: 5px;
+    margin-bottom: 10px;
+
+    a {
+      font-size: 10px;
+      font-weight: bold;
+      color: #888;
+    }
+  }
+}
+
+.reply-form {
+  display: none;
+}
+
+.comments-show {
+  margin-left: 25px;
 }

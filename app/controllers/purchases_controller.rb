@@ -38,6 +38,8 @@ class PurchasesController < ApplicationController
   end
 
   def show
+    @purchase       = Purchase.find(params[:id])
+    @new_comment    = Comment.build_from(@purchase, current_user, "")
   end
 
   private

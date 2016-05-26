@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   has_many :purchases, dependent: :destroy
   belongs_to :city
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
+  acts_as_commentable
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 8 }
 

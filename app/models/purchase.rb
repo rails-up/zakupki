@@ -4,13 +4,13 @@ class Purchase < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   has_many :orders, dependent: :destroy
-  has_many :comments, dependent: :destroy
   belongs_to :city
 
   has_attached_file :image, styles: { small: "100x100", med: "280x235", large: "800x300" },
                             url: "/system/:hash.:extension",
                             hash_secret: "very_secret_hash_here",
                             default_url: "/images/:style/missing.png"
+  acts_as_commentable
 
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/png"] },

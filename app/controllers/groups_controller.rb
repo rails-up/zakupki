@@ -11,6 +11,8 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group          = Group.find(params[:id])
+    @new_comment    = Comment.build_from(@group, current_user, "")
   end
 
   def new
