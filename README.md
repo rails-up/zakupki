@@ -26,3 +26,5 @@ VK_CALLBACK_URL: "http://localhost:3000/users/auth/vkontakte/callback"
 Для заполнения БД фейковыми данными `rake db:seed`, для создания списка городов затем `rake db:populate`.
 
 Это даст трех пользователей с разными ролями `[admin, organizer, moderator]@foo.bar` соответственно. Пароль `12345678`
+
+Для запуска тестов для линукс необходимо установить Xvfb 

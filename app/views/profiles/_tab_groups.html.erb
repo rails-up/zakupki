@@ -1,0 +1,33 @@
+<table class="bordered highlight">
+  <thead>
+    <tr>
+      <th><%= t 'group.city' %></th>
+      <th><%= t 'group.name' %></th>
+      <th><%= t 'group.active_purchases_count' %></th>
+      <th><%= t 'actions' %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.groups.each do |group| %>
+    <tr class="cyan lighten-5">
+      <td><%= group.city.name %></td>
+      <td><%= group.name %></td>
+      <td><%= group.active_purchases_count %></td>
+      <td>
+        <%= link_to group_path(group),
+                    class: "waves-effect waves-light btn-floating" do %>
+                      <i class="material-icons">visibility</i>
+                    <% end %>
+        <%= link_to toggle_group_path(group, toggle_group: 'leave'),
+                    class: "waves-effect waves-light btn-floating red remove",
+                    method: :post,
+                    remote: true,
+                    title: t('group.leave') do %>
+                      <i class="material-icons">close</i>
+                    <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

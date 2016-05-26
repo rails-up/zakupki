@@ -19,9 +19,10 @@ gem 'will_paginate-materialize'
 gem 'factory_girl_rails'
 
 group :development, :test do
-  #DB
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
+  gem 'headless'
+  gem 'capybara-webkit'
 end
 
 group :test do
