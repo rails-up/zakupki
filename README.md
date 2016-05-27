@@ -37,3 +37,33 @@ VK_CALLBACK_URL: "http://localhost:3000/users/auth/vkontakte/callback"
 ### Pull Request
 
 Инструкции и рекомендации по открытию пулреквестов можно посомтреть [здесь](https://github.com/rails-up/zakupki/blob/master/CONTRIBUTING.md)
+=======
+## Инструкция: как синхронизировать мастер-ветку своего форка с мастером основного репозитория
+
+* добавляем апстрим (это делается однократно, больше повторять не нужно)
+
+`git remote add upstream https://github.com/rails-up/zakupki.git`
+​
+* синхронизируем мастер форка с мастером апстрима (это делается каждый раз)
+
+```
+git fetch upstream
+git checkout master
+git rebase upstream/master
+git push -f origin master
+```
+​
+* сольем мастер форка со своими изменениями
+
+```
+git checkout my_branch
+git merge master
+```
+* вот тут могут появиться сообщения об ошибках с указанием конкретных файлов
+* надо их исправить вручную и закоммитить
+​
+```
+git add .
+git commit -m "fix merge conflicts"
+git push -fu origin my_branch
+```
