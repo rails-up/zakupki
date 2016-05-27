@@ -16,6 +16,7 @@ ru:
     edit: 'Редактирование закупки'
     deletion_confirm: 'Закупка будет удалена. Вы уверены, что хотите продолжить?'
     end_date: 'Дата окончания данной закупки: '
+    my_purchases: 'Мои заказы'
     status: 'Статус'
     statuses:
       opened: 'Открыта'
@@ -43,6 +44,7 @@ ru:
     edit_profile: 'Изменение профиля'
     password_changed: 'Пароль изменён'
     change_password: 'Сменить пароль'
+    my_subscriptions: 'Мои подписки'
   activerecord:
     attributes:
       purchase:

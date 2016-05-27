@@ -16,20 +16,22 @@ gem 'paperclip'
 gem 'faker'
 gem 'will_paginate'
 gem 'will_paginate-materialize'
+gem 'factory_girl_rails'
+gem 'acts_as_commentable_with_threading'
 gem 'wice_grid', '~> 3.6.0'                        #фильтр таблиц
 gem 'font-awesome-sass',  '~> 4.3'
 
 group :development, :test do
-  #DB
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
+  gem 'headless'
+  gem 'capybara-webkit'
 end
 
 group :test do
   gem 'selenium-webdriver', '~> 2.53'
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'libnotify', '~> 0.9.1'
-  gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'

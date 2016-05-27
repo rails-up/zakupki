@@ -65,6 +65,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.8.0)
+      capybara (>= 2.3.0, < 2.7.0)
+      json
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
@@ -146,6 +149,7 @@ GEM
     haml (4.0.7)
       tilt
     hashie (3.4.3)
+    headless (2.2.3)
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -371,6 +375,7 @@ DEPENDENCIES
   binding_of_caller
   cancancan (~> 1.10)
   capybara (~> 2.6, >= 2.6.2)
+  capybara-webkit
   coffee-rails (~> 4.1, >= 4.1.1)
   cucumber-rails
   database_cleaner
@@ -380,6 +385,7 @@ DEPENDENCIES
   figaro
   font-awesome-sass (~> 4.3)
   guard-rspec (~> 4.6, >= 4.6.4)
+  headless
   jbuilder (~> 2.4, >= 2.4.1)
   jquery-rails (~> 4.1, >= 4.1.1)
   jquery-turbolinks

@@ -1,17 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Comment do
+ it 'is valid title and..' do
+    expect(build(:comment)).to be_valid
+ end
+ it { should belong_to(:user) }
+ it { should belong_to(:commentable) }
+ it { should validate_presence_of(:body) }
+ it { should validate_presence_of(:user) }
 end
-
-# == Schema Information
-#
-# Table name: comments
-#
-#  id          :integer          not null, primary key
-#  content     :text
-#  purchase_id :integer
-#  user_id     :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#

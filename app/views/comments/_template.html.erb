@@ -1,0 +1,11 @@
+<div class="comments-header">  
+  <h4>
+    <%= commentable.comment_threads.count == 0 ? "нет" : commentable.comment_threads.count %> комментариев
+  </h4>
+</div>
+
+<%= render partial: "comments/form", locals: {new_comment: new_comment} %>
+
+<div class="comments-container">  
+  <%= render partial: "comments/reply", locals: {comments: commentable.root_comments} %>
+</div>  
