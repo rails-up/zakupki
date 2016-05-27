@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/rails-up/zakupki.svg?branch=master)](https://travis-ci.org/rails-up/zakupki)
 
+### Настройка аутентификации через Vkontakte
+
 Разработчикам: Добавлен гем Figaro для хранения токенов. Чтобы работал вход через ВК на вашем локальном сервере, не забудьте добавить файл `config/application.yml` со следующим содержанием:
 
 ```
@@ -23,8 +25,15 @@ VK_CALLBACK_URL: "http://localhost:3000/users/auth/vkontakte/callback"
 
 файл уже добавлен в .gitignore.
 
+### Data seed/populate
+
 Для заполнения БД фейковыми данными `rake db:seed`, для создания списка городов затем `rake db:populate`.
 
 Это даст трех пользователей с разными ролями `[admin, organizer, moderator]@foo.bar` соответственно. Пароль `12345678`
 
-Для запуска тестов для линукс необходимо установить Xvfb 
+Для запуска тестов для линукс необходимо установить Xvfb
+
+
+### Pull Request
+
+Инструкции и рекомендации по открытию пулреквестов можно посомтреть [здесь](https://github.com/rails-up/zakupki/blob/master/CONTRIBUTING.md)
