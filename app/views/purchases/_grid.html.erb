@@ -1,0 +1,23 @@
+<%= grid(@purchases_grid, html: {class: 'bordered'}, hide_submit_button: true, hide_reset_button: true) do |g|
+
+  g.column name: Purchase.human_attribute_name("name"), attribute: 'name' do |p|
+    link_to p.name, p, title: p.description
+  end
+
+  g.column name: Purchase.human_attribute_name("end_date"), attribute: 'end_date', filter: false do |p|
+    p.end_date.to_s(:db)
+  end
+
+  g.column name: Purchase.human_attribute_name("status"), attribute: 'status', custom_filter: Purchase.statuses.to_a.map { |s| [t("activerecord.enums.purchase.status.#{s[0]}"), s[1]] } do |p|
+    t_enum(p, :status)
+  end
+
+  g.column name: Purchase.human_attribute_name("group"), attribute: 'id', custom_filter: Group.to_dropdown, assoc: :group do |p|
+    p.group.name
+  end
+
+  g.column name: Purchase.human_attribute_name("city"), attribute: 'id', custom_filter: City.to_dropdown, assoc: [:group, :city] do |p|
+    p.group.city.name
+  end
+
+end -%>

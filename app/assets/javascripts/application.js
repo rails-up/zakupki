@@ -16,5 +16,8 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
+//= require wice_grid
+//= require jquery-ui/datepicker
+//= require jquery-ui/datepicker-ru
 //= require turbolinks
 //= require_tree .

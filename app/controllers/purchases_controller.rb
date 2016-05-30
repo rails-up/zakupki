@@ -4,7 +4,11 @@ class PurchasesController < ApplicationController
   before_action :find_purchase, only: [:show, :edit, :destroy, :update]
 
   def index
-    @purchases = Purchase.paginate(page: params[:page], per_page: 8)
+    @purchases_grid = initialize_grid(Purchase,
+                                      order: 'end_date',
+                                      order_direction: 'asc',
+                                      per_page: 10)
+
   end
 
   def new

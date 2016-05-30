@@ -51,6 +51,9 @@ ru:
         end_date: 'Дата окончания'
         name: 'Название'
         description: 'Описание'
+        status: 'Статус'
+        group: 'Группа'
+        city: 'Город'
       user:
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
@@ -72,3 +75,11 @@ ru:
               confirmation: 'Пароли не совпадают'
             password:
               too_short: 'Пароль слишком короткий'
+    enums:
+      purchase:
+        status:
+          opened: 'Открыта'
+          funding: 'Сбор средств'
+          awaiting: 'Ожидание заказа от поставщика'
+          distributing: 'Раздача'
+          closed: 'Закрыта'

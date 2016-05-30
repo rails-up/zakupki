@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :purchase do
+    group
     name { Faker::Commerce.product_name }
     description { Faker::Hipster.sentence(3, true, 4) }
     end_date { 5.days.from_now }
