@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "pages/about.html.erb", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "have content Этапы проведения СП" do
+    render
+    expect(response.body).to match("Этапы проведения СП")
+  end
+
 end

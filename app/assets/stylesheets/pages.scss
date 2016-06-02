@@ -1,3 +1,15 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.about-descr {
+  font-size: 21px;
+  //background-color: #fafafa;
+  h2 {
+    margin: auto;
+    color: #2196F3;
+  }
+  
+  li {
+    list-style-image: url(http://techforluddites.com/images/leaf_icon.jpg);
+  }
+}
