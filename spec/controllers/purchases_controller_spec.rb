@@ -53,7 +53,8 @@ RSpec.describe PurchasesController, type: :controller do
       context 'with correct parameters' do
         it 'creates new purchase' do
           count = @user.purchases.count
-          post :create, purchase: attributes_for(:purchase), owner_id: @user.id
+
+          post :create, purchase: build(:purchase).attributes, owner_id: @user.id
 
           expect(response).to redirect_to purchases_path
           expect(@user.purchases.count).to eq(count+1)
