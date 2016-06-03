@@ -16,6 +16,7 @@ class Purchase < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/png"] },
                                size: { in: 0..500.kilobytes }
   validates :name, presence: true, length: { minimum: 10 }
+  validates :group, presence: true
   validate :date_cannot_be_in_the_past
 
   scope :active, -> { where.not(status: statuses[:closed]) }

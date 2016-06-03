@@ -4,6 +4,7 @@ describe Purchase  do
   it { should belong_to(:group) }
   it { should have_many(:orders) }
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:group) }
   it { should validate_length_of(:name).is_at_least(10) }
 
   it 'date should not be in past' do
