@@ -33,3 +33,9 @@ doc/
 #Ignore images from paperclip
 /public/system
 
+#Ignore assets in public
+/public/assets
+
+#Ignore Vagrant
+Vagrantfile
+.vagrant/
