@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519174027) do
+ActiveRecord::Schema.define(version: 20160603190625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   enable_extension "btree_gin"
@@ -39,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160519174027) do
   enable_extension "uuid-ossp"
   enable_extension "xml2"
 >>>>>>> c2aedc3... add profile purchase
+=======
+>>>>>>> c116a8f... fixing_2
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -90,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160519174027) do
     t.integer "user_id"
   end
 
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", unique: true, using: :btree
   add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
