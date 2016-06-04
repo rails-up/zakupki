@@ -46,6 +46,14 @@ class PurchasesController < ApplicationController
     @new_comment    = Comment.build_from(@purchase, current_user, "")
   end
 
+  def toggle_purchase
+    current_user.send("#{params[:toggle_purchase]}_purchase", @purchase)
+    respond_to do |format|
+      format.html { redirect_to purchase_path(@purchase) }
+      format.js { render 'leave_purchase' }
+    end
+  end
+
   private
 
   def find_purchase

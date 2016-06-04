@@ -13,11 +13,22 @@
  <div class="row">
     <div class="col s12">
       <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#tab_common"><%= t('profile.common') %></a></li>
         <li class="tab col s3"><a class="active" href="#tab_groups"><%= t('group.my_groups') %></a></li>
-        <li class="tab col s3"><a href="#tab_orders"><%= t('purchase.my_purchases') %></a></li>
+        <li class="tab col s3"><a href="#tab_purchases"><%= t('purchase.my_purchases') %></a></li>
+        <li class="tab col s3"><a href="#tab_orders"><%= t('purchase.my_orders') %></a></li>
         <li class="tab col s3"><a href="#tab_subscribes"><%= t('profile.my_subscriptions') %></a></li>
       </ul>
     </div>
+
+    <div id="tab_common" class="col s12">
+      <%= render "tab_common" %>
+    </div>
+
+    <div id="tab_purchases" class="col s12">
+      <%= render "tab_purchases" %>
+    </div>
+
 
     <div id="tab_orders" class="col s12">
       <%= render "tab_orders" %>

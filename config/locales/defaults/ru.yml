@@ -16,7 +16,12 @@ ru:
     edit: 'Редактирование закупки'
     deletion_confirm: 'Закупка будет удалена. Вы уверены, что хотите продолжить?'
     end_date: 'Дата окончания данной закупки: '
-    my_purchases: 'Мои заказы'
+    name: 'Название'
+    my_purchases: 'Мои закупки'
+    my_orders: 'Мои заказы'
+    join: 'Присоединиться'
+    leave: 'Покинуть'
+    purchase_left: 'Вы отменили закупку '
     status: 'Статус'
     statuses:
       opened: 'Открыта'
@@ -45,6 +50,7 @@ ru:
     password_changed: 'Пароль изменён'
     change_password: 'Сменить пароль'
     my_subscriptions: 'Мои подписки'
+    common: 'Сводка'       
   activerecord:
     attributes:
       purchase:

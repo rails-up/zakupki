@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'oauths/vkontakte'
-  post 'toggle_group/:id' => 'groups#toggle_group', as: :toggle_group
+  post 'toggle_group/:id'    => 'groups#toggle_group', as: :toggle_group
+  post 'toggle_purchase/:id' => 'purchases#toggle_purchase', as: :toggle_purchase
   root 'pages#index'
 
   get 'about' => 'pages#about'
