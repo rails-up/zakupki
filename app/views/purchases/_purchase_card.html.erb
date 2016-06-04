@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-image waves-effect waves-block waves-light">
-    <%= link_to image_tag(purchase.image.url(:med)), purchase_path(purchase), class: "activator" %>
+    <%= link_to cl_image_tag(purchase.image.url(:med), :width => 150, :height => 230, :crop => :fill), purchase_path(purchase), class: "activator" %>
   </div>
   <div class="card-content">
     <span class="card-title activator grey-text text-darken-4">
