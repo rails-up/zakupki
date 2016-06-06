@@ -24,7 +24,7 @@ describe 'login user visit profile page' do
   end
 
   it 'sees his purchases list', js: true do
-    pending 'not yet done'
+    #pending 'not yet done'
     purchase = create :purchase
     user.purchases << purchase
 
@@ -50,6 +50,23 @@ describe 'login user visit profile page' do
     click_link I18n.t('profile.my_subscriptions')
 
     expect(page).to have_content(I18n.t('profile.my_subscriptions'))
+  end
+
+  it 'sees his common', js: true do
+    pending 'not yet done'
+    visit user_profile_path
+    save_and_open_page
+    click_link I18n.t('profile.common')
+    
+    expect(page).to have_content(I18n.t('profile.common'))
+  end
+
+  it 'user see purchase profile' do
+  
+      purchase = create :purchase
+      visit user_profile_path
+      click_link I18n.t('purchase.my_purchases')
+      expect(page).to have_content(I18n.t('purchase.my_purchases'))
   end
 
   it 'can change his password', target: true do

@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519174027) do
+ActiveRecord::Schema.define(version: 20160603190625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  enable_extension "btree_gin"
+  enable_extension "btree_gist"
+  enable_extension "citext"
+  enable_extension "cube"
+  enable_extension "dblink"
+  enable_extension "dict_int"
+  enable_extension "dict_xsyn"
+  enable_extension "earthdistance"
+  enable_extension "fuzzystrmatch"
+  enable_extension "hstore"
+  enable_extension "intarray"
+  enable_extension "ltree"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
+  enable_extension "pgrowlocks"
+  enable_extension "pgstattuple"
+  enable_extension "tablefunc"
+  enable_extension "unaccent"
+  enable_extension "uuid-ossp"
+  enable_extension "xml2"
+>>>>>>> c2aedc3... add profile purchase
+=======
+>>>>>>> c116a8f... fixing_2
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -66,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160519174027) do
     t.integer "user_id"
   end
 
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", unique: true, using: :btree
   add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 

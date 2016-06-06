@@ -15,8 +15,15 @@
     <div class="col">
       <div class="chip"><%= t("purchase.statuses.#{@purchase.status}") %></div>
     </div>
+    <% if can? :show, @purchase %>
+     <div class="col">
+      <%= link_to(nil, class: "waves-effect waves-light btn-floating", title: "Сделать заказ") do %>
+        <i class='material-icons'>shopping_cart</i>
+      <% end %>
+    </div>
+    <% end %>
     <% if can? :update, @purchase %>
-    <div class="col">
+     <div class="col">
       <%= link_to(edit_purchase_path(@purchase), class: "waves-effect waves-light btn-floating") do %>
         <i class='material-icons'>mode_edit</i>
       <% end %>
@@ -30,5 +37,12 @@
       <% end %>
     </div>
     <% end %>
+
+    <% if can? :toggle_purchase, @purchase %>
+     <div class="col">
+      <%= toggle_purchase_btn(@purchase) %>
+     </div>
+    <% end %>
   </div>
+
 <%= render partial: "comments/template", locals: {commentable: @purchase, new_comment: @comment} %> 

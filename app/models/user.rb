@@ -46,6 +46,18 @@ class User < ActiveRecord::Base
     groups.delete(group.id) if joined?(group)
   end
 
+  def joined_purchase?(purchase)
+    purchases.include?(purchase)
+  end
+
+  def join_purchase(purchase)
+    purchases << purchase unless joined?(purchase)
+  end
+
+  def leave_purchase(purchase)
+    purchases.delete(purchase.id) if joined_purchase?(purchase)
+  end
+
   def self.from_omniauth(auth)
     attributes = { email: auth.info.email, password: Devise.friendly_token[0,20],
                    username: auth.info.name, provider: auth.provider, uid: auth.uid }

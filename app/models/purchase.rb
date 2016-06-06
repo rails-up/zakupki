@@ -27,7 +27,7 @@ class Purchase < ActiveRecord::Base
       errors.add(:end_date, "can't be in the past")
     end
   end
-
+  
   def owner
     User.find(self.owner_id)
   end
