@@ -31,6 +31,7 @@ class PurchasesController < ApplicationController
     else
       render 'new'
     end
+    Cloudinary::Uploader.upload(purchase_params[:image]) unless purchase_params[:image].blank?
   end
 
   def update

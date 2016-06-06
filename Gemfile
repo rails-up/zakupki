@@ -19,6 +19,7 @@ gem 'factory_girl_rails'
 gem 'acts_as_commentable_with_threading'
 gem 'wice_grid', '~> 3.6.0'                        #фильтр таблиц
 gem 'font-awesome-sass',  '~> 4.3'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
