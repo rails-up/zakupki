@@ -15,9 +15,6 @@ ActiveRecord::Schema.define(version: 20160603190625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   enable_extension "btree_gin"
   enable_extension "btree_gist"
   enable_extension "citext"
@@ -39,9 +36,6 @@ ActiveRecord::Schema.define(version: 20160603190625) do
   enable_extension "unaccent"
   enable_extension "uuid-ossp"
   enable_extension "xml2"
->>>>>>> c2aedc3... add profile purchase
-=======
->>>>>>> c116a8f... fixing_2
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
