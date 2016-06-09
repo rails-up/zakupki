@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'factory_girl_rails'
 gem 'acts_as_commentable_with_threading'
 gem 'wice_grid', '~> 3.6.0'                        #фильтр таблиц
+gem 'ckeditor'
 gem 'font-awesome-sass',  '~> 4.3'
 gem 'cloudinary'
 

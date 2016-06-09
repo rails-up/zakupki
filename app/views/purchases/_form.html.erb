@@ -1,67 +1,69 @@
-<%= form_for @purchase, html: { multipart: true } do |f| %>
+<%= form_for @purchase, html: {multipart: true} do |f| %>
 
-  <div class="row">
-    <div class="input-field col s12 m6">
-      <%= f.text_field :name, required: true, minlength: 10 %>
-      <%= f.label :name %>
-    </div>
-  </div>
+    <div class="row">
 
-  <div class="row">
-    <div class="waves-block col s12 m6">
-      <%= link_to image_tag(@purchase.image.url(:med)), purchase_path(@purchase), class: "activator" if @purchase.id? %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="file-field input-field col s12 m6">
-      <div class="btn">
-        <span>Картинка</span>
-        <%= f.file_field :image %>
+      <div class="col s12 m6">
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.text_field :name, required: true, minlength: 10 %>
+            <%= f.label :name %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.cktext_area :description, required: true, :ckeditor => {:toolbar => 'micro'} %>
+          </div>
+        </div>
       </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Выберите изображение">
+
+      <div class="col s12 m6">
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.select :status, options_from_collection_for_select(
+                Purchase.statuses.inject({}) { |h, (k, v)| h.merge(t("purchase.statuses.#{k}") => k) },
+                :last, :first, selected: @purchase.status),
+                         {required: true}, {class: "form_select"} %>
+            <%= f.label t('purchase.status') %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.select :group_id, options_from_collection_for_select(Group.all, "id", "name", selected: @purchase.group_id), {class: "form_select"} %>
+            <%= f.label t('group.title') %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.date_field :end_date, required: true, class: 'datepicker' %>
+            <%= f.label :end_date, class: 'active' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="waves-block col s12">
+            <%= link_to image_tag(@purchase.image.url(:med)), purchase_path(@purchase), class: 'activator' if @purchase.id? %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="file-field input-field col s12">
+            <div class="btn">
+              <span>Картинка</span>
+              <%= f.file_field :image %>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Выберите изображение">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s12 m6">
-      <%= f.text_area :description, required: true, class: "materialize-textarea" %>
-      <%= f.label :description %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12 m6">
-      <%= f.date_field :end_date, required: true, class: "datepicker" %>
-      <%= f.label :end_date, class: "active" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12 m6">
-      <%= f.select :group_id, options_from_collection_for_select(Group.all, "id", "name", selected: @purchase.group_id ), { class: "form_select" } %>
-      <%= f.label t('group.title') %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12 m6">
-      <%= f.select :status, options_from_collection_for_select(
-          Purchase.statuses.inject({}) { |h, (k, v)| h.merge(t("purchase.statuses.#{k}")=>k) },
-          :last, :first, selected: @purchase.status ),
-          { required: true }, { class: "form_select" } %>
-      <%= f.label t('purchase.status') %>
-    </div>
-  </div>
-
-  <%= f.submit t(:save), class: "waves-effect waves-light btn" %>
+    <%= f.submit t(:save), class: 'waves-effect waves-light btn' %>
 <% end %>
 
-<%= javascript_include_tag 'pickadate'%>
+<%= javascript_include_tag 'pickadate' %>
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#purchase_group_id').material_select();
   });
 </script>

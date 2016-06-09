@@ -77,6 +77,9 @@ GEM
       json
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    ckeditor (4.1.6)
+      cocaine
+      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cloudinary (1.1.6)
@@ -396,6 +399,7 @@ DEPENDENCIES
   cancancan (~> 1.10)
   capybara (~> 2.6, >= 2.6.2)
   capybara-webkit
+  ckeditor
   cloudinary
   coffee-rails (~> 4.1, >= 4.1.1)
   cucumber-rails
