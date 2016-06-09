@@ -7,7 +7,7 @@ describe "User visit purchase show page" do
 
     expect(page).to have_content(purchase.name)
     expect(page).to have_content(purchase.description)
-    expect(page).to have_content(purchase.end_date)
+    expect(page).to have_content(I18n.l purchase.end_date, format: :long)
     expect(page).to have_content(purchase.status)
   end
 

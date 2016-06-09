@@ -19,5 +19,7 @@
 //= require wice_grid
 //= require jquery-ui/datepicker
 //= require jquery-ui/datepicker-ru
+//= require ckeditor/init
+//= require_tree ./ckeditor
 //= require turbolinks
 //= require_tree .
