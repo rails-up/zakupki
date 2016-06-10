@@ -30,8 +30,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver', '~> 2.53'
-  gem 'capybara', '~> 2.6', '>= 2.6.2'
+  gem 'selenium-webdriver'
+  gem 'capybara'
   gem 'libnotify', '~> 0.9.1'
   gem 'shoulda'
   gem 'cucumber-rails', :require => false

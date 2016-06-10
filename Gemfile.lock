@@ -397,7 +397,7 @@ DEPENDENCIES
   better_errors!
   binding_of_caller
   cancancan (~> 1.10)
-  capybara (~> 2.6, >= 2.6.2)
+  capybara
   capybara-webkit
   ckeditor
   cloudinary
@@ -430,7 +430,7 @@ DEPENDENCIES
   rspec-rails (~> 3.4, >= 3.4.2)
   sass-rails (~> 5.0, >= 5.0.4)
   sdoc (~> 0.4.1)
-  selenium-webdriver (~> 2.53)
+  selenium-webdriver
   shoulda
   spring (~> 1.6, >= 1.6.4)
   turbolinks (~> 2.5, >= 2.5.3)
