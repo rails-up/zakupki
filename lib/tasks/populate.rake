@@ -37,7 +37,9 @@ namespace :db do
     end
 
     Purchase.all.each do |purchase|
-      purchase.image = File.open(Dir.glob(File.join(Rails.root, 'app/assets/images/sampleimages', '*')).sample)
+      img_file = File.open(Dir.glob(File.join(Rails.root, 'app/assets/images/sampleimages', '*')).sample)
+      upload = Cloudinary::Uploader.upload(img_file)
+      purchase.image_file_name = upload['url']
       purchase.save!
     end
   end
