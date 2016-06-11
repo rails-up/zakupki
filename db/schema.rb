@@ -96,11 +96,11 @@ ActiveRecord::Schema.define(version: 20160603190625) do
     t.integer  "owner_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "city_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "city_id"
   end
 
   add_index "purchases", ["city_id"], name: "index_purchases_on_city_id", using: :btree

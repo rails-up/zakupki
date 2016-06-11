@@ -1,1 +1,0 @@
-$(".datepicker").pickadate({clear:!1,min:!0,selectMonths:!0,selectYears:2,closeOnSelect:!0,hiddenName:!0});
