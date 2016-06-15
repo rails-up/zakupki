@@ -17,7 +17,7 @@
           <i class="material-icons right">close</i>
         </span>
     <p>
-      <%= truncate(purchase.description, length: 150) %>
+      <%= truncate(purchase.description.html_safe, length: 150) %>
     </p>
   </div>
 </div>
