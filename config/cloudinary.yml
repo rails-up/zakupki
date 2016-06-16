@@ -12,8 +12,8 @@ production:
   enhance_image_tag: true
   static_image_support: true
 test:
-  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
-  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
-  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
+  cloud_name: dzozopar1
+  api_key: 835645413828828
+  api_secret: nklPUtL3b_QPZABn1-v10fjluZQ
   enhance_image_tag: false
   static_image_support: false
