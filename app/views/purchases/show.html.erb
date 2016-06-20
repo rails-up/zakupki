@@ -7,7 +7,7 @@
     <div class="card small">
 
       <div class="card-image">
-        <%= cl_image_tag(@purchase.image.url, :height => 300, :crop => :fit, class: 'activator') %>
+        <%= cl_image_tag(@purchase.image_file_name, :height => 300, :crop => :fit, class: 'activator') %>
       </div>
 
       <div class="card-content">
