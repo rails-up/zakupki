@@ -46,10 +46,10 @@ class GroupsController < ApplicationController
   end
 
   def toggle_group
-    current_user.send("#{params[:toggle_group]}_group", @group)
+    current_user.toggle_group(@group)
     respond_to do |format|
       format.html { redirect_to group_path(@group) }
-      format.js { render 'leave_group' }
+      format.js { render 'toggle_group' }
     end
   end
 
