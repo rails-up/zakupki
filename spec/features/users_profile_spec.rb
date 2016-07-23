@@ -46,7 +46,6 @@ describe 'login user visit profile page' do
   end
 
   it 'sees his subscribes', js: true do
-    pending 'not yet done'
     visit user_profile_path
     click_link I18n.t('profile.my_subscriptions')
 
@@ -54,9 +53,7 @@ describe 'login user visit profile page' do
   end
 
   it 'sees his common', js: true do
-    pending 'not yet done'
     visit user_profile_path
-    save_and_open_page
     click_link I18n.t('profile.common')
     
     expect(page).to have_content(I18n.t('profile.common'))
