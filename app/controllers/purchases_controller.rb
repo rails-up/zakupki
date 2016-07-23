@@ -63,6 +63,8 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.require(:purchase).permit(:name, :description, :end_date, :image, :group_id, :status)
+    params.require(:purchase).permit(:name, :description, :end_date, :image, :group_id,
+                                     :status, :address, :apartment, :catalogue_link, :commission,
+                                     :delivery_payment_type_id, :delivery_payment_cost_type_id)
   end
 end
