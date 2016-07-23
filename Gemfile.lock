@@ -75,8 +75,6 @@ GEM
     capybara-webkit (1.8.0)
       capybara (>= 2.3.0, < 2.7.0)
       json
-    childprocess (0.5.9)
-      ffi (~> 1.0, >= 1.0.11)
     ckeditor (4.1.6)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -332,7 +330,6 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
-    rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.21)
     sass-rails (5.0.4)
@@ -344,10 +341,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    selenium-webdriver (2.53.0)
-      childprocess (~> 0.5)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
     shellany (0.0.1)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
@@ -379,7 +372,6 @@ GEM
     unf_ext (0.0.7.2)
     warden (1.2.6)
       rack (>= 1.0)
-    websocket (1.2.2)
     wice_grid (3.6.0)
       activerecord (> 3.2)
       coffee-rails (> 3.2)
@@ -430,7 +422,6 @@ DEPENDENCIES
   rspec-rails (~> 3.4, >= 3.4.2)
   sass-rails (~> 5.0, >= 5.0.4)
   sdoc (~> 0.4.1)
-  selenium-webdriver
   shoulda
   spring (~> 1.6, >= 1.6.4)
   turbolinks (~> 2.5, >= 2.5.3)
