@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'acceptance_helper'
+
 describe 'login user visit profile page' do
   let(:user) { create :user }
   before do
