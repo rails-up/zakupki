@@ -21,6 +21,7 @@ gem 'wice_grid', '~> 3.6.0'                        #фильтр таблиц
 gem 'ckeditor'
 gem 'font-awesome-sass',  '~> 4.3'
 gem 'cloudinary'
+gem 'sprockets', '3.6.3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
@@ -32,7 +33,7 @@ end
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'libnotify', '~> 0.9.1'
+  gem 'libnotify', '~> 0.9.1' if /linux/ =~ RUBY_PLATFORM
   gem 'shoulda'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
