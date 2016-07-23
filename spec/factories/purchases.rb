@@ -9,6 +9,7 @@ FactoryGirl.define do
     delivery_payment_type
     delivery_payment_cost_type
     city
+    owner_id 1
     description { Faker::Hipster.sentence(3, true, 4) }
     end_date { 5.days.from_now }
 
