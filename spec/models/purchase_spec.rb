@@ -11,6 +11,7 @@ describe Purchase  do
   it { should validate_presence_of(:address) }
   it { should validate_presence_of(:apartment) }
   it { should validate_presence_of(:catalogue_link) }
+  it { should validate_presence_of(:description) }
   it { should validate_presence_of(:delivery_payment_type_id) }
   it { should validate_presence_of(:delivery_payment_cost_type_id) }
   it { should validate_presence_of(:owner_id) }

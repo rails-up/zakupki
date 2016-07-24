@@ -20,7 +20,7 @@ class Purchase < ActiveRecord::Base
 
   validates :group, :name, :catalogue_link, :commission,
             :address, :apartment, :delivery_payment_type_id,
-            :owner_id, :delivery_payment_cost_type_id, presence: true
+            :owner_id, :description, :delivery_payment_cost_type_id, presence: true
   validates :name, length: { minimum: 10 }
   validate :date_cannot_be_in_the_past
 

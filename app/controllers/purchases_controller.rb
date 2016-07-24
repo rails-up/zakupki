@@ -29,10 +29,11 @@ class PurchasesController < ApplicationController
     upload=Cloudinary::Uploader.upload(purchase_params[:image]) unless purchase_params[:image].blank?
     @purchase.image_file_name=upload['url'] unless purchase_params[:image].blank?
     if @purchase.save
+      flash[:success] = t('purchase.created')
       redirect_to purchases_path
     else
       render 'new'
-    end 
+    end
   end
 
   def update
