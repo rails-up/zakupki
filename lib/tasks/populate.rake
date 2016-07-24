@@ -20,6 +20,8 @@ namespace :db do
       FactoryGirl.create :user
     end
 
+    Group.create(name: 'Всё подряд')
+
     City.all.first(5).each do |city|
       5.times do
         group = FactoryGirl.create( :group, :enabled,

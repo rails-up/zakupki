@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 describe Purchase  do
+  subject { build(:purchase) }
   it { should belong_to(:group) }
   it { should belong_to(:delivery_payment_type) }
   it { should belong_to(:delivery_payment_cost_type) }
   it { should have_many(:orders) }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:group) }
+  it { should validate_presence_of(:group).on(:save) }
   it { should validate_presence_of(:commission) }
   it { should validate_presence_of(:address) }
   it { should validate_presence_of(:apartment) }
@@ -15,11 +16,37 @@ describe Purchase  do
   it { should validate_presence_of(:delivery_payment_type_id) }
   it { should validate_presence_of(:delivery_payment_cost_type_id) }
   it { should validate_presence_of(:owner_id) }
+  it { should validate_presence_of(:group_id).on(:save) }
   it { should validate_length_of(:name).is_at_least(10) }
 
   it 'date should not be in past' do
     purchase = build :purchase, end_date: 2.days.ago
     expect(purchase.valid?).to be_falsy
+  end
+
+  it 'should check group' do
+    expect(subject).to receive(:default_group)
+    subject.save!
+  end
+
+  describe '.default_group' do
+    context 'when group is empty' do
+      subject { build :purchase, group: nil }
+      it 'set default group' do
+        subject.save!
+        expect(subject.group_id).to eq Purchase::DEFAULT_GROUP_ID
+      end
+    end
+
+    context 'when group has been set' do
+      let(:group) { create(:group) }
+      subject { build :purchase, group: group }
+
+      it 'saves correct group' do
+        subject.save!
+        expect(subject.group_id).to eq group.id
+      end
+    end
   end
 
   describe 'scoping by status' do

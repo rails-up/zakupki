@@ -316,6 +316,7 @@ ru:
     leave: 'Покинуть'
     my_groups: 'Мои группы'
     group_left: 'Вы покинули группу '
+    prompt: 'Выберите группу'
   profile:
     edit_profile: 'Изменение профиля'
     password_changed: 'Пароль изменён'

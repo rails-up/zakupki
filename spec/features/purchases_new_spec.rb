@@ -19,7 +19,7 @@ RSpec.feature 'Adding purchase' do
 
       select first('#purchase_status option').text, from: 'purchase_status'
       select first('#purchase_city_id option').text, from: 'purchase_city_id'
-      select first('#purchase_group_id option').text, from: 'purchase_group_id'
+      find('#purchase_group_id').find(:xpath, 'option[2]').select_option
 
       fill_in 'purchase_catalogue_link', with: 'http://test.link'
       fill_in 'purchase_commission', with: 9.9
