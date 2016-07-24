@@ -6,8 +6,6 @@ ru:
       all: "Not authorized to %{action} %{subject}."
       user: "Not allowed to manage other user accounts."
       purchase: "У вас нет прав для доступа к этой странице."
-    update:
-      project: "Not allowed to update this project."
   date:
     abbr_day_names:
     - Вс

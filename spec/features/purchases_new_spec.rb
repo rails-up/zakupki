@@ -6,7 +6,7 @@ RSpec.feature 'Adding purchase' do
   let!(:cities) { create_list(:city, 2) }
   let!(:groups) { create_list(:group, 2) }
 
-  context 'Organizer' do
+  context 'Role organizer' do
     scenario 'create purchase' do
       user = create :user, :organizer
       login_as user
@@ -38,7 +38,7 @@ RSpec.feature 'Adding purchase' do
     end
   end
 
-  context 'User' do
+  context 'Role user' do
     before do
       user = create :user
       login_as user
@@ -52,6 +52,18 @@ RSpec.feature 'Adding purchase' do
     scenario 'create purchase' do
       visit new_purchase_path
       expect(page).to have_content(I18n.t('unauthorized.manage.purchase'))
+    end
+  end
+
+  context 'Non-authorized' do
+    scenario 'doesnt see new purchase button' do
+      visit purchases_path
+      expect(page).to_not have_content(I18n.t('purchase.new'))
+    end
+
+    scenario 'create purchase' do
+      visit new_purchase_path
+      expect(page).to have_content(I18n.t('devise.failure.unauthenticated'))
     end
   end
 
