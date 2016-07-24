@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
-
+  include PublicIndex, PublicShow
   load_and_authorize_resource
+
   before_action :find_purchase, only: [:show, :edit, :destroy, :update]
 
   def index
