@@ -2,9 +2,19 @@ require 'rails_helper'
 
 describe Purchase  do
   it { should belong_to(:group) }
+  it { should belong_to(:delivery_payment_type) }
+  it { should belong_to(:delivery_payment_cost_type) }
   it { should have_many(:orders) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:group) }
+  it { should validate_presence_of(:commission) }
+  it { should validate_presence_of(:address) }
+  it { should validate_presence_of(:apartment) }
+  it { should validate_presence_of(:catalogue_link) }
+  it { should validate_presence_of(:description) }
+  it { should validate_presence_of(:delivery_payment_type_id) }
+  it { should validate_presence_of(:delivery_payment_cost_type_id) }
+  it { should validate_presence_of(:owner_id) }
   it { should validate_length_of(:name).is_at_least(10) }
 
   it 'date should not be in past' do
@@ -32,22 +42,30 @@ end
 #
 # Table name: purchases
 #
-#  id                 :integer          not null, primary key
-#  name               :string
-#  description        :text
-#  end_date           :date
-#  status             :integer
-#  group_id           :integer
-#  owner_id           :integer
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  city_id            :integer
-#  image_file_name    :string
-#  image_content_type :string
-#  image_file_size    :integer
-#  image_updated_at   :datetime
+#  id                            :integer          not null, primary key
+#  name                          :string
+#  description                   :text
+#  end_date                      :date
+#  status                        :integer
+#  group_id                      :integer
+#  owner_id                      :integer
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  image_file_name               :string
+#  image_content_type            :string
+#  image_file_size               :integer
+#  image_updated_at              :datetime
+#  city_id                       :integer
+#  catalogue_link                :string
+#  commission                    :float
+#  address                       :string
+#  apartment                     :string
+#  delivery_payment_type_id      :integer
+#  delivery_payment_cost_type_id :integer
 #
 # Indexes
 #
-#  index_purchases_on_city_id  (city_id)
+#  index_purchases_on_city_id                        (city_id)
+#  index_purchases_on_delivery_payment_cost_type_id  (delivery_payment_cost_type_id)
+#  index_purchases_on_delivery_payment_type_id       (delivery_payment_type_id)
 #

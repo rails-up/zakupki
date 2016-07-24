@@ -26,18 +26,73 @@
             <%= f.label t('purchase.status') %>
           </div>
         </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.select :city_id, options_from_collection_for_select(City.all, "id", "name", selected: @purchase.city_id), {class: "form_select"} %>
+            <%= f.label t('purchase.city') %>
+          </div>
+        </div>
+
         <div class="row">
           <div class="input-field col s12">
             <%= f.select :group_id, options_from_collection_for_select(Group.all, "id", "name", selected: @purchase.group_id), {class: "form_select"} %>
             <%= f.label t('group.title') %>
           </div>
         </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.text_field :catalogue_link, required: true %>
+            <%= f.label t('purchase.catalogue_link') %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.text_field :commission, required: true %>
+            <%= f.label t('purchase.commission') %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.text_field :address, required: true %>
+            <%= f.label t('purchase.address') %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.text_field :apartment, required: true %>
+            <%= f.label t('purchase.apartment') %>
+          </div>
+        </div>
+
         <div class="row">
           <div class="input-field col s12">
             <%= f.date_field :end_date, required: true, class: 'datepicker' %>
             <%= f.label :end_date, class: 'active' %>
           </div>
         </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.label t('purchase.delivery_payment_type') %><br>
+            <%= f.collection_radio_buttons :delivery_payment_type_id, DeliveryPaymentType.all, :id, :value do |b| %>
+                <%= b.radio_button %>
+                <%= b.label %><br>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.label t('purchase.delivery_payment_cost_type') %><br>
+            <%= f.collection_radio_buttons :delivery_payment_cost_type_id, DeliveryPaymentCostType.all, :id, :value do |b| %>
+                <%= b.radio_button %>
+                <%= b.label %><br>
+            <% end %>
+          </div>
+        </div>
+
         <div class="row">
           <div class="waves-block col s12">
             <%= link_to image_tag(@purchase.image.url(:med)), purchase_path(@purchase), class: 'activator' if @purchase.id? %>
@@ -64,6 +119,6 @@
 <%= javascript_include_tag 'pickadate' %>
 <script type="text/javascript">
   $(document).ready(function () {
-    $('#purchase_group_id').material_select();
+    $('#purchase_group_id, #purchase_city_id').material_select();
   });
 </script>

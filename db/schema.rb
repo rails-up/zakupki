@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609123450) do
+ActiveRecord::Schema.define(version: 20160723132327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 20160609123450) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "delivery_payment_cost_types", force: :cascade do |t|
+    t.string "value"
+    t.string "description"
+  end
+
+  create_table "delivery_payment_types", force: :cascade do |t|
+    t.string "value"
+    t.string "description"
+  end
 
   create_table "followings", force: :cascade do |t|
     t.integer  "follower_id"
@@ -110,16 +120,24 @@ ActiveRecord::Schema.define(version: 20160609123450) do
     t.integer  "status"
     t.integer  "group_id"
     t.integer  "owner_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "city_id"
+    t.string   "catalogue_link"
+    t.float    "commission"
+    t.string   "address"
+    t.string   "apartment"
+    t.integer  "delivery_payment_type_id"
+    t.integer  "delivery_payment_cost_type_id"
   end
 
   add_index "purchases", ["city_id"], name: "index_purchases_on_city_id", using: :btree
+  add_index "purchases", ["delivery_payment_cost_type_id"], name: "index_purchases_on_delivery_payment_cost_type_id", using: :btree
+  add_index "purchases", ["delivery_payment_type_id"], name: "index_purchases_on_delivery_payment_type_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -165,4 +183,6 @@ ActiveRecord::Schema.define(version: 20160609123450) do
   add_foreign_key "groups", "cities"
   add_foreign_key "groups", "users"
   add_foreign_key "purchases", "cities"
+  add_foreign_key "purchases", "delivery_payment_cost_types"
+  add_foreign_key "purchases", "delivery_payment_types"
 end

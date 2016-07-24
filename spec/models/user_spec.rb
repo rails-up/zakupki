@@ -2,6 +2,8 @@ require 'rails_helper'
 include VkOauthStubHelper
 
 RSpec.describe User, type: :model do
+  it { should have_many(:purchases) }
+
   let!(:user) { create :user }
   let!(:group) { create :group, user_id: user }
   let!(:other_user) { create :user }

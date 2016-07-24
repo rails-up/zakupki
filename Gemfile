@@ -30,7 +30,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver'
   gem 'capybara'
   gem 'libnotify', '~> 0.9.1'
   gem 'shoulda'

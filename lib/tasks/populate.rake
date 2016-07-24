@@ -31,6 +31,8 @@ namespace :db do
           group_id:    group.id,
           city_id:     city.id,
           owner_id:    @admin.id,
+          delivery_payment_type_id: 1,
+          delivery_payment_cost_type_id: 1,
         )
         end
       end
