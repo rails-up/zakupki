@@ -17,7 +17,7 @@
   end
 
   g.column name: Purchase.human_attribute_name("city"), attribute: 'id', custom_filter: City.to_dropdown, assoc: [:group, :city] do |p|
-    p.group.city.name
+    p.group.city.nil? ? 'не указан' : p.group.city.try(:name)
   end
 
 end -%>
