@@ -54,5 +54,5 @@ end
 def purchase_content(purchase)
   expect(page).to have_content(purchase.name)
   expect(page).to have_content(purchase.end_date)
-  expect(page).to have_content(purchase.city)
+  expect(page).to have_content(purchase.city.name)
 end

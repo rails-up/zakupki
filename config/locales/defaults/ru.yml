@@ -1,5 +1,11 @@
 ---
 ru:
+  unauthorized:
+    default: "Default error message text."
+    manage:
+      all: "Not authorized to %{action} %{subject}."
+      user: "Not allowed to manage other user accounts."
+      purchase: "У вас нет прав для доступа к этой странице."
   date:
     abbr_day_names:
     - Вс
@@ -268,6 +274,7 @@ ru:
   back: 'Назад'
   purchase:
     title: 'Закупка'
+    description: 'Описание'
     city: 'Город'
     catalogue_link: 'Ссылка на каталог'
     delivery_payment_type: 'Доставка до места самовывоза'
@@ -286,6 +293,7 @@ ru:
     leave: 'Покинуть'
     purchase_left: 'Вы отменили закупку '
     status: 'Статус'
+    created: 'Закупка успешно создана'
     statuses:
       opened: 'Открыта'
       funding: 'Сбор средств'
@@ -308,6 +316,7 @@ ru:
     leave: 'Покинуть'
     my_groups: 'Мои группы'
     group_left: 'Вы покинули группу '
+    prompt: 'Выберите группу'
   profile:
     edit_profile: 'Изменение профиля'
     password_changed: 'Пароль изменён'

@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
-
+  include PublicIndex, PublicShow
   load_and_authorize_resource
+
   before_action :find_purchase, only: [:show, :edit, :destroy, :update]
 
   def index
@@ -29,10 +30,11 @@ class PurchasesController < ApplicationController
     upload=Cloudinary::Uploader.upload(purchase_params[:image]) unless purchase_params[:image].blank?
     @purchase.image_file_name=upload['url'] unless purchase_params[:image].blank?
     if @purchase.save
+      flash[:success] = t('purchase.created')
       redirect_to purchases_path
     else
       render 'new'
-    end 
+    end
   end
 
   def update
@@ -64,7 +66,7 @@ class PurchasesController < ApplicationController
 
   def purchase_params
     params.require(:purchase).permit(:name, :description, :end_date, :image, :group_id,
-                                     :status, :address, :apartment, :catalogue_link, :commission,
-                                     :delivery_payment_type_id, :delivery_payment_cost_type_id)
+                                     :status, :city_id, :address, :apartment, :catalogue_link,
+                                     :commission, :delivery_payment_type_id, :delivery_payment_cost_type_id)
   end
 end
