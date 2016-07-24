@@ -28,7 +28,9 @@
 
 <% if can? :toggle_group, @group %>
     <div class="col">
-      <%= toggle_group_btn(@group) %>
+      <%= link_to(I18n.t(toggle_group_button_text(@group)), toggle_group_path(@group),
+                                                              class: "waves-effect waves-light btn",
+                                                              method: :post) %>
     </div>
 <% end %>
   </div>
