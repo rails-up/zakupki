@@ -11,7 +11,7 @@
   </thead>
 
   <% groups.each_with_index do |group,index| %>
-  <tr class="<%= 'cyan lighten-5' if current_user && current_user.joined?(group) %>">
+  <tr class="<%= 'cyan lighten-5' if current_user && current_user.groups.include?(group) %>">
     <td><%= index.next %></td>
     <td><%= group.city.name %></td>
     <td><%= group.name %></td>

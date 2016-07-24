@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index, :autocomplete_city_name]
+  include PublicIndex, PublicShow
+  skip_before_action :authenticate_user!, only: [:autocomplete_city_name]
   before_action :set_group, only: [:show, :edit, :update, :destroy, :toggle_group]
   load_and_authorize_resource only: [:new, :destroy, :edit, :update, :toggle_group]
 
@@ -46,10 +47,10 @@ class GroupsController < ApplicationController
   end
 
   def toggle_group
-    current_user.send("#{params[:toggle_group]}_group", @group)
+    current_user.toggle_group(@group)
     respond_to do |format|
       format.html { redirect_to group_path(@group) }
-      format.js { render 'leave_group' }
+      format.js { render 'toggle_group' }
     end
   end
 

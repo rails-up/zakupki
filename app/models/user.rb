@@ -34,16 +34,8 @@ class User < ActiveRecord::Base
     false
   end
 
-  def joined?(group)
-    groups.include?(group)
-  end
-
-  def join_group(group)
-    groups << group unless joined?(group)
-  end
-
-  def leave_group(group)
-    groups.delete(group.id) if joined?(group)
+  def toggle_group(group)
+    groups.find_by(id: group.id) ? groups.delete(group.id) : groups << group
   end
 
   def joined_purchase?(purchase)
@@ -51,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def join_purchase(purchase)
-    purchases << purchase unless joined?(purchase)
+    purchases << purchase unless joined_purchase?(purchase)
   end
 
   def leave_purchase(purchase)

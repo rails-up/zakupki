@@ -4,7 +4,7 @@ class Purchase < ActiveRecord::Base
   enum status: [:opened, :funding, :awaiting, :distributing, :closed]
 
   belongs_to :group
-  belongs_to :user
+  belongs_to :owner, class_name: 'User', foreign_key: :owner_id
   belongs_to :delivery_payment_type
   belongs_to :delivery_payment_cost_type
   has_many :orders, dependent: :destroy
