@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:purchases) }
 
   let!(:user) { create :user }
-  let!(:group) { create :group, user_id: user }
+  let!(:group) { create :group, owner: user }
   let!(:other_user) { create :user }
   let!(:vk_user) { create :user_from_vkontakte }
 
