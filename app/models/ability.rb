@@ -10,7 +10,7 @@ class Ability
       can [:edit, :update], [User]
       can :read, :all
     elsif user.has_role? :organizer
-      can [:edit, :update, :destroy], [Purchase], user_id: user.id
+      can [:edit, :update, :destroy], [Purchase], owner: user
       can [:edit, :update], [User], id: user.id
       can :create, [Purchase] # would create order?
       can :read, :all
