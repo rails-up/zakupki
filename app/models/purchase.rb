@@ -1,5 +1,4 @@
 class Purchase < ActiveRecord::Base
-
   enum status: [:opened, :funding, :awaiting, :distributing, :closed]
 
   belongs_to :group
@@ -59,7 +58,7 @@ end
 #  image_updated_at              :datetime
 #  city_id                       :integer
 #  catalogue_link                :string
-#  commission                    :float
+#  commission                    :float            default("0.0")
 #  address                       :string
 #  apartment                     :string
 #  delivery_payment_type_id      :integer
