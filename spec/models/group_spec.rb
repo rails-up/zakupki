@@ -7,7 +7,19 @@ require 'rails_helper'
     it { should validate_uniqueness_of(:name) }
     it { should validate_length_of(:name).is_at_least(8) }
 
-    pending 'after approve must belong to creator' 
+    pending 'after approve must belong to creator'
+
+    describe '.all_with_non_exist' do
+      let!(:groups) { Array.new(2) { create(:group) } }
+      before { groups }
+      it 'return all groups' do
+        expect(Group.all_with_non_exist).to include([I18n.t('group.non_exist'), 'null'])
+      end
+
+      it 'returns questions by last day' do
+        expect(Group.all_with_non_exist.count).to eq 3
+      end
+    end
   end
 
 # == Schema Information

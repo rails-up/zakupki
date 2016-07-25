@@ -2,9 +2,10 @@ require 'acceptance_helper'
 
 feature 'Search purchases' do
   given!(:city) { create(:city, name: 'Moscow') }
-  given!(:group) { create(:group, city: city) }
-  given!(:purchases) { create_list(:purchase, 2) }
+  given!(:group) { create(:group, city: city, enabled: true) }
+  given!(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
   given!(:purchase) { create(:purchase, group: group) }
+  given!(:purchase_without_group) { create(:purchase, group: nil) }
 
   before do
     purchases
@@ -19,9 +20,25 @@ feature 'Search purchases' do
   end
 
   scenario 'by city name', js: true do
-    fill_in 'grid_f_name', with: city.name
+    fill_in 'grid_f_cities_name', with: city.name
     click_on 'search'
     expect(page).to have_content(city.name)
     expect(page).to_not have_link(purchases.first.city.name)
+  end
+
+  context 'by group' do
+    scenario 'when purchase has group', js: true do
+      select group.name, from: 'grid_f_groups_id'
+      click_on 'search'
+      expect(page).to have_content(group.name)
+      expect(page).to_not have_link(purchases.first.group.name)
+    end
+
+    scenario 'when purchase without group', js: true do
+      select I18n.t('group.non_exist'), from: 'grid_f_groups_id'
+      click_on 'search'
+      expect(page).to have_content(purchase_without_group.name)
+      expect(page).to_not have_link(purchases.first.group.name)
+    end
   end
 end
