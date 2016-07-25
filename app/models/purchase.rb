@@ -1,5 +1,4 @@
 class Purchase < ActiveRecord::Base
-  DEFAULT_GROUP_ID = 1
 
   enum status: [:opened, :funding, :awaiting, :distributing, :closed]
 
@@ -24,18 +23,11 @@ class Purchase < ActiveRecord::Base
             :address, :apartment, :delivery_payment_type_id,
             :owner_id, :description, :delivery_payment_cost_type_id, presence: true
 
-  validates :group, :group_id, on: :save, presence: true
   validates :name, length: { minimum: 10 }
   validate :date_cannot_be_in_the_past
 
   scope :active, -> { where.not(status: statuses[:closed]) }
   scope :inactive, -> { where(status: statuses[:closed]) }
-
-  before_save :default_group
-
-  def default_group
-    self.group_id = Purchase::DEFAULT_GROUP_ID if self.group.nil?
-  end
 
   def date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today

@@ -13,11 +13,11 @@
   end
 
   g.column name: Purchase.human_attribute_name("group"), attribute: 'id', custom_filter: Group.to_dropdown, assoc: :group do |p|
-    p.group.name
+    p.group.nil? ? 'не указана' : p.group.name
   end
 
   g.column name: Purchase.human_attribute_name("city"), attribute: 'id', custom_filter: City.to_dropdown, assoc: [:group, :city] do |p|
-    p.group.city.nil? ? 'не указан' : p.group.city.try(:name)
+    p.group.nil? ? 'не указан' : p.group.city.name
   end
 
 end -%>
