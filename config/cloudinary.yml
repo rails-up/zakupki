@@ -1,19 +1,19 @@
 ---
 development:
-  cloud_name: dqjmmab0f
-  api_key: '465442482381634'
-  api_secret: yhKGPiLMSg-heRpB4bRI7TpPBvE
+  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_image_support: true
 production:
-  cloud_name: dqjmmab0f
-  api_key: '465442482381634'
-  api_secret: yhKGPiLMSg-heRpB4bRI7TpPBvE
+  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_image_support: true
 test:
-  cloud_name: dqjmmab0f
-  api_key: '465442482381634'
-  api_secret: yhKGPiLMSg-heRpB4bRI7TpPBvE
-  enhance_image_tag: true
+  cloud_name: dzozopar1
+  api_key: 835645413828828
+  api_secret: nklPUtL3b_QPZABn1-v10fjluZQ
+  enhance_image_tag: false
   static_image_support: false
