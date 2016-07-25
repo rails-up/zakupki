@@ -12,11 +12,12 @@ require 'rails_helper'
     describe '.all_with_non_exist' do
       let!(:groups) { Array.new(2) { create(:group) } }
       before { groups }
-      it 'return all groups' do
+
+      it 'add non exist group to all' do
         expect(Group.all_with_non_exist).to include([I18n.t('group.non_exist'), 'null'])
       end
 
-      it 'returns questions by last day' do
+      it 'return include all enabled groups' do
         expect(Group.all_with_non_exist.count).to eq 3
       end
     end
