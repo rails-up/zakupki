@@ -2395,4 +2395,3 @@ DeliveryPaymentCostType.create(value: 'пропорционально стоим
 DeliveryPaymentCostType.create(value: 'пропорционально количеству наименований в заказе', description: 'Общая сумма делится пропорционально количеству наименований товаров в заказе')
 DeliveryPaymentType.create(value: 'зависит от количества заказов', description: 'В данном случае за доставку пользователи платят при получении')
 DeliveryPaymentType.create(value: 'фикисированная стоимость', description: 'В данном случае за доставку пользователи платят сразу')
-Group.create(name: 'Всё подряд')
