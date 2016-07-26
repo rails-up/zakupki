@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723132327) do
+ActiveRecord::Schema.define(version: 20160725110331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,15 +120,15 @@ ActiveRecord::Schema.define(version: 20160723132327) do
     t.integer  "status"
     t.integer  "group_id"
     t.integer  "owner_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "city_id"
     t.string   "catalogue_link"
-    t.float    "commission"
+    t.float    "commission",                    default: 0.0
     t.string   "address"
     t.string   "apartment"
     t.integer  "delivery_payment_type_id"
