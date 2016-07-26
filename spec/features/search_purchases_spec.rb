@@ -7,7 +7,7 @@ feature 'Search purchases' do
   given!(:purchase) { create(:purchase, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
-  before(:each) do
+  before do
     purchases
     visit purchases_path
   end
@@ -16,7 +16,7 @@ feature 'Search purchases' do
     fill_in 'grid_f_name', with: purchase.name
     click_on 'search'
     expect(page).to have_link(purchase.name)
-    expect(page).to_not have_link(purchases.first.name)
+    page.should_not have_link(purchases.first.name)
   end
 
   scenario 'by city name', js: true do
