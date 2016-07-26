@@ -36,7 +36,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <%= f.select :group_id, options_from_collection_for_select(Group.all, "id", "name", selected: @purchase.group_id), {include_blank: t('group.prompt'), class: "form_select" } %>
+            <%= f.select :group_id, options_from_collection_for_select(Group.enabled, "id", "name", selected: @purchase.group_id), {include_blank: t('group.prompt'), class: "form_select" } %>
             <%= f.label t('group.title') %>
           </div>
         </div>

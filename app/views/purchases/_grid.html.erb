@@ -12,12 +12,12 @@
     t_enum(p, :status)
   end
 
-  g.column name: Purchase.human_attribute_name("group"), attribute: 'id', custom_filter: Group.to_dropdown, assoc: :group do |p|
-    p.group.name
+  g.column name: Purchase.human_attribute_name("group"), attribute: 'id', custom_filter: Group.all_with_non_exist, assoc: :group do |p|
+    p.group.nil? ? t('group.non_exist') : p.group.name
   end
 
-  g.column name: Purchase.human_attribute_name("city"), attribute: 'id', custom_filter: City.to_dropdown, assoc: [:group, :city] do |p|
-    p.group.city.name
+  g.column name: Purchase.human_attribute_name("city"), attribute: 'name', assoc: [:group, :city] do |p|
+    p.group.nil? ? 'не указан' : p.city.name
   end
 
 end -%>
