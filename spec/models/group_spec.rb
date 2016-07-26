@@ -10,7 +10,7 @@ require 'rails_helper'
     pending 'after approve must belong to creator'
 
     describe '.all_with_non_exist' do
-      let!(:groups) { Array.new(2) { create(:group) } }
+      let!(:groups) { create_list(:group, 2, enabled: true) }
       before { groups }
 
       it 'add non exist group to all' do

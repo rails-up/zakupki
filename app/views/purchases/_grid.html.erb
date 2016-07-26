@@ -17,7 +17,7 @@
   end
 
   g.column name: Purchase.human_attribute_name("city"), attribute: 'name', assoc: [:group, :city] do |p|
-    p.group.nil? ? 'не указан' : p.group.city.name
+    p.group.nil? ? 'не указан' : p.city.name
   end
 
 end -%>

@@ -2,9 +2,9 @@ require 'acceptance_helper'
 
 feature 'Search purchases' do
   given!(:city) { create(:city, name: 'Moscow') }
-  given!(:group) { create(:group, city: city, enabled: true) }
+  given!(:group) { create(:group, enabled: true) }
   given!(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
-  given!(:purchase) { create(:purchase, group: group) }
+  given!(:purchase) { create(:purchase, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
   before do
