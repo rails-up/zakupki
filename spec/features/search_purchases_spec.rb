@@ -7,7 +7,7 @@ feature 'Search purchases' do
   given!(:purchase) { create(:purchase, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
-  before do
+  before(:each) do
     purchases
     visit purchases_path
   end
