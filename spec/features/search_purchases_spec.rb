@@ -19,7 +19,7 @@ feature 'Search purchases' do
     expect(page).to_not have_link(purchases.first.city.name)
   end
 
-  scenario 'by name', js: true do
+  xscenario 'by name', js: true do
     fill_in 'grid_f_name', with: purchase.name
     click_on 'search'
     expect(page).to have_link(purchase.name)
