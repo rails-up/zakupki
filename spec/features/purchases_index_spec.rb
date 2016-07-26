@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'List purchases' do
-  given!(:purchases) { create_list(:purchase, 3) }
+describe 'User visit purchase index page' do
+  it 'sees all purchases' do
+    purchases = create_list :purchase, 3
 
-  scenario 'sees all purchases' do
     visit purchases_path
 
     purchases.each do |purchase|
@@ -13,7 +13,7 @@ feature 'List purchases' do
     expect(page).to have_css('.wice-grid')
   end
 
-  scenario 'can view purchase details when click on it' do
+  it 'can view purchase details when click on it' do
     purchase = create :purchase
 
     visit purchases_path
@@ -26,7 +26,7 @@ feature 'List purchases' do
   end
 
   context 'when user signed in'  do
-    scenario 'can create new purchase' do
+    it 'can create new purchase' do
       user = create :user, :organizer
       login_as user
 
@@ -43,7 +43,7 @@ feature 'List purchases' do
   end
 
   context 'when user not signed in' do
-    scenario "can't create new purchase" do
+    it "can't create new purchase" do
       visit purchases_path
 
       expect(page).to_not have_link(I18n.t('purchase.new'), new_purchase_path)

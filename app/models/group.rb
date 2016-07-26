@@ -19,12 +19,6 @@ class Group < ActiveRecord::Base
   def users_count
     users.count
   end
-
-  def self.all_with_non_exist
-    @groups = Group.enabled.all.to_a.map { |s| [s.name, s.id] }
-    @groups.unshift([I18n.t('group.non_exist'), 'null'])
-    @groups
-  end
 end
 
 # == Schema Information

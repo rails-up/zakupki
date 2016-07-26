@@ -317,7 +317,6 @@ ru:
     my_groups: 'Мои группы'
     group_left: 'Вы покинули группу '
     prompt: 'Выберите группу'
-    non_exist: 'не указана'
   profile:
     edit_profile: 'Изменение профиля'
     password_changed: 'Пароль изменён'
