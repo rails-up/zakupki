@@ -2,12 +2,13 @@ require 'acceptance_helper'
 
 feature 'Search purchases' do
   given!(:city) { create(:city, name: 'Moscow') }
-  given!(:group) { create(:group, city: city, enabled: true) }
-  given!(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
-  given!(:purchase) { create(:purchase, city: city) }
+  given!(:group) { create(:group, enabled: true) }
+  given(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
+  given(:purchase) { create(:purchase, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
   before do
+    purchase
     purchases
     visit purchases_path
   end
@@ -15,7 +16,6 @@ feature 'Search purchases' do
   scenario 'by name', js: true do
     fill_in 'grid_f_name', with: purchase.name
     click_on 'search'
-    sleep(1)
     expect(page).to have_link(purchase.name)
     expect(page).to_not have_link(purchases.first.name)
   end
