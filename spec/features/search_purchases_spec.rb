@@ -15,8 +15,9 @@ feature 'Search purchases' do
   scenario 'by name', js: true do
     fill_in 'grid_f_name', with: purchase.name
     click_on 'search'
+    sleep(1)
     expect(page).to have_link(purchase.name)
-    page.should_not have_link(purchases.first.name)
+    expect(page).to_not have_link(purchases.first.name)
   end
 
   scenario 'by city name', js: true do
