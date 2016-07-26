@@ -7,7 +7,20 @@ require 'rails_helper'
     it { should validate_uniqueness_of(:name) }
     it { should validate_length_of(:name).is_at_least(8) }
 
-    pending 'after approve must belong to creator' 
+    pending 'after approve must belong to creator'
+
+    describe '.all_with_non_exist' do
+      let!(:groups) { create_list(:group, 2, enabled: true) }
+      before { groups }
+
+      it 'add non exist group to all' do
+        expect(Group.all_with_non_exist).to include([I18n.t('group.non_exist'), 'null'])
+      end
+
+      it 'return include all enabled groups' do
+        expect(Group.all_with_non_exist.count).to eq 3
+      end
+    end
   end
 
 # == Schema Information

@@ -1,5 +1,9 @@
 FactoryGirl.define do
+  sequence :name do |n|
+    "City #{n}"
+  end
+
   factory :city do
-    sequence(:name) { |i| "City #{i}"}
+    name
   end
 end

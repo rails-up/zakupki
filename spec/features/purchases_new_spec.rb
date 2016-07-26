@@ -4,7 +4,7 @@ RSpec.feature 'Adding purchase' do
   let!(:delivery_payment_cost_types) { create_list(:delivery_payment_cost_type, 2) }
   let!(:delivery_payment_types) { create_list(:delivery_payment_type, 2) }
   let!(:cities) { create_list(:city, 2) }
-  let!(:groups) { create_list(:group, 2) }
+  let!(:groups) { create_list(:group, 2, enabled: true) }
 
   context 'Role organizer' do
     scenario 'create purchase' do
