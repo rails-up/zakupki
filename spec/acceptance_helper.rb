@@ -4,7 +4,7 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :webkit
   Capybara.ignore_hidden_elements = false
   config.use_transactional_fixtures = false
-
+  Capybara.automatic_reload=false
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
