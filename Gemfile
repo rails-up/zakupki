@@ -26,11 +26,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
   gem 'headless'
-  gem 'capybara-webkit', '1.8.0'
+  gem 'capybara-webkit'
 end
 
 group :test do
-  gem 'capybara', '2.3'
+  gem 'capybara'
   gem 'libnotify', '~> 0.9.1'
   gem 'shoulda'
   gem 'cucumber-rails', :require => false
