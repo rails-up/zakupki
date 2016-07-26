@@ -4,7 +4,7 @@ feature 'Search purchases' do
   given!(:city) { create(:city, name: 'Moscow') }
   given!(:group) { create(:group, enabled: true) }
   given!(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
-  given!(:purchase) { create(:purchase, city: city) }
+  given!(:purchase) { create(:purchase, city: city, name: 'Unique purchase') }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
   before do
