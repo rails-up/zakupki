@@ -3,13 +3,13 @@ require 'acceptance_helper'
 feature 'Search purchases' do
   given!(:city) { create(:city, name: 'Moscow') }
   given!(:group) { create(:group, enabled: true) }
-  given(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
-  given(:purchase) { create(:purchase, city: city) }
+  given!(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
+  given!(:purchase) { create(:purchase, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
+  after { Capybara.reset_sessions! }
+
   before do
-    purchase
-    purchases
     visit purchases_path
   end
 
