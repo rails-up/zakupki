@@ -11,7 +11,7 @@ feature 'Search purchases' do
     visit purchases_path
   end
 
-  xscenario 'by name', js: true do
+  scenario 'by name', js: true do
     fill_in 'grid_f_name', with: purchase.name
     click_on 'search'
     expect(page).to have_link(purchase.name)

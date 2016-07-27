@@ -28,6 +28,7 @@ group :development, :test do
   gem 'headless'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'capybara-webkit'
 end
 
 group :test do
