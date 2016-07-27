@@ -11,5 +11,8 @@
  * file per style scope.
  *
 *= require_self
-*= require_tree .
+*= require groups
+*= require pages
+*= require profile
+*= require zakupki
 */

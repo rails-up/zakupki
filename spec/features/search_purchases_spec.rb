@@ -7,8 +7,6 @@ feature 'Search purchases' do
   given!(:purchase) { create(:purchase, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
-  after { page.driver.reset! }
-
   before do
     visit purchases_path
   end
@@ -20,10 +18,10 @@ feature 'Search purchases' do
     expect(page).to_not have_link(purchases.first.name)
   end
 
-  scenario 'by city name', js: true do
-    fill_in 'grid_f_cities_name', with: city.name
+  scenario 'by city', js: true do
+    fill_in 'grid_f_cities_name', with: purchase.city.name
     click_on 'search'
-    expect(page).to have_content(city.name)
+    expect(page).to have_content(purchase.city.name)
     expect(page).to_not have_link(purchases.first.city.name)
   end
 
