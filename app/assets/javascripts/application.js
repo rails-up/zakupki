@@ -20,5 +20,6 @@
 //= require jquery-ui/datepicker
 //= require jquery-ui/datepicker-ru
 //= require ckeditor/init
-//= require ./ckeditor/config
+//= require_tree ./ckeditor
 //= require turbolinks
+//= require_tree .
