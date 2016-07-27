@@ -1,7 +1,12 @@
 require 'rails_helper'
+require 'capybara/poltergeist'
 
 RSpec.configure do |config|
-  Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver = :poltergeist
+  options = {js_errors: false}
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, options)
+  end
   Capybara.ignore_hidden_elements = false
   config.use_transactional_fixtures = false
 
@@ -23,9 +28,5 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
-  end
-
-  Capybara::Webkit.configure do |config|
-    config.block_unknown_urls
   end
 end
