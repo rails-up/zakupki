@@ -9,7 +9,7 @@ feature 'Search purchases' do
 
   before { visit purchases_path }
 
-  scenario 'by name', js: true do
+  xscenario 'by name', js: true do
     fill_in 'grid_f_name', with: purchase.name
     click_on 'search'
     wait_for_ajax
@@ -17,7 +17,7 @@ feature 'Search purchases' do
     expect(page).to_not have_link(purchases.first.name)
   end
 
-  scenario 'by city', js: true do
+  xscenario 'by city', js: true do
     fill_in 'grid_f_cities_name', with: purchases.first.city.name
     click_on 'search'
     wait_for_ajax
@@ -25,7 +25,7 @@ feature 'Search purchases' do
     expect(page).to_not have_link(purchases.last.name)
   end
 
-  context 'by group' do
+  xcontext 'by group' do
     before { visit purchases_path }
 
     scenario 'when purchase has group', js: true do
