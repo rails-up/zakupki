@@ -2,11 +2,12 @@ require 'rails_helper'
 require 'capybara/poltergeist'
 
 RSpec.configure do |config|
-  Capybara.javascript_driver = :poltergeist
-  options = {js_errors: false}
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, options)
+  Capybara.javascript_driver = :webkit
+  Capybara::Webkit.configure do |config|
+    config.allow_url('www.gravatar.com')
+    config.allow_url('fonts.googleapis.com')
   end
+
   Capybara.ignore_hidden_elements = false
   config.use_transactional_fixtures = false
 
