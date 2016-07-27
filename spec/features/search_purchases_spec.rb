@@ -7,7 +7,7 @@ feature 'Search purchases' do
   given!(:purchase) { create(:purchase, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
-  after { Capybara.reset_sessions! }
+  after { page.driver.reset! }
 
   before do
     visit purchases_path
