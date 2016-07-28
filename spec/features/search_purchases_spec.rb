@@ -14,7 +14,7 @@ feature 'Search purchases' do
 
   scenario 'by name', js: true do
     fill_in 'grid_f_name', with: purchase.name
-    click_on 'search'
+    search
 
     within '.wice-grid tbody' do
       expect(page).to have_content(purchase.name)
@@ -24,7 +24,7 @@ feature 'Search purchases' do
 
   scenario 'by city name', js: true do
     fill_in 'grid_f_cities_name', with: purchase.city.name
-    click_on 'search'
+    search
 
     within '.wice-grid tbody' do
       expect(page).to have_content(purchase.city.name)
@@ -35,7 +35,8 @@ feature 'Search purchases' do
   context 'by group' do
     scenario 'when purchase has group', js: true do
       select purchase.group.name, from: 'grid_f_groups_id'
-      click_on 'search'
+      search
+
       within '.wice-grid tbody' do
         expect(page).to have_content(purchase.group.name)
         expect(page).to_not have_content(purchases.last.group.name)
@@ -44,11 +45,16 @@ feature 'Search purchases' do
 
     scenario 'when purchase without group', js: true do
       select I18n.t('group.non_exist'), from: 'grid_f_groups_id'
-      click_on 'search'
+      search
+
       within '.wice-grid tbody' do
         expect(page).to have_content(purchase_without_group.name)
         expect(page).to_not have_content(purchases.last.group.name)
       end
     end
+  end
+
+  def search
+    page.evaluate_script("document.forms[0].submit()")
   end
 end

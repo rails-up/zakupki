@@ -1,6 +1,7 @@
+<%= form_tag('', method: :get) do %>
 <%= grid(@purchases_grid, html: {class: 'bordered'}, hide_submit_button: true, hide_reset_button: true) do |g|
 
-  g.column name: Purchase.human_attribute_name("name"), attribute: 'name', auto_reload: true do |p|
+  g.column name: Purchase.human_attribute_name("name"), attribute: 'name' do |p|
     link_to p.name, p, title: p.description
   end
 
@@ -8,16 +9,17 @@
     p.end_date.to_s(:db)
   end
 
-  g.column name: Purchase.human_attribute_name("status"), auto_reload: true, attribute: 'status', custom_filter: Purchase.statuses.to_a.map { |s| [t("activerecord.enums.purchase.status.#{s[0]}"), s[1]] } do |p|
+  g.column name: Purchase.human_attribute_name("status"), attribute: 'status', custom_filter: Purchase.statuses.to_a.map { |s| [t("activerecord.enums.purchase.status.#{s[0]}"), s[1]] } do |p|
     t_enum(p, :status)
   end
 
-  g.column name: Purchase.human_attribute_name("group"), auto_reload: true, attribute: 'id', custom_filter: Group.all_with_non_exist, assoc: :group do |p|
+  g.column name: Purchase.human_attribute_name("group"), attribute: 'id', custom_filter: Group.all_with_non_exist, assoc: :group do |p|
     p.group.nil? ? t('group.non_exist') : p.group.name
   end
 
-  g.column name: Purchase.human_attribute_name("city"), auto_reload: true, attribute: 'name', assoc: [:group, :city] do |p|
+  g.column name: Purchase.human_attribute_name("city"), attribute: 'name', assoc: [:group, :city] do |p|
     p.group.nil? ? 'не указан' : p.city.name
   end
 
 end -%>
+<% end -%>
