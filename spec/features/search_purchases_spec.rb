@@ -1,16 +1,20 @@
 require 'acceptance_helper'
 
 feature 'Search purchases' do
-  given!(:city) { create(:city, name: 'Moscow') }
+  given!(:city) { create(:city) }
   given!(:group) { create(:group, enabled: true) }
   given!(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
-  given!(:purchase) { create(:purchase, city: city, group: group) }
+  given!(:purchase) { create(:purchase, group: group, city: city) }
   given!(:purchase_without_group) { create(:purchase, group: nil) }
 
-  before do
-    visit purchases_path
+  before do 
+    visit purchases_path 
+    save_and_open_page
   end
 
+  after do
+    save_and_open_page
+  end
 
   scenario 'by name', js: true do
     fill_in 'grid_f_name', with: purchase.name
@@ -23,11 +27,11 @@ feature 'Search purchases' do
   end
 
   scenario 'by city name', js: true do
-    fill_in 'grid_f_cities_name', with: purchase.city.name
+    fill_in 'grid_f_cities_name', with: city.name
     search
 
     within '.wice-grid tbody' do
-      expect(page).to have_content(purchase.city.name)
+      expect(page).to have_content(city.name)
       expect(page).to_not have_content(purchases.last.city.name)
     end
   end
@@ -55,6 +59,6 @@ feature 'Search purchases' do
   end
 
   def search
-    page.evaluate_script("document.forms[0].submit()")
+    page.evaluate_script("$('form').submit()")
   end
 end

@@ -17,7 +17,7 @@
     p.group.nil? ? t('group.non_exist') : p.group.name
   end
 
-  g.column name: Purchase.human_attribute_name("city"), attribute: 'name', assoc: [:group, :city] do |p|
+  g.column name: Purchase.human_attribute_name("city"), attribute: 'name', assoc: :city do |p|
     p.group.nil? ? 'не указан' : p.city.name
   end
 
