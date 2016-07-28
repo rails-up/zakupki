@@ -9,11 +9,6 @@ feature 'Search purchases' do
 
   before do 
     visit purchases_path 
-    save_and_open_page
-  end
-
-  after do
-    save_and_open_page
   end
 
   scenario 'by name', js: true do
