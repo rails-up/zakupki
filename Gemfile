@@ -27,7 +27,8 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
   gem 'headless'
   gem 'capybara'
-  gem 'poltergeist'
+  gem 'capybara-webkit'
+  # gem 'poltergeist'
 end
 
 group :test do
