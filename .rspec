@@ -1,4 +1,4 @@
 --color
 --require spec_helper
---order rand
+--order defined
 --format documentation
