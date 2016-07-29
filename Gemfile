@@ -21,6 +21,7 @@ gem 'wice_grid', '~> 3.6.0'                        #фильтр таблиц
 gem 'ckeditor'
 gem 'font-awesome-sass',  '~> 4.3'
 gem 'cloudinary'
+gem 'responders'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
