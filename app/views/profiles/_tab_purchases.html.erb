@@ -19,6 +19,9 @@
                     class: "waves-effect waves-light btn-floating" do %>
                       <i class="material-icons">visibility</i>
                     <% end %>
+        <%= link_to edit_purchase_path(purchase), class: "waves-effect waves-light btn-floating" do %>
+            <i class="material-icons">mode_edit</i>
+        <% end %>
         <%= link_to toggle_purchase_path(purchase, toggle_purchase: 'leave'),
                     class: "waves-effect waves-light btn-floating red remove",
                     method: :post,

@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col s12">
     <% if can? :create, Purchase %>
-        <%= link_to(t('purchase.new'), new_purchase_path, class: "waves-effect waves-light btn") %>
+        <%= link_to(t('purchase.new'), new_purchase_path, class: "waves-effect waves-light btn" , data: { no_turbolink: true } ) %>
     <% end %>
 
     <%= link_to '', class: "btn-floating waves-effect waves-light wg-external-reset-button secondary-content",

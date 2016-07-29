@@ -2,7 +2,11 @@ class PurchasesController < ApplicationController
   include PublicIndex, PublicShow
   load_and_authorize_resource
 
-  before_action :find_purchase, only: [:show, :edit, :destroy, :update]
+  before_action :load_purchase, only: [:show, :edit, :destroy, :update]
+  before_action :check_author, only: [:destroy, :update]
+  before_action :build_comment, only: :show
+  before_action :create_purchase, only: :create
+  before_action :set_image, only: :create
 
   def index
     @purchases_grid = initialize_grid(Purchase,
@@ -13,41 +17,34 @@ class PurchasesController < ApplicationController
   end
 
   def new
-    @purchase = Purchase.new
+    respond_with(@purchase = Purchase.new)
   end
 
   def edit
   end
 
   def destroy
-    @purchase.destroy
-    redirect_to purchases_path
+    respond_with(@purchase.destroy)
   end
 
   def create
-    @purchase = Purchase.new(purchase_params)
-    @purchase.owner_id = current_user.id
-    upload=Cloudinary::Uploader.upload(purchase_params[:image]) unless purchase_params[:image].blank?
-    @purchase.image_file_name=upload['url'] unless purchase_params[:image].blank?
     if @purchase.save
-      flash[:success] = t('purchase.created')
-      redirect_to purchases_path
+      redirect_to purchases_path, flash: { success: t('purchase.created')}
     else
-      render 'new'
+      render :new
     end
   end
 
   def update
     if @purchase.update(purchase_params)
-      redirect_to purchase_path(@purchase)
+      redirect_to @purchase, flash: { success: t('flash.purchases.update.success')}
     else
       redirect_to edit_purchase_path(@purchase)
     end
   end
 
   def show
-    @purchase       = Purchase.find(params[:id])
-    @new_comment    = Comment.build_from(@purchase, current_user, "")
+    respond_with(@purchase)
   end
 
   def toggle_purchase
@@ -60,7 +57,7 @@ class PurchasesController < ApplicationController
 
   private
 
-  def find_purchase
+  def load_purchase
     @purchase = Purchase.find(params[:id])
   end
 
@@ -68,5 +65,24 @@ class PurchasesController < ApplicationController
     params.require(:purchase).permit(:name, :description, :end_date, :image, :group_id,
                                      :status, :city_id, :address, :apartment, :catalogue_link,
                                      :commission, :delivery_payment_type_id, :delivery_payment_cost_type_id)
+  end
+
+  def check_author
+    unless current_user.author_of?(@purchase)
+      redirect_to @purchase
+    end
+  end
+
+  def build_comment
+    @new_comment = Comment.build_from(@purchase, current_user, '')
+  end
+
+  def create_purchase
+    @purchase = current_user.purchases.new(purchase_params)
+  end
+
+  def set_image
+    upload=Cloudinary::Uploader.upload(purchase_params[:image]) unless purchase_params[:image].blank?
+    @purchase.image_file_name=upload['url'] unless purchase_params[:image].blank?
   end
 end

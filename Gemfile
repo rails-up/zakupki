@@ -21,13 +21,15 @@ gem 'wice_grid', '~> 3.6.0'                        #фильтр таблиц
 gem 'ckeditor'
 gem 'font-awesome-sass',  '~> 4.3'
 gem 'cloudinary'
+gem 'responders'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
   gem 'headless'
   gem 'capybara'
-  gem 'poltergeist'
+  gem 'capybara-webkit'
+  # gem 'poltergeist'
 end
 
 group :test do
