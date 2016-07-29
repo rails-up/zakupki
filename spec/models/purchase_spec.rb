@@ -36,6 +36,22 @@ describe Purchase  do
       purchases.inactive.each { |x| expect(x.status).to eq("closed") }
     end
   end
+
+  describe '#author_of?' do
+    let(:user) { create(:user) }
+    let(:purchase) { create(:purchase, owner: user) }
+
+    let(:another_user) { create(:user) }
+    let(:another_purchase) { create(:purchase, owner: another_user) }
+
+    it 'returns true, if is author of purchase' do
+      expect(user).to be_author_of(purchase)
+    end
+
+    it 'returns false, if is NOT author of purchase' do
+      expect(user).to_not be_author_of(another_purchase)
+    end
+  end
 end
 
 # == Schema Information

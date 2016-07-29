@@ -27,6 +27,6 @@ RSpec.configure do |config|
   end
 
   Capybara::Webkit.configure do |config|
-    config.allow_url("fonts.googleapis.com")
+    config.block_unknown_urls
   end
 end

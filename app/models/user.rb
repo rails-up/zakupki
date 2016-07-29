@@ -69,12 +69,15 @@ class User < ActiveRecord::Base
     "http://www.gravatar.com/avatar/#{hash}?d=identicon"
   end
 
+  def author_of?(entity)
+    id == entity.owner_id
+  end
+
   private
 
   def assign_default_role
     self.add_role :user
   end
-
 end
 
 # == Schema Information

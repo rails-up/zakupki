@@ -1,17 +1,16 @@
 require 'acceptance_helper'
 
 RSpec.feature 'Adding purchase' do
-  let!(:delivery_payment_cost_types) { create_list(:delivery_payment_cost_type, 2) }
-  let!(:delivery_payment_types) { create_list(:delivery_payment_type, 2) }
-  let!(:cities) { create_list(:city, 2) }
-  let!(:groups) { create_list(:group, 2, enabled: true) }
+  given!(:delivery_payment_cost_types) { create_list(:delivery_payment_cost_type, 2) }
+  given!(:delivery_payment_types) { create_list(:delivery_payment_type, 2) }
+  given!(:cities) { create_list(:city, 2) }
+  given!(:groups) { create_list(:group, 2, enabled: true) }
 
   context 'Role organizer' do
     scenario 'create purchase' do
       user = create :user, :organizer
       login_as user
 
-      prepare_new_purchase
       visit new_purchase_path
 
       fill_in 'purchase_name', with: 'Purchase name'
@@ -65,12 +64,5 @@ RSpec.feature 'Adding purchase' do
       visit new_purchase_path
       expect(page).to have_content(I18n.t('devise.failure.unauthenticated'))
     end
-  end
-
-  def prepare_new_purchase
-    delivery_payment_cost_types
-    delivery_payment_types
-    cities
-    groups
   end
 end

@@ -2,11 +2,16 @@
   <div class="col s12 m6">
     <%= image_tag current_user.gravatar %>
     <h4><%= current_user.username %></h4>
+  </div>
+  <div class="col s12">
     <%= link_to edit_user_profile_path, class: "waves-effect waves-light btn" do %>
-      <%= t("edit") %>
+        <%= t("edit") %>
     <% end %>
     <%= link_to edit_user_registration_path, class: "waves-effect waves-light btn" do %>
-      <%= t("profile.change_password") %>
+        <%= t("profile.change_password") %>
+    <% end %>
+    <%= link_to new_purchase_path, class: "waves-effect waves-light btn", data: { no_turbolink: true } do %>
+        <%= t("purchase.new") %>
     <% end %>
   </div>
 </div>
