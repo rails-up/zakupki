@@ -13,9 +13,7 @@
     <%= render "nav" %>
     <% unless flash.empty? %>
       <script>
-      <% flash.each do |name, msg| %>
-          Materialize.toast("<%= msg %>", 4000);
-      <% end %>
+        <%= raw render_flash %>
       </script>
     <% end %>
     <%= yield %>
