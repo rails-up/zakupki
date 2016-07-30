@@ -13,9 +13,11 @@ describe Purchase  do
   it { should validate_presence_of(:catalogue_link) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:delivery_payment_type_id) }
+  it { should validate_presence_of(:end_date) }
   it { should validate_presence_of(:delivery_payment_cost_type_id) }
   it { should validate_presence_of(:owner_id) }
   it { should validate_length_of(:name).is_at_least(10) }
+  it { should validate_numericality_of(:commission) }
 
   it 'date should not be in past' do
     purchase = build :purchase, end_date: 2.days.ago

@@ -39,6 +39,9 @@ class PurchasesController < ApplicationController
     if @purchase.update(purchase_params)
       redirect_to @purchase, flash: { success: t('flash.purchases.update.success')}
     else
+      @purchase.errors.full_messages.each do |m|
+        flash_message :notice, m
+      end
       redirect_to edit_purchase_path(@purchase)
     end
   end

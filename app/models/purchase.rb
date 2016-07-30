@@ -19,14 +19,21 @@ class Purchase < ActiveRecord::Base
                                size: { in: 0..500.kilobytes }
 
   validates :name, :catalogue_link, :commission,
-            :address, :apartment, :delivery_payment_type_id,
+            :address, :end_date, :apartment, :delivery_payment_type_id,
             :owner_id, :description, :delivery_payment_cost_type_id, presence: true
 
   validates :name, length: { minimum: 10 }
   validate :date_cannot_be_in_the_past
+  validates_numericality_of :commission
 
   scope :active, -> { where.not(status: statuses[:closed]) }
   scope :inactive, -> { where(status: statuses[:closed]) }
+
+  after_initialize :init
+
+  def init
+    self.commission  ||= 0.0
+  end
 
   def date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today
