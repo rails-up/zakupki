@@ -197,14 +197,11 @@ RSpec.describe PurchasesController, type: :controller do
       context 'with valid attributes' do
         let!(:delivery_payment_type) { create(:delivery_payment_type) }
         let!(:delivery_payment_cost_type) { create(:delivery_payment_cost_type) }
-        let!(:purchase) { attributes_for(:purchase) }
-
-        before do
-          purchase[:delivery_payment_type_id] = delivery_payment_type.id
-          purchase[:delivery_payment_cost_type_id] = delivery_payment_cost_type.id
-        end
+        let!(:purchase) { attributes_for(:purchase).merge({delivery_payment_type_id: delivery_payment_type.id,
+                                                           delivery_payment_cost_type_id: delivery_payment_cost_type.id}) }
 
         it 'saves the new purchase in the database' do
+          puts purchase.inspect
           expect { post :create, purchase: purchase }.to change(@user.purchases, :count).by(1)
         end
 
