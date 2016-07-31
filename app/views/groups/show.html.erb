@@ -3,13 +3,6 @@
   <%= @group.description %>
 </div>
 
-<div class="row">
-  <div class="col s12">
-    <h5>
-      <%= @group.city.name unless @group.city.blank? %>
-    </h5>
-  </div>
-</div>
 
 <% if can? [:edit, :destroy], @group %>
   <div class="row">

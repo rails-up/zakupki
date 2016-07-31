@@ -1,13 +1,13 @@
 class GroupsController < ApplicationController
   include PublicIndex, PublicShow
-  skip_before_action :authenticate_user!, only: [:autocomplete_city_name]
+  skip_before_action :authenticate_user!, only: [:autocomplete_group_name]
   before_action :set_group, only: [:show, :edit, :update, :destroy, :toggle_group]
   load_and_authorize_resource only: [:new, :destroy, :edit, :update, :toggle_group]
 
-  autocomplete :city, :name
+  autocomplete :group, :name
 
   def index
-    @groups = Group.enabled.newest.by_city(params[:city]).all
+    @groups = Group.enabled.newest.by_name(params[:name]).all
     @groups = @groups.page(params[:page]).per(10)
   end
 
@@ -61,6 +61,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :description, :city_id, :enabled)
+    params.require(:group).permit(:name, :description, :enabled)
   end
 end
