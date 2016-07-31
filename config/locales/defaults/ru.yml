@@ -333,6 +333,12 @@ ru:
         status: 'Статус'
         group: 'Группа'
         city: 'Город'
+        catalogue_link: 'Ссылка на каталог'
+        delivery_payment_type: 'Доставка до места самовывоза'
+        delivery_payment_cost_type: 'Способ разделения стоимости доставки'
+        address: 'Адрес места самовывоза (без квартиры) и комментарии'
+        apartment: 'Квартира для адреса самовывоза'
+        commission: 'Комиссия, %'
       user:
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
