@@ -201,7 +201,6 @@ RSpec.describe PurchasesController, type: :controller do
                                                            delivery_payment_cost_type_id: delivery_payment_cost_type.id}) }
 
         it 'saves the new purchase in the database' do
-          puts purchase.inspect
           expect { post :create, purchase: purchase }.to change(@user.purchases, :count).by(1)
         end
 

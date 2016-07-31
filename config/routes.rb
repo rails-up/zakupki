@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :users, :purchases, :comments
   resources :groups do
-    get :autocomplete_city_name, on: :collection, as: :cities
+    get :autocomplete_group_name, on: :collection
   end
 
 end

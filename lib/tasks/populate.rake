@@ -23,7 +23,6 @@ namespace :db do
     City.all.first(5).each do |city|
       5.times do
         group = FactoryGirl.create( :group, :enabled,
-          city_id:     city.id,
           user_id:     @admin.id
         )
         5.times do |purchase|

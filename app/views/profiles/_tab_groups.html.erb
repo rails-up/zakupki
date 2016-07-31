@@ -1,7 +1,6 @@
 <table class="bordered highlight">
   <thead>
     <tr>
-      <th><%= t 'group.city' %></th>
       <th><%= t 'group.name' %></th>
       <th><%= t 'group.active_purchases_count' %></th>
       <th><%= t 'actions' %></th>
@@ -11,7 +10,6 @@
   <tbody>
     <% current_user.groups.each do |group| %>
     <tr class="cyan lighten-5">
-      <td><%= group.city.name %></td>
       <td><%= group.name %></td>
       <td><%= group.active_purchases_count %></td>
       <td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725110331) do
+ActiveRecord::Schema.define(version: 20160731151633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,11 +80,9 @@ ActiveRecord::Schema.define(version: 20160725110331) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "enabled",     default: false
-    t.integer  "city_id"
     t.integer  "user_id"
   end
 
-  add_index "groups", ["city_id"], name: "index_groups_on_city_id", using: :btree
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "groups_users", id: false, force: :cascade do |t|
@@ -180,7 +178,6 @@ ActiveRecord::Schema.define(version: 20160725110331) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  add_foreign_key "groups", "cities"
   add_foreign_key "groups", "users"
   add_foreign_key "purchases", "cities"
   add_foreign_key "purchases", "delivery_payment_cost_types"

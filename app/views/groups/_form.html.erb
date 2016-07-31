@@ -7,8 +7,6 @@
     <%= f.check_box :enabled, id: 'enabled' %>
     <%= f.label :enabled, t('group.enabled'), for: 'enabled' %>
   </p>
-  <%= f.label :city_id, t('group.city') %>
-  <%= f.collection_select :city_id, City.all, :id, :name, {},  { class: 'browser-default'}%>
   <div class="input-field">
     <%= f.submit t(:save), class: "waves-effect waves-light btn" %>
   </div>
