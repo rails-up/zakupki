@@ -7,7 +7,7 @@ h2= @group.name
   - if can? :edit, @group
     .col
       = link_to(edit_group_path(@group), class: 'waves-effect waves-light btn-floating') do
-          i.material-icons mode_edit
+        i.material-icons mode_edit
 
   - if can? :destroy, @group
     .col
