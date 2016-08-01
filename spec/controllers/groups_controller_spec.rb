@@ -1,26 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GroupsController, type: :controller do
-  let!(:group) { create(:group) }
-
-  xdescribe 'GET #show' do
-    let(:group) { create(:group, user: create(:user), title: 'Hello world', body: 'Best body group ever') }
-
-    before { get :show, id: group }
-
-    it 'assigns the requested group to @group' do
-      expect(assigns(:group)).to eq group
-    end
-
-    it 'assigns new comment for group' do
-      expect(assigns(:comment)).to be_a_new(Comment)
-    end
-
-    it 'renders show view' do
-      expect(response).to render_template :show
-    end
-  end
-
   describe 'GET #show' do
     let!(:group) { create(:group, enabled: true) }
     
@@ -40,6 +20,8 @@ RSpec.describe GroupsController, type: :controller do
   end
 
   describe 'POST#toggle_group' do
+    let!(:group) { create(:group) }
+
     context 'when user authenticated' do
       login_user #login as @user - defined in spec/support/controller_helpers.rb
 
