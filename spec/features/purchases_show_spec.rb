@@ -7,8 +7,17 @@ describe "User visit purchase show page" do
 
     expect(page).to have_content(purchase.name)
     expect(page).to have_content(purchase.description)
-    expect(page).to have_content(I18n.l purchase.end_date, format: :long)
+    expect(page).to have_content(I18n.l(purchase.end_date, format: :long))
     expect(page).to have_content(purchase.status)
+    expect(page).to have_content(purchase.city.name)
+    expect(page).to have_content(purchase.owner.username)
+    expect(page).to have_content(purchase.group.name)
+    expect(page).to have_content(purchase.catalogue_link)
+    expect(page).to have_content(purchase.delivery_payment_type.value)
+    expect(page).to have_content(purchase.delivery_payment_cost_type.value)
+    expect(page).to have_content(purchase.address)
+    expect(page).to have_content(purchase.apartment)
+    expect(page).to have_content(purchase.commission)
   end
 
   context "when user signed in" do

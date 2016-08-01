@@ -276,6 +276,7 @@ ru:
     title: 'Закупка'
     description: 'Описание'
     city: 'Город'
+    organizer: 'Организатор'
     catalogue_link: 'Ссылка на каталог'
     delivery_payment_type: 'Доставка до места самовывоза'
     delivery_payment_cost_type: 'Способ разделения стоимости доставки'
@@ -324,7 +325,7 @@ ru:
     password_changed: 'Пароль изменён'
     change_password: 'Сменить пароль'
     my_subscriptions: 'Мои подписки'
-    common: 'Сводка'       
+    common: 'Сводка'
   activerecord:
     attributes:
       purchase:
