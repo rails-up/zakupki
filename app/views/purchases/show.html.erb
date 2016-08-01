@@ -15,7 +15,7 @@
 
         <div class="card-action right-align">
           <div class="chip"><%= t("purchase.statuses.#{@purchase.status}") %></div>
-          <% if can? :'123', @purchase %>
+          <% if can? :show, @purchase %>
               <%= link_to(nil, class: "waves-effect waves-light btn-floating", title: "Сделать заказ") do %>
                   <i class='material-icons'>shopping_cart</i>
               <% end %>
