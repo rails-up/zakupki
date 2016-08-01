@@ -315,6 +315,7 @@ ru:
     join: 'Присоединиться'
     leave: 'Покинуть'
     my_groups: 'Мои группы'
+    active_purhcases: 'Активные закупки'
     group_left: 'Вы покинули группу '
     prompt: 'Выберите группу'
     non_exist: 'не указана'
