@@ -2,7 +2,6 @@ class GroupsController < ApplicationController
   include PublicIndex, PublicShow
   skip_before_action :authenticate_user!, only: [:autocomplete_group_name]
   before_action :set_group, only: [:show, :edit, :update, :destroy, :toggle_group]
-  before_action :build_comment, only: :show
   load_and_authorize_resource only: [:new, :destroy, :edit, :update, :toggle_group]
 
   autocomplete :group, :name
@@ -13,6 +12,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @new_comment = Comment.build_from(@group, current_user, '')
     respond_with(@group)
   end
 
@@ -62,9 +62,5 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :description, :enabled)
-  end
-
-  def build_comment
-    @new_comment = Comment.build_from(@group, current_user, '')
   end
 end
