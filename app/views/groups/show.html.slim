@@ -1,0 +1,39 @@
+h2= @group.name
+
+.section.flow-text
+  = @group.description
+
+.row
+  - if can? :edit, @group
+    .col
+      = link_to(edit_group_path(@group), class: 'waves-effect waves-light btn-floating') do
+        i.material-icons mode_edit
+
+  - if can? :destroy, @group
+    .col
+      = link_to(group_path(@group), class: 'waves-effect waves-light btn-floating',
+            method: :delete, data: {confirm: (t 'purchase.deletion_confirm')}) do
+        i.material-icons delete
+
+  - if can? :toggle_group, @group
+    .col
+      = link_to(I18n.t(toggle_group_button_text(@group)), toggle_group_path(@group),
+            class: 'waves-effect waves-light btn', method: :post)
+
+- if @group.purchases.any?
+  .row
+    h4 = t('group.active_purchases')
+    table[class='bordered highlight']
+      thead
+        tr
+          th = t('purchase.name')
+          th = t('purchase.description')
+          th = t('purchase.end_date')
+      tbody
+        - @group.purchases.each do |purchase|
+          tr
+            td = purchase.name
+            td = purchase.description
+            td = purchase.end_date.strftime('%d.%m.%Y')
+
+= render partial: 'comments/template', locals: {commentable: @group, new_comment: @comment}
