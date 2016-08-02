@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 feature 'Viewing group' do
-  given!(:group) { create(:group, enabled: true) }
-  given!(:group_without_purchases) { create(:group, enabled: true) }
+  given!(:group) { create(:group, :enabled) }
+  given!(:group_without_purchases) { create(:group, :enabled) }
   given!(:purchases) { create_list(:purchase, 2, group: group) }
 
   scenario 'main info' do
