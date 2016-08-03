@@ -26,17 +26,6 @@ describe "User visit purchase show page" do
 
         expect(page).to_not have_content(purchse.name)
       end
-
-      it "can update purchase" do
-        purchase = create :purchase, owner_id: @user.id
-
-        visit purchase_path(purchase)
-        click_link "edit"
-        fill_in "purchase[description]", with: "Edited description"
-        find("input[name='commit']").click
-
-        expect(page).to have_content("Edited description")
-      end
     end
 
     context "purchase that not belong to user" do
