@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body  class="<%= controller_name %> <%= action_name %>">
   <div class="container">
     <%= render "nav" %>
     <% unless flash.empty? %>
