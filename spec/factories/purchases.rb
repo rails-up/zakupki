@@ -1,15 +1,15 @@
 FactoryGirl.define do
   factory :purchase do
     group
-    name { Faker::Commerce.product_name }
-    catalogue_link 'http://test.link'
-    commission 9.9
-    address 'Test address'
-    apartment 'Test apartment'
     delivery_payment_type
     delivery_payment_cost_type
     city
     owner
+    name { Faker::Commerce.product_name }
+    catalogue_link { Faker::Internet.url }
+    commission 9.9
+    address { "#{Faker::Address.city}, #{Faker::Address.street_address}" }
+    apartment { Faker::Address.secondary_address }
     description { Faker::Hipster.sentence(3, true, 4) }
     end_date { 5.days.from_now }
 
