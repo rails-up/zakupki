@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User visit purchase show page' do
-  it 'user see comments'
+
   context 'unregistered' do
     it "can't leave comments" do
       purchase = create :purchase

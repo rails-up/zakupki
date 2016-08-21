@@ -1,0 +1,39 @@
+table.bordered.highlight
+  thead
+    tr
+      th= t 'purchase.name'
+      th= t 'purchase.end_date'
+      th= t 'actions'
+      th= t 'purchase.status'
+  tbody
+    - current_user.purchases.each do |purchase|
+      tr.cyan.lighten-5
+        td= link_to purchase.name, purchase_path(purchase), title: purchase.description
+        td= purchase.end_date
+        td
+          = link_to purchase_path(purchase), class: "waves-effect waves-light btn-floating" do
+            i.material-icons visibility
+
+          = link_to edit_purchase_path(purchase), class: "waves-effect waves-light btn-floating" do
+            i.material-icons mode_edit
+
+          = link_to toggle_purchase_path(purchase, toggle_purchase: 'leave'),
+              class: "waves-effect waves-light btn-floating red remove", method: 'post',
+              remote: true, title: t('purchase.leave') do
+            i.material-icons close
+
+        td
+          span.current_state
+            = purchase.human_state_name
+          - unless purchase.closed?
+            br
+            = link_to t('purchase.change_status'), '#change_purchase', class: 'waves-effect waves-light btn modal-trigger'
+
+            #change_purchase.modal
+              .modal-content
+                select disabled="disabled"
+                  option disabled="disabled" selected="selected" value="#{purchase.next_possible_event.to_s}"
+                    = Purchase.human_state_name(purchase.next_possible_state)
+              .modal-footer
+                = link_to t('save'), change_state_purchase_path(purchase, 'purchase[state]' => purchase.next_possible_event.to_s),
+                        method: 'post', class: 'modal-action modal-close waves-effect waves-green btn-flat'

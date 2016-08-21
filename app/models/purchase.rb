@@ -1,5 +1,23 @@
 class Purchase < ActiveRecord::Base
-  enum status: [:opened, :funding, :awaiting, :distributing, :closed]
+  state_machine :state, initial: :opened do
+    state :funding, :awaiting, :distributing, :closed
+
+    event :fund do
+      transition opened: :funding
+    end
+
+    event :await do
+      transition funding: :awaiting
+    end
+
+    event :distribute do
+      transition awaiting: :distributing
+    end
+
+    event :close do
+      transition distributing: :closed
+    end
+  end
 
   belongs_to :group
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id
@@ -18,7 +36,7 @@ class Purchase < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/png"] },
                                size: { in: 0..500.kilobytes }
 
-  validates :name, :catalogue_link, :commission,
+  validates :name, :catalogue_link, :commission, :state,
             :address, :end_date, :apartment, :delivery_payment_type_id,
             :owner_id, :description, :delivery_payment_cost_type_id, presence: true
 
@@ -26,10 +44,18 @@ class Purchase < ActiveRecord::Base
   validate :date_cannot_be_in_the_past
   validates_numericality_of :commission
 
-  scope :active, -> { where.not(status: statuses[:closed]) }
-  scope :inactive, -> { where(status: statuses[:closed]) }
+  scope :active, -> { where.not(state: 'closed') }
+  scope :inactive, -> { where(state: 'closed') }
 
   after_initialize :init
+
+  def next_possible_event
+    state_paths.events.first
+  end
+
+  def next_possible_state
+    state_paths.to_states.first
+  end
 
   def init
     self.commission  ||= 0.0
@@ -54,7 +80,7 @@ end
 #  name                          :string
 #  description                   :text
 #  end_date                      :date
-#  status                        :integer
+#  state                         :string
 #  group_id                      :integer
 #  owner_id                      :integer
 #  created_at                    :datetime         not null
@@ -65,7 +91,7 @@ end
 #  image_updated_at              :datetime
 #  city_id                       :integer
 #  catalogue_link                :string
-#  commission                    :float            default("0.0")
+#  commission                    :float            default(0.0)
 #  address                       :string
 #  apartment                     :string
 #  delivery_payment_type_id      :integer

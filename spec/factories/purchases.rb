@@ -14,27 +14,27 @@ FactoryGirl.define do
     end_date { 5.days.from_now }
 
     trait :opened do
-      status :opened
+      state 'opened'
     end
 
     factory :opened_purchase do
-      status :opened
+      state 'opened'
     end
 
     factory :funding_purchase do
-      status :funding
+      state 'funding'
     end
 
     factory :distributing_purchase do
-      status :distributing
+      state 'distributing'
     end
 
     factory :awaiting_purchase do
-      status :awaiting
+      state 'awaiting'
     end
 
     factory :closed_purchase do
-      status :closed
+      state 'closed'
     end
   end
 end
@@ -47,7 +47,7 @@ end
 #  name                          :string
 #  description                   :text
 #  end_date                      :date
-#  status                        :integer
+#  state                         :string
 #  group_id                      :integer
 #  owner_id                      :integer
 #  created_at                    :datetime         not null

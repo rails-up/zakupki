@@ -7,6 +7,7 @@ describe Purchase  do
   it { should belong_to(:delivery_payment_cost_type) }
   it { should have_many(:orders) }
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:state) }
   it { should validate_presence_of(:commission) }
   it { should validate_presence_of(:address) }
   it { should validate_presence_of(:apartment) }
@@ -24,18 +25,41 @@ describe Purchase  do
     expect(purchase.valid?).to be_falsy
   end
 
-  describe 'scoping by status' do
+  describe 'scoping by state' do
     let!(:user) { create :user_with_purchases_with_different_statuses }
     let!(:purchases) { user.purchases }
 
-    it "active scope includes only active purchases" do
+    it 'active scope includes only active purchases' do
       expect(purchases.active.count).to eq(4)
-      purchases.active.each { |x| expect(x.status).not_to eq("closed") }
+      purchases.active.each { |x| expect(x.state).not_to eq('closed') }
     end
 
-    it "inactive scope includes only closed purchases" do
+    it 'inactive scope includes only closed purchases' do
       expect(purchases.inactive.count).to eq(1)
-      purchases.inactive.each { |x| expect(x.status).to eq("closed") }
+      purchases.inactive.each { |x| expect(x.state).to eq('closed') }
+    end
+  end
+
+  it { expect(subject.state).to eq 'opened' }
+  it { should have_states :funding, :awaiting, :distributing, :closed }
+  it { should handle_events :fund, when: :opened }
+  it { should handle_events :await, when: :funding }
+  it { should handle_events :distribute, when: :awaiting }
+  it { should handle_events :close, when: :distributing }
+
+  describe '#next_possible_event' do
+    context 'opened' do
+      it 'return next possible event for opened state' do
+        expect(subject.next_possible_event).to eq :fund
+      end
+    end
+  end
+
+  describe '#next_possible_state' do
+    context 'opened' do
+      it 'return next possible state for opened state' do
+        expect(subject.next_possible_state).to eq :funding
+      end
     end
   end
 
@@ -64,7 +88,7 @@ end
 #  name                          :string
 #  description                   :text
 #  end_date                      :date
-#  status                        :integer
+#  state                         :string
 #  group_id                      :integer
 #  owner_id                      :integer
 #  created_at                    :datetime         not null

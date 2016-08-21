@@ -1,7 +1,8 @@
-require 'factory_girl_rails'
-require_relative 'support/controller_helpers'
+require 'simplecov'
+require 'support/controller_helpers'
 require 'devise'
 
+SimpleCov.start
 RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
 

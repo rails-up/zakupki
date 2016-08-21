@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   include PublicIndex, PublicShow
   load_and_authorize_resource
 
-  before_action :load_purchase, only: [:show, :edit, :destroy, :update]
+  before_action :load_purchase, only: [:show, :edit, :destroy, :update, :change_state]
   before_action :check_author, only: [:destroy, :update]
   before_action :build_comment, only: :show
   before_action :create_purchase, only: :create
@@ -58,6 +58,11 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def change_state
+    @purchase.fire_state_event(purchase_params[:state])
+    redirect_to user_profile_path
+  end
+
   private
 
   def load_purchase
@@ -65,8 +70,8 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.require(:purchase).permit(:name, :description, :end_date, :image, :group_id,
-                                     :status, :city_id, :address, :apartment, :catalogue_link,
+    params.require(:purchase).permit(:name, :description, :state, :end_date, :image, :group_id,
+                                     :city_id, :address, :apartment, :catalogue_link,
                                      :commission, :delivery_payment_type_id, :delivery_payment_cost_type_id)
   end
 

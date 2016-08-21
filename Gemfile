@@ -23,6 +23,7 @@ gem 'font-awesome-sass',  '~> 4.3'
 gem 'cloudinary'
 gem 'responders'
 gem 'slim-rails'
+gem 'state_machines-activerecord'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
@@ -34,11 +35,13 @@ group :development, :test do
 end
 
 group :test do
+  gem 'simplecov', require: false
   gem 'libnotify', '~> 0.9.1'
-  gem 'shoulda'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'state_machine_rspec'
 end
 
 group :development do

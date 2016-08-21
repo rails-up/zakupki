@@ -5,6 +5,7 @@ require 'spec_helper'
 require 'headless'
 require 'rspec/rails'
 require 'devise'
+require 'cancan/matchers'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -20,4 +21,12 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
   config.extend ControllerHelpers, :type => :controller
+  config.include StateMachineRspec::Matchers
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

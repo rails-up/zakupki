@@ -17,6 +17,10 @@ FactoryGirl.define do
       after(:create) { |user| user.add_role(:organizer) }
     end
 
+    trait :banned do
+      after(:create) { |user| user.add_role(:banned) }
+    end
+
     factory :user_from_vkontakte do
       email nil
       provider "vkontakte"
@@ -25,8 +29,10 @@ FactoryGirl.define do
 
     factory :user_with_purchases_with_different_statuses do
       after(:create) do |user|
-        Purchase.statuses.each do |s|
-          create(:purchase, status: s[0], owner_id: user.id)
+        states =  Purchase.state_machine.states.map &:name
+        states.each do |s|
+          state = "#{s.to_s}_purchase".to_sym
+          create(state, owner_id: user.id)
         end
       end
     end

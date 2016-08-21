@@ -1,13 +1,15 @@
 require 'acceptance_helper'
 
 feature 'Search purchases' do
-  given!(:city) { create(:city) }
-  given!(:group) { create(:group, enabled: true) }
-  given!(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
-  given!(:purchase) { create(:purchase, group: group, city: city) }
-  given!(:purchase_without_group) { create(:purchase, group: nil) }
+  let(:city) { create(:city) }
+  let(:group) { create(:group, enabled: true) }
+  let(:purchases) { create_list(:purchase, 2, group: create(:group, enabled: true)) }
+  let(:purchase) { create(:purchase, group: group, city: city) }
+  let(:purchase_without_group) { create(:purchase, group: nil) }
 
-  before do 
+  before do
+    purchase
+    purchases
     visit purchases_path 
   end
 
@@ -43,6 +45,8 @@ feature 'Search purchases' do
     end
 
     scenario 'when purchase without group', js: true do
+      purchase_without_group
+
       select I18n.t('group.non_exist'), from: 'grid_f_groups_id'
       search
 

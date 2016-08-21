@@ -222,4 +222,19 @@ RSpec.describe PurchasesController, type: :controller do
       end
     end
   end
+
+  describe 'POST #change_state' do
+    sign_in_user
+    let!(:purchase) { create(:purchase) }
+
+    it 'try to change state' do
+      expect_any_instance_of(Purchase).to receive(:fire_state_event).with('fund')
+      post :change_state, id: purchase, purchase: { state: 'fund' }
+    end
+
+    it 'redirect to #purchases_path' do
+      post :change_state, id: purchase, purchase: { state: 'fund' }
+      expect(response).to redirect_to user_profile_path
+    end
+  end
 end

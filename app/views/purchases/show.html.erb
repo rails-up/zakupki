@@ -22,13 +22,15 @@
           <%= "#{t('purchase.organizer')}: " %>
           <%= link_to @purchase.owner.name, '#' %>
         </p>
+        <% unless(@purchase.group.nil?) %>
         <p>
           <%= "#{t('group.title')}: " %>
           <%= link_to @purchase.group.name, group_path(@purchase.group) %>
         </p>
+        <% end %>
 
         <div class="card-action right-align">
-          <div class="chip"><%= t("purchase.statuses.#{@purchase.status}") %></div>
+          <div class="chip"><%= @purchase.human_state_name %></div>
           <% if can? :show, @purchase %>
               <%= link_to(nil, class: "waves-effect waves-light btn-floating", title: "Сделать заказ") do %>
                   <i class='material-icons'>shopping_cart</i>

@@ -294,6 +294,7 @@ ru:
     leave: 'Покинуть'
     purchase_left: 'Вы отменили закупку '
     status: 'Статус'
+    change_status: 'Сменить статус'
     created: 'Закупка успешно создана'
     statuses:
       opened: 'Открыта'
@@ -327,6 +328,16 @@ ru:
     my_subscriptions: 'Мои подписки'
     common: 'Сводка'
   activerecord:
+    state_machines:
+      purchase:
+        states:
+          opened: 'Открыта'
+          funding: 'Сбор средств'
+          awaiting: 'Ожидание заказа от поставщика'
+          distributing: 'Раздача'
+          closed: 'Закрыта'
+        events:
+          close: "Закрыть"
     attributes:
       purchase:
         end_date: 'Дата окончания'
