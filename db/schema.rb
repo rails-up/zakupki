@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731151633) do
+ActiveRecord::Schema.define(version: 20160830115213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20160731151633) do
     t.string   "apartment"
     t.integer  "delivery_payment_type_id"
     t.integer  "delivery_payment_cost_type_id"
+    t.float    "flat_shipping_price",           default: 0.0
   end
 
   add_index "purchases", ["city_id"], name: "index_purchases_on_city_id", using: :btree

@@ -76,10 +76,16 @@
         <div class="row">
           <div class="input-field col s12">
             <%= f.label t('purchase.delivery_payment_type') %><br>
-            <%= f.collection_radio_buttons :delivery_payment_type_id, DeliveryPaymentType.all, :id, :value do |b| %>
-                <%= b.radio_button %>
-                <%= b.label %><br>
+            <%= f.collection_radio_buttons :delivery_payment_type_id,
+              DeliveryPaymentType.all,
+              :id,
+              :value do |b| %>
+              <%= b.radio_button class:'delivery_payment'%>
+              <%= b.label %><br>
             <% end %>
+            <div class="hidden-field" id="flat_shipping_price">
+              <%=  f.number_field :flat_shipping_price %>
+            </div>
           </div>
         </div>
 
@@ -120,5 +126,5 @@
 <script type="text/javascript">
   $(document).ready(function () {
     $('#purchase_group_id, #purchase_city_id').material_select();
-  });
-</script>
+    });
+  </script>

@@ -30,7 +30,7 @@ group :development, :test do
   gem 'headless'
   gem 'capybara'
   gem 'capybara-webkit'
-  # gem 'poltergeist'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -39,11 +39,11 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'byebug'
 end
 
 group :development do
   gem 'spring', '~> 1.6', '>= 1.6.4'
-  gem 'pry-rails', :group => :development
   gem 'better_errors', git: 'https://github.com/manafire/better_errors.git', branch: 'allow_domain'
   gem "binding_of_caller"
 end
