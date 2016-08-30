@@ -58,7 +58,7 @@ end
 #  image_updated_at              :datetime
 #  city_id                       :integer
 #  catalogue_link                :string
-#  commission                    :float            default("0.0")
+#  commission                    :float            default(0.0)
 #  address                       :string
 #  apartment                     :string
 #  delivery_payment_type_id      :integer
