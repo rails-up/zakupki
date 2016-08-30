@@ -62,6 +62,7 @@
     </p>
     <p>
       <%= "#{t('purchase.delivery_payment_type')}: #{@purchase.delivery_payment_type.value}" %>
+      <%= "Стоимость: #{@purchase.flat_shipping_price}" if @purchase.flat_shipping_price > 0 %>
     </p>
     <p>
       <%= "#{t('purchase.delivery_payment_cost_type')}: #{@purchase.delivery_payment_cost_type.value}" %>
