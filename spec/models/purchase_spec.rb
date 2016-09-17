@@ -54,6 +54,26 @@ describe Purchase  do
       expect(user).to_not be_author_of(another_purchase)
     end
   end
+
+  describe 'flat_shipping_rate' do
+    it 'should be 0.0 if not fixed price value' do
+      purchase = build :purchase, flat_shipping_price: 9.99
+      purchase.save
+
+      expect(purchase.flat_shipping_price).to eq(0.0)
+    end
+
+    it 'should be set when fix price type is set' do
+      delivery_payment_type = create :delivery_payment_type,
+                              value: 'фиксированная стоимость'
+      purchase = build :purchase,
+                       delivery_payment_type: delivery_payment_type,
+                       flat_shipping_price: 9.99
+      purchase.save
+
+      expect(purchase.flat_shipping_price).to eq(9.99)
+    end
+  end
 end
 
 # == Schema Information
@@ -75,11 +95,12 @@ end
 #  image_updated_at              :datetime
 #  city_id                       :integer
 #  catalogue_link                :string
-#  commission                    :float            default("0.0")
+#  commission                    :float            default(0.0)
 #  address                       :string
 #  apartment                     :string
 #  delivery_payment_type_id      :integer
 #  delivery_payment_cost_type_id :integer
+#  flat_shipping_price           :float            default(0.0)
 #
 # Indexes
 #
