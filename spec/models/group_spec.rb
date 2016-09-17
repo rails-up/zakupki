@@ -32,7 +32,7 @@ require 'rails_helper'
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  enabled     :boolean          default("false")
+#  enabled     :boolean          default(FALSE)
 #  user_id     :integer
 #
 # Indexes

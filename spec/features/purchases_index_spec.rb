@@ -25,23 +25,6 @@ feature 'List purchases' do
     expect(page).to have_content(I18n.l purchase.end_date, format: :long)
   end
 
-  context 'when user signed in'  do
-    scenario 'can create new purchase' do
-      user = create :user, :organizer
-      login_as user
-
-      visit purchases_path
-      click_link I18n.t('purchase.new')
-      fill_in 'purchase[name]', with: 'New purchase name'
-      fill_in 'purchase[description]', with: 'Some description'
-      fill_in 'purchase[end_date]', with: Time.current + 5.days
-      find("input[name='commit']").click
-
-      # expect(page).to have_content("New purchase name")
-      expect(page).to have_content('Some description')
-    end
-  end
-
   context 'when user not signed in' do
     scenario "can't create new purchase" do
       visit purchases_path

@@ -31,7 +31,10 @@ class PurchasesController < ApplicationController
     if @purchase.save
       redirect_to purchases_path, flash: { success: t('purchase.created')}
     else
-      render :new
+      @purchase.errors.full_messages.each do |m|
+        flash_message :notice, m
+      end
+      redirect_to new_purchase_path(@purchase)
     end
   end
 
@@ -65,9 +68,21 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.require(:purchase).permit(:name, :description, :end_date, :image, :group_id,
-                                     :status, :city_id, :address, :apartment, :catalogue_link,
-                                     :commission, :delivery_payment_type_id, :delivery_payment_cost_type_id)
+    params.require(:purchase).permit(:name,
+                                     :description,
+                                     :end_date,
+                                     :image,
+                                     :group_id,
+                                     :status,
+                                     :city_id,
+                                     :address,
+                                     :apartment,
+                                     :catalogue_link,
+                                     :commission,
+                                     :delivery_payment_type_id,
+                                     :delivery_payment_cost_type_id,
+                                     :flat_shipping_price
+                                    )
   end
 
   def check_author

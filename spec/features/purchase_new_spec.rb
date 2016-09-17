@@ -4,6 +4,8 @@ RSpec.feature 'Adding purchase' do
   given!(:delivery_payment_cost_types) { create_list(:delivery_payment_cost_type, 2) }
   given!(:delivery_payment_types) { create_list(:delivery_payment_type, 2) }
   given!(:cities) { create_list(:city, 2) }
+  given!(:fix_price_delivery) { create :delivery_payment_type, value: 'фиксированная стоимость' }
+  given!(:flat_shipping_price) { '88.88' }
   given!(:groups) { create_list(:group, 2, enabled: true) }
 
   context 'Role organizer' do
@@ -28,10 +30,15 @@ RSpec.feature 'Adding purchase' do
       fill_in 'purchase_address', with: 'Test address'
       fill_in 'purchase_apartment', with: 'Test apartment'
 
+
+      choose("#{fix_price_delivery.value}")
+      fill_in 'purchase[flat_shipping_price]', with: flat_shipping_price
+
       choose("#{delivery_payment_types[0].value}")
       choose("#{delivery_payment_cost_types[0].value}")
 
       click_on I18n.t('save')
+
       expect(current_path).to eq purchases_path
       expect(page).to have_content(I18n.t('purchase.created'))
     end
@@ -65,4 +72,5 @@ RSpec.feature 'Adding purchase' do
       expect(page).to have_content(I18n.t('devise.failure.unauthenticated'))
     end
   end
+
 end
