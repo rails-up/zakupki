@@ -16,7 +16,6 @@ RSpec.feature 'Adding purchase' do
       fill_in 'purchase_name', with: 'Purchase name'
       fill_in 'purchase_description', with: 'Purchase description'
 
-      select first('#purchase_state option').text, from: 'purchase_state'
       select first('#purchase_city_id option').text, from: 'purchase_city_id'
       find('#purchase_group_id').find(:xpath, 'option[2]').select_option
 

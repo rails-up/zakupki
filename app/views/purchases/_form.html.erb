@@ -17,15 +17,6 @@
       </div>
 
       <div class="col s12 m6">
-        <div class="row">
-          <div class="input-field col s12">
-            <%= f.select :state, options_from_collection_for_select(
-                Purchase.state_machine.states.inject({}) { |h, (k, v)| h.merge(t("purchase.statuses.#{k.name}") => k.name) },
-                :last, :first, selected: @purchase.state),
-                         {required: true}, {class: "form_select"} %>
-            <%= f.label t('purchase.status') %>
-          </div>
-        </div>
 
         <div class="row">
           <div class="input-field col s12">

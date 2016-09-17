@@ -67,7 +67,6 @@ feature 'Purchase editing' do
       scenario 'with valid data' do
         fill_in 'purchase_name', with: edited_purchase.name
         fill_in 'purchase_description', with: edited_purchase.description
-        find('#purchase_state').find(:xpath, 'option[2]').select_option
         select cities.last.name, from: 'purchase_city_id'
         select groups.last.name, from: 'purchase_group_id'
         fill_in 'purchase_catalogue_link', with: 'http://test.link'
